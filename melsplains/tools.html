@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <title>Free Tools &amp; Kits — Melsplains</title>
+  <meta name="description" content="Prompt kits, templates, and workflow guides I built for myself, then made shareable. Take them." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:          #E8185A;
+      --warm-black:    #14110E;
+      --mid-gray:      #6B6560;
+      --border:        #E2E4E8;
+      --border-soft:   #ECEEF1;
+      --bg:            #FAFAFB;
+      --teal:          #00C9C8;
+      --violet:        #7C3AED;
+      --holo:          linear-gradient(135deg, #E8185A 0%, #7C3AED 50%, #00C9C8 100%);
+      --holo-wide:     linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --holo-bright:   linear-gradient(135deg, #FF4E80 0%, #B289FF 50%, #5EE8E7 100%);
+      --aurora-bg:     linear-gradient(135deg, #0A0E1A 0%, #1A0A2E 45%, #0A1E2E 100%);
+      --max:           1180px;
+      --gutter:        clamp(20px, 4vw, 56px);
+      --serif:         'DM Serif Display', 'Times New Roman', serif;
+      --sans:          'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:          'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--aurora-bg); color: #F5F1EB; font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    svg { display: block; max-width: 100%; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* TYPE */
+    .eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .eyebrow-teal { color: var(--teal); }
+    .eyebrow-teal::before { background: var(--teal); }
+    .holo-rule { height: 2px; border: 0; background: var(--holo-wide); border-radius: 2px; width: 100%; }
+    .margin-note-dark { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: rgba(245,241,235,0.55); letter-spacing: 0.01em; padding-left: 14px; border-left: 2px solid var(--teal); }
+    .margin-note-dark::before { content: "/* "; color: var(--teal); }
+    .margin-note-dark::after  { content: " */"; color: var(--teal); }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; font-family: var(--sans); font-weight: 500; font-size: 13.5px; border-radius: 4px; transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer; white-space: nowrap; border: none; }
+    .btn .arr { transition: transform 0.3s cubic-bezier(.22,.61,.36,1); display: inline-block; }
+    .btn:hover .arr { transform: translateX(5px); }
+    .btn-holo { background: var(--holo-bright); background-size: 200% 200%; background-position: 0% 50%; color: white; box-shadow: 0 1px 0 rgba(255,78,128,0.3), 0 14px 32px -14px rgba(124,58,237,0.5); }
+    .btn-holo:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    .btn-dark-ghost { background: transparent; color: rgba(245,241,235,0.6); border: 1px solid rgba(245,241,235,0.2); }
+    .btn-dark-ghost:hover { border-color: rgba(0,201,200,0.5); color: #5EE8E7; }
+
+    /* NAV */
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(10,14,26,0.82); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav .logo-mark { height: 32px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 38px; align-items: center; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: rgba(245,241,235,0.75); position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--holo-bright); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: #5EE8E7; }
+    .nav-links a:hover { color: #F5F1EB; }
+    .nav .right { display: flex; }
+    .nav-btn-dark { background: var(--holo-bright); background-size: 200% 200%; background-position: 0% 50%; color: white; padding: 11px 18px; font-size: 13px; border-radius: 4px; font-weight: 500; font-family: var(--sans); transition: all 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-btn-dark:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+
+    /* BREADCRUMB */
+    .breadcrumb { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(0,0,0,0.2); }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: rgba(245,241,235,0.45); }
+    .breadcrumb-inner a { transition: color 0.2s; }
+    .breadcrumb-inner a:hover { color: #5EE8E7; }
+    .breadcrumb-sep { color: rgba(245,241,235,0.2); }
+    .breadcrumb-current { color: rgba(245,241,235,0.8); font-weight: 500; }
+
+    /* PAGE HERO */
+    .page-hero { padding: clamp(72px, 9vw, 120px) 0 clamp(56px, 7vw, 80px); position: relative; overflow: hidden; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+    .orb.violet { background: rgba(124,58,237,0.45); width: 500px; height: 500px; top: -160px; left: -100px; }
+    .orb.teal   { background: rgba(0,201,200,0.35); width: 380px; height: 380px; bottom: -100px; right: -60px; }
+    .hero-inner { position: relative; z-index: 1; max-width: 680px; display: flex; flex-direction: column; gap: 20px; }
+    .hero-h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 6vw, 80px); line-height: 1.0; letter-spacing: -0.015em; color: #F5F1EB; }
+    .hero-h1 em { font-style: italic; background: var(--holo-bright); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-note { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: rgba(245,241,235,0.45); padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.08); }
+    .hero-lede { font-size: 16.5px; line-height: 1.7; color: rgba(245,241,235,0.70); }
+
+    /* TOOL CARDS GRID */
+    .tools-section { padding: clamp(64px, 8vw, 104px) 0; position: relative; z-index: 1; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+    @media (max-width: 760px) { .tools-grid { grid-template-columns: 1fr; } }
+    .tool-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 6px; padding: 28px 28px 24px; display: flex; flex-direction: column; gap: 14px; transition: all 0.35s cubic-bezier(.22,.61,.36,1); }
+    .tool-card:hover { border-color: rgba(0,201,200,0.4); transform: translateY(-2px); box-shadow: 0 14px 32px -14px rgba(0,201,200,0.25); background: rgba(255,255,255,0.06); }
+    .tool-card.featured { border-color: rgba(255,78,128,0.35); }
+    .tool-card.featured:hover { border-color: rgba(255,78,128,0.6); box-shadow: 0 14px 32px -14px rgba(255,78,128,0.3); }
+    .card-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .badge-format { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(0,201,200,0.10); color: #5EE8E7; border: 1px solid rgba(0,201,200,0.25); }
+    .badge-free { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(255,78,128,0.15); color: #FF4E80; border: 1px solid rgba(255,78,128,0.3); }
+    .badge-soon { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(245,241,235,0.06); color: rgba(245,241,235,0.4); border: 1px solid rgba(245,241,235,0.12); }
+    .card-title { font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.15; color: #F5F1EB; letter-spacing: -0.005em; }
+    .card-desc { font-size: 14px; color: rgba(245,241,235,0.60); line-height: 1.65; flex: 1; }
+    .card-cta { margin-top: 4px; }
+
+    /* CLAUDE LINK BOX */
+    .claude-callout { margin: 0 0 56px; padding: 20px 24px; background: rgba(0,201,200,0.07); border: 1px solid rgba(0,201,200,0.20); border-radius: 6px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .claude-callout p { font-size: 14.5px; color: rgba(245,241,235,0.70); line-height: 1.6; }
+    .claude-callout p strong { color: #5EE8E7; }
+    .claude-link { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5EE8E7; font-weight: 500; white-space: nowrap; border-bottom: 1px solid rgba(0,201,200,0.4); padding-bottom: 2px; transition: opacity 0.2s; }
+    .claude-link:hover { opacity: 0.7; }
+
+    /* NEWSLETTER STRIP */
+    .newsletter-section { background: rgba(0,0,0,0.25); border-top: 1px solid rgba(255,255,255,0.07); padding: clamp(56px, 7vw, 88px) 0; }
+    .newsletter-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    @media (max-width: 760px) { .newsletter-inner { grid-template-columns: 1fr; gap: 32px; } }
+    .newsletter-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.1; letter-spacing: -0.012em; color: #F5F1EB; margin-bottom: 12px; }
+    .newsletter-heading em { font-style: italic; background: var(--holo-bright); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .newsletter-sub { font-size: 15px; color: rgba(245,241,235,0.60); line-height: 1.65; }
+    .newsletter-form { display: flex; flex-direction: column; gap: 12px; }
+    .input-row { display: flex; gap: 0; }
+    .input-row input { flex: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-right: none; color: #F5F1EB; padding: 12px 16px; font-size: 14px; font-family: var(--sans); border-radius: 4px 0 0 4px; outline: none; transition: border-color 0.2s; }
+    .input-row input::placeholder { color: rgba(245,241,235,0.3); }
+    .input-row input:focus { border-color: var(--teal); }
+    .input-row button { background: var(--holo-bright); color: white; border: none; padding: 12px 20px; font-size: 13px; font-weight: 600; font-family: var(--sans); cursor: pointer; border-radius: 0 4px 4px 0; transition: opacity 0.2s; white-space: nowrap; }
+    .input-row button:hover { opacity: 0.85; }
+    .newsletter-note { font-family: var(--mono); font-size: 11px; color: rgba(245,241,235,0.3); letter-spacing: 0.05em; }
+
+    /* FOOTER */
+    .foot { padding: 56px 0 64px; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.3); }
+    .foot-grid { display: flex; flex-direction: column; gap: 28px; }
+    .foot-row1 { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .foot-left { display: flex; align-items: center; gap: 18px; }
+    .foot .logo-mark { height: 30px; width: auto; }
+    .foot .micro { font-size: 12px; color: rgba(245,241,235,0.35); font-family: var(--mono); letter-spacing: 0.02em; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a, .foot-social a { font-size: 12.5px; color: rgba(245,241,235,0.45); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-links a:hover, .foot-social a:hover { color: #5EE8E7; }
+    .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-also { font-size: 11.5px; color: rgba(245,241,235,0.25); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07); }
+    .foot-also a { color: rgba(255,78,128,0.6); border-bottom: 1px solid rgba(255,78,128,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.delay-1 { transition-delay: 0.06s; }
+    .reveal.delay-2 { transition-delay: 0.12s; }
+    .reveal.delay-3 { transition-delay: 0.18s; }
+    .reveal.delay-4 { transition-delay: 0.24s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html" aria-label="Melanie Dunn home">
+          <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+            <defs><linearGradient id="holo-nav-tools" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF4E80"/><stop offset="50%" stop-color="#B289FF"/><stop offset="100%" stop-color="#5EE8E7"/></linearGradient></defs>
+            <path fill="url(#holo-nav-tools)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+            <path fill="url(#holo-nav-tools)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../work/index.html">Work</a></li>
+          <li><a href="index.html" class="active">Melsplains</a></li>
+          <li><a href="../about/index.html">About</a></li>
+        </ul>
+        <div class="right">
+          <a href="../contact/index.html" class="nav-btn-dark">Let's Talk</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="index.html">Melsplains</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Free Tools &amp; Kits</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="orb violet"></div>
+    <div class="orb teal"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="reveal"><span class="eyebrow eyebrow-teal">Free Tools &amp; Kits</span></div>
+        <div class="reveal delay-1">
+          <h1 class="hero-h1">Things I built that actually work. <em>Take them.</em></h1>
+        </div>
+        <div class="reveal delay-1">
+          <p class="hero-note">No email required. No upsell. Just the thing.</p>
+        </div>
+        <div class="reveal delay-2">
+          <p class="hero-lede">These are tools I made for myself, then made shareable because other people had the same problem. Prompt kits, templates, workflow guides — built to be adapted, not just admired.</p>
+          <p class="hero-lede" style="margin-top: 12px;">If something doesn't work for your situation, <a href="../contact/index.html" style="color: #5EE8E7; border-bottom: 1px solid rgba(0,201,200,0.4);">reach out</a> and tell me. I update these when I learn a better way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="holo-rule" />
+
+  <!-- TOOL CARDS -->
+  <section class="tools-section">
+    <div class="container">
+
+      <!-- Claude callout -->
+      <div class="claude-callout reveal">
+        <p><strong>New to Claude?</strong> Some of these tools run on Claude. If you've never used it before — or want to get more out of the version you have — the setup guide covers all three paths: browser, app, or Claude Code.</p>
+        <a href="../getting-started-with-claude.html" class="claude-link">Getting started with Claude →</a>
+      </div>
+
+      <div class="tools-grid">
+
+        <!-- Card 1: Available -->
+        <div class="tool-card featured reveal delay-1">
+          <div class="card-badges">
+            <span class="badge-format">Prompt Kit</span>
+            <span class="badge-free">Free</span>
+          </div>
+          <h2 class="card-title">Sunday Meal Planning Prompt Kit</h2>
+          <p class="card-desc">The prompts, logic, and workflow I use to plan a week of dinners from a real recipe library — adaptable to AnyList, Paprika, or any app with an accessible recipe list.</p>
+          <div class="card-cta">
+            <a href="../melsplains-meal-planning-kit.html" class="btn btn-holo">Get it <span class="arr">→</span></a>
+          </div>
+        </div>
+
+        <!-- Card 2: Coming Soon -->
+        <div class="tool-card reveal delay-2">
+          <div class="card-badges">
+            <span class="badge-format">Template</span>
+            <span class="badge-soon">Coming Soon</span>
+          </div>
+          <h2 class="card-title">Marketing Dashboard Starter (Looker Studio)</h2>
+          <p class="card-desc">A clean, client-ready reporting template for B2B campaigns — GA4 traffic, Search Console, and paid channel performance in one view.</p>
+          <div class="card-cta">
+            <button class="btn btn-dark-ghost" onclick="alert('Sign up for the newsletter to be notified when this drops.')">Notify me →</button>
+          </div>
+        </div>
+
+        <!-- Card 3: Coming Soon -->
+        <div class="tool-card reveal delay-3">
+          <div class="card-badges">
+            <span class="badge-format">Prompt Kit</span>
+            <span class="badge-soon">Coming Soon</span>
+          </div>
+          <h2 class="card-title">Weekly Content Planning Prompts</h2>
+          <p class="card-desc">The prompts I use to build a month of content ideas from a client's positioning doc, audience research, and current rankings.</p>
+          <div class="card-cta">
+            <button class="btn btn-dark-ghost" onclick="alert('Sign up for the newsletter to be notified when this drops.')">Notify me →</button>
+          </div>
+        </div>
+
+        <!-- Card 4: Coming Soon -->
+        <div class="tool-card reveal delay-1">
+          <div class="card-badges">
+            <span class="badge-format">Checklist</span>
+            <span class="badge-soon">Coming Soon</span>
+          </div>
+          <h2 class="card-title">Is My Marketing Working? Audit Checklist</h2>
+          <p class="card-desc">A plain-language audit across your website, SEO, and campaign basics. Not a 47-point spreadsheet — the 12 questions that actually tell you something.</p>
+          <div class="card-cta">
+            <button class="btn btn-dark-ghost" onclick="alert('Sign up for the newsletter to be notified when this drops.')">Notify me →</button>
+          </div>
+        </div>
+
+        <!-- Card 5: Coming Soon -->
+        <div class="tool-card reveal delay-2">
+          <div class="card-badges">
+            <span class="badge-format">Guide + Prompts</span>
+            <span class="badge-soon">Coming Soon</span>
+          </div>
+          <h2 class="card-title">AI Workflow Starter for Small Teams</h2>
+          <p class="card-desc">How to think about adding AI to a small marketing team — what it replaces, what it doesn't, and where to start without breaking anything.</p>
+          <div class="card-cta">
+            <button class="btn btn-dark-ghost" onclick="alert('Sign up for the newsletter to be notified when this drops.')">Notify me →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER STRIP -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="reveal">
+          <h2 class="newsletter-heading">New tools land <em>here first.</em></h2>
+          <p class="newsletter-sub">New kits and templates go to the list before they go anywhere else. Low volume — I only send when there's actually something to send.</p>
+        </div>
+        <div class="newsletter-form reveal delay-1">
+          <!-- Wire to Mailchimp in production -->
+          <div class="input-row">
+            <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
+            <button type="button">Subscribe</button>
+          </div>
+          <p class="newsletter-note">No spam. Just new tools, when they're ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-row1">
+          <div class="foot-left">
+            <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+              <defs><linearGradient id="holo-foot-tools" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF4E80"/><stop offset="50%" stop-color="#B289FF"/><stop offset="100%" stop-color="#5EE8E7"/></linearGradient></defs>
+              <path fill="url(#holo-foot-tools)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+              <path fill="url(#holo-foot-tools)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+            </svg>
+            <span class="micro">© 2026 Melanie Dunn. Built without buzzwords.</span>
+          </div>
+          <nav class="foot-links" aria-label="Footer navigation">
+            <a href="../work/index.html">Work</a>
+            <a href="index.html">Melsplains</a>
+            <a href="tools.html">Free Tools</a>
+            <a href="../about/index.html">About</a>
+            <a href="../contact/index.html">Let's Talk</a>
+          </nav>
+        </div>
+        <div class="foot-social">
+          <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); },
+        { threshold: 0.10 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    })();
+  </script>
+</body>
+</html>

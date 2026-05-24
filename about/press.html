@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <title>Press Kit — Melanie Dunn</title>
+  <meta name="description" content="Speaker bio, headshots, talking points, and contact info for press and speaking inquiries." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #E8185A; --pink-deep: #C71450; --warm-black: #14110E; --warm-black-2: #1C1917;
+      --mid-gray: #6B6560; --light-gray: #A8A29E; --sage: #4E7564;
+      --border: #E2E4E8; --border-soft: #ECEEF1; --bg: #FAFAFB; --bg-warm: #F1F2F4;
+      --teal: #00C9C8; --violet: #7C3AED;
+      --holo: linear-gradient(135deg, #E8185A 0%, #7C3AED 50%, #00C9C8 100%);
+      --holo-wide: linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --max: 1180px; --gutter: clamp(20px, 4vw, 56px);
+      --serif: 'DM Serif Display', 'Times New Roman', serif;
+      --sans: 'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--warm-black); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    svg { display: block; max-width: 100%; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); display: inline-flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .eyebrow.holo { background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow.holo::before { background: var(--pink); }
+    .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.02; color: var(--warm-black); }
+    .serif-display em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .h1 { font-size: clamp(44px, 6vw, 76px); }
+    .holo-rule { height: 2px; border: 0; background: var(--holo-wide); border-radius: 2px; width: 100%; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; font-family: var(--sans); font-weight: 500; font-size: 14px; border-radius: 4px; transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer; white-space: nowrap; border: none; }
+    .btn .arr { transition: transform 0.3s cubic-bezier(.22,.61,.36,1); display: inline-block; }
+    .btn:hover .arr { transform: translateX(5px); }
+    .btn-holo { background: var(--holo); background-size: 200% 200%; background-position: 0% 50%; color: white; box-shadow: 0 1px 0 rgba(232,24,90,0.3), 0 14px 32px -14px rgba(124,58,237,0.5); }
+    .btn-holo:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--warm-black); border: 1px solid var(--warm-black); }
+    .btn-secondary:hover { background: var(--warm-black); color: var(--bg); }
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(251,250,247,0.78); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid rgba(229,225,220,0.6); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav .logo-mark { height: 32px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 38px; align-items: center; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--warm-black); position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--holo); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--pink); }
+    .nav .right { display: flex; }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+    .breadcrumb { padding: 16px 0; border-bottom: 1px solid var(--border-soft); background: var(--bg-warm); }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .breadcrumb-inner a { transition: color 0.2s; }
+    .breadcrumb-inner a:hover { color: var(--pink); }
+    .breadcrumb-sep { color: var(--light-gray); }
+    .breadcrumb-current { color: var(--warm-black); font-weight: 500; }
+
+    /* PAGE HERO */
+    .page-hero { padding: clamp(64px, 8vw, 104px) 0 clamp(48px, 6vw, 72px); background: var(--bg); }
+    .page-hero-inner { max-width: 760px; display: flex; flex-direction: column; gap: 20px; }
+    .page-hero-lede { font-size: 17px; color: var(--mid-gray); line-height: 1.65; }
+
+    /* PRESS SECTIONS */
+    .press-section { padding: clamp(56px, 7vw, 88px) 0; border-top: 1px solid var(--border); }
+    .press-section.alt { background: var(--bg-warm); }
+    .press-layout { display: grid; grid-template-columns: 240px 1fr; gap: 56px; align-items: start; }
+    @media (max-width: 760px) { .press-layout { grid-template-columns: 1fr; gap: 28px; } }
+    .press-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-gray); padding-top: 4px; }
+    .press-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 2.5vw, 30px); letter-spacing: -0.01em; line-height: 1.15; color: var(--warm-black); margin-bottom: 20px; }
+
+    /* HEADSHOTS */
+    .headshot-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
+    /* CALENDLY / BOOKING SECTION */
+    .booking-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg); border-top: 1px solid var(--border); }
+    .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+    @media (max-width: 600px) { .booking-grid { grid-template-columns: 1fr; } }
+    .booking-card { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 6px; padding: 32px; display: flex; flex-direction: column; gap: 14px; }
+    .booking-card .bc-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-gray); }
+    .booking-card .bc-title { font-family: var(--serif); font-size: 24px; font-weight: 400; line-height: 1.2; color: var(--warm-black); }
+    .booking-card .bc-desc { font-size: 14.5px; color: var(--mid-gray); line-height: 1.6; }
+    @media (max-width: 600px) { .headshot-grid { grid-template-columns: 1fr 1fr; } }
+    .headshot-item { display: flex; flex-direction: column; gap: 10px; }
+    .headshot-thumb {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--bg-warm);
+    }
+    .headshot-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.4s cubic-bezier(.22,.61,.36,1); }
+    .headshot-thumb:hover img { transform: scale(1.03); }
+    .headshot-dl { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pink); display: inline-flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
+    .headshot-dl:hover { opacity: 0.7; }
+    .headshot-caption { font-family: var(--mono); font-size: 10px; color: var(--mid-gray); letter-spacing: 0.05em; }
+    .headshot-note { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--mid-gray); margin-top: 4px; }
+
+    /* SHORT BIO */
+    .bio-box { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; position: relative; }
+    .bio-box::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--holo-wide); border-radius: 6px 6px 0 0; }
+    .bio-box p { font-size: 15.5px; line-height: 1.8; color: var(--warm-black-2); }
+
+    /* TALKING POINTS */
+    .topics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    @media (max-width: 600px) { .topics-grid { grid-template-columns: 1fr; } }
+    .topic-item { padding: 28px 28px 24px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
+    .topic-item:nth-child(2n) { border-right: 0; }
+    .topic-item:nth-last-child(-n+2) { border-bottom: 0; }
+    @media (max-width: 600px) { .topic-item { border-right: 0; } }
+    .topic-title { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.2; color: var(--warm-black); }
+    .topic-desc { font-size: 14px; color: var(--mid-gray); line-height: 1.65; }
+
+    /* APPEARANCES */
+    .appearance-item { display: flex; flex-direction: column; gap: 6px; padding: 24px 0; border-bottom: 1px solid var(--border-soft); }
+    .appearance-item:last-child { border-bottom: 0; }
+    .appearance-event { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--warm-black); }
+    .appearance-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .appearance-note { font-size: 14px; color: var(--mid-gray); }
+    .appearances-placeholder { font-size: 15px; color: var(--mid-gray); line-height: 1.7; padding: 20px 0; }
+
+    /* CONTACT SECTION */
+    .contact-actions { display: flex; flex-direction: column; }
+    .contact-line { display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--border); width: 100%; transition: padding 0.3s; text-decoration: none; color: inherit; }
+    .contact-line:last-child { border-bottom: 0; }
+    .contact-line:hover { padding-left: 8px; }
+    .contact-line .lbl { font-family: var(--mono); font-size: 10.5px; color: var(--mid-gray); letter-spacing: 0.14em; text-transform: uppercase; min-width: 90px; flex-shrink: 0; }
+    .contact-line .val { font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: -0.005em; transition: all 0.3s; }
+    .contact-line:hover .val { background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* FOOTER */
+    .foot { padding: 56px 0 64px; border-top: 1px solid var(--border); background: var(--bg); }
+    .foot-grid { display: flex; flex-direction: column; gap: 28px; }
+    .foot-row1 { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .foot-left { display: flex; align-items: center; gap: 18px; }
+    .foot .logo-mark { height: 30px; width: auto; }
+    .foot .micro { font-size: 12px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.02em; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a, .foot-social a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-links a:hover, .foot-social a:hover { color: var(--pink); }
+    .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-also { font-size: 11.5px; color: rgba(20,17,14,0.35); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+    .foot-also a { color: rgba(232,24,90,0.6); border-bottom: 1px solid rgba(232,24,90,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.delay-1 { transition-delay: 0.06s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html" aria-label="Melanie Dunn home">
+          <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+            <defs><linearGradient id="holo-nav-press" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8185A"/><stop offset="50%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#00C9C8"/></linearGradient></defs>
+            <path fill="url(#holo-nav-press)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+            <path fill="url(#holo-nav-press)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../work/index.html">Work</a></li>
+          <li><a href="../melsplains/index.html">Melsplains</a></li>
+          <li><a href="index.html" class="active">About</a></li>
+        </ul>
+        <div class="right">
+          <a href="../contact/index.html" class="btn btn-holo" style="padding: 11px 18px; font-size: 13px;">Let's Talk</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="index.html">About</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Press Kit</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="reveal"><span class="eyebrow holo">Press Kit</span></div>
+        <div class="reveal delay-1">
+          <h1 class="serif-display h1">Everything you need, <em>in one place.</em></h1>
+        </div>
+        <div class="reveal delay-1">
+          <p class="page-hero-lede">Short bio, long bio, headshots, talking points. If you're booking a speaker or writing about the work, it's all here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="holo-rule" />
+
+  <!-- HEADSHOTS -->
+  <section class="press-section">
+    <div class="container">
+      <div class="press-layout">
+        <div class="reveal">
+          <span class="press-label">Headshots</span>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="press-heading">Download headshots</h2>
+          <div class="headshot-grid">
+            <div class="headshot-item">
+              <div class="headshot-thumb">
+                <img src="../assets/images/melanie-hero-seated.jpg" alt="Melanie Dunn — seated with city backdrop" />
+              </div>
+              <a href="../assets/images/melanie-hero-seated.jpg" download class="headshot-dl">↓ Download</a>
+              <span class="headshot-caption">Primary headshot · seated · city backdrop</span>
+            </div>
+            <div class="headshot-item">
+              <div class="headshot-thumb">
+                <img src="../assets/images/melanie-closeup-blue.jpg" alt="Melanie Dunn — close-up with blue and pink light" />
+              </div>
+              <a href="../assets/images/melanie-closeup-blue.jpg" download class="headshot-dl">↓ Download</a>
+              <span class="headshot-caption">Secondary headshot · close-up · editorial light</span>
+            </div>
+          </div>
+          <p class="headshot-note">Please don't crop or filter without permission. Need a different format or higher resolution? <a href="mailto:melanie@threesevenmarketing.com" style="color: var(--pink);">melanie@threesevenmarketing.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHORT BIO -->
+  <section class="press-section alt">
+    <div class="container">
+      <div class="press-layout">
+        <div class="reveal">
+          <span class="press-label">Short bio</span>
+          <p style="font-size: 13px; color: var(--mid-gray); line-height: 1.6; margin-top: 10px;">150 words. For event programs, podcast intros, article bylines.</p>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="press-heading">Ready to copy</h2>
+          <div class="bio-box">
+            <p>Melanie Dunn is a marketing strategist and systems builder at <a href="https://threesevenmarketing.com" target="_blank" rel="noopener" style="color: var(--pink); border-bottom: 1px solid rgba(232,24,90,0.3);">Three Seven Marketing</a>, where she leads SEO, AI optimization, and content strategy for B2B companies with complex offerings. She has 10+ years of experience helping technical companies in life sciences, manufacturing, software, and research build marketing that gets found and gets results.</p>
+            <br />
+            <p>Melanie also creates <img src="../assets/melsplains/melsplains-pink.svg" alt="Melsplains" style="height:22px; width:auto; display:inline-block; vertical-align:middle; margin: 0 2px;">, a content brand for working moms learning marketing, AI, and automation in plain language. She builds AI-powered tools and workflows, including Pip, a custom AI project manager used at <a href="https://threesevenmarketing.com" target="_blank" rel="noopener" style="color: var(--pink); border-bottom: 1px solid rgba(232,24,90,0.3);">Three Seven</a>, and a Claude MCP-based meal planning system documented at melaniedunn.work.</p>
+            <br />
+            <p>She lives in Ohio. Available for virtual and in-person speaking, podcast appearances, and panel discussions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LONG BIO -->
+  <section class="press-section">
+    <div class="container">
+      <div class="press-layout">
+        <div class="reveal">
+          <span class="press-label">Long bio</span>
+          <p style="font-size: 13px; color: var(--mid-gray); line-height: 1.6; margin-top: 10px;">400 words. For in-depth speaker intros and profile pieces.</p>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="press-heading">Available on request</h2>
+          <p style="font-size: 15.5px; color: var(--mid-gray); line-height: 1.7;">For interview, profile, or speaker intro use: reach out and I'll send the long version directly. Easier to tailor to your format that way anyway.</p>
+          <div style="margin-top: 24px;">
+            <a href="mailto:melanie@threesevenmarketing.com" class="btn btn-secondary">Request long bio →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TALKING POINTS -->
+  <section class="press-section alt">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 40px;">
+        <span class="eyebrow holo">Talking points &amp; expertise</span>
+        <p style="margin-top: 16px; font-size: 16px; color: var(--mid-gray); line-height: 1.65;">Topics I speak and write about with authority.</p>
+      </div>
+      <div class="topics-grid reveal delay-1">
+        <div class="topic-item">
+          <h3 class="topic-title">AI in marketing: practical, not hypothetical</h3>
+          <p class="topic-desc">What it actually looks like to integrate AI into a marketing team's daily workflow. Not prompts. Systems. What breaks, what holds, what surprised me.</p>
+        </div>
+        <div class="topic-item">
+          <h3 class="topic-title">SEO in the age of AI search</h3>
+          <p class="topic-desc">How search behavior is changing, what AI Overview means for B2B visibility, and how to build content that performs in both traditional and generative search.</p>
+        </div>
+        <div class="topic-item">
+          <h3 class="topic-title">Data storytelling for non-data people</h3>
+          <p class="topic-desc">Why most dashboards fail and what to do instead. The principles behind reports that get read and acted on.</p>
+        </div>
+        <div class="topic-item">
+          <h3 class="topic-title">Reducing mental load with automation</h3>
+          <p class="topic-desc">Practical AI tools for working moms, and for small marketing teams who are doing too much manually. The same logic applies to both.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAST APPEARANCES -->
+  <section class="press-section">
+    <div class="container">
+      <div class="press-layout">
+        <div class="reveal">
+          <span class="press-label">Past appearances</span>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="press-heading">Speaking &amp; appearances</h2>
+          <p class="appearances-placeholder">Available for virtual and in-person speaking, podcast guest appearances, panels, and team workshops. If you're looking for a speaker or podcast guest, reach out. The talking points above are where I have the most to say and the strongest track record.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FOR PRESS -->
+  <section class="press-section alt">
+    <div class="container">
+      <div class="press-layout">
+        <div class="reveal">
+          <span class="press-label">Contact</span>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="press-heading">For press &amp; speaking inquiries</h2>
+          <p style="font-size: 15.5px; color: var(--mid-gray); line-height: 1.7; margin-bottom: 32px;">Response time: typically within 2 business days.</p>
+          <div class="contact-actions">
+            <a href="mailto:melanie@threesevenmarketing.com" class="contact-line">
+              <span class="lbl">Email</span>
+              <span class="val">melanie@threesevenmarketing.com</span>
+            </a>
+            <a href="../contact/index.html" class="contact-line">
+              <span class="lbl">Form</span>
+              <span class="val">Contact form →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING / CALENDLY -->
+  <section class="booking-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow holo">Let's connect</span>
+        <h2 style="font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3vw, 38px); letter-spacing: -0.012em; margin-top: 16px; color: var(--warm-black);">Two ways to start a conversation.</h2>
+      </div>
+      <div class="booking-grid reveal delay-1">
+        <div class="booking-card">
+          <span class="bc-label">Casual</span>
+          <p class="bc-title">Grab a coffee with me</p>
+          <p class="bc-desc">30-min virtual chat, no agenda required. If there's something worth exploring, we'll find it.</p>
+          <a href="https://calendly.com/mel-dunn/60min" target="_blank" rel="noopener" class="btn btn-holo" style="margin-top: 8px; align-self: flex-start;">Book a time <span class="arr">→</span></a>
+        </div>
+        <div class="booking-card">
+          <span class="bc-label">Speaking or media</span>
+          <p class="bc-title">Book me for your podcast or event</p>
+          <p class="bc-desc">Virtual or in-person appearances, workshops, panels. Use the contact form to tell me about your format and audience.</p>
+          <a href="../contact/" class="btn btn-secondary" style="margin-top: 8px; align-self: flex-start;">Reach out <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-row1">
+          <div class="foot-left">
+            <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+              <defs><linearGradient id="holo-foot-press" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8185A"/><stop offset="50%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#00C9C8"/></linearGradient></defs>
+              <path fill="url(#holo-foot-press)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+              <path fill="url(#holo-foot-press)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+            </svg>
+            <span class="micro">© 2026 Melanie Dunn. Built without buzzwords.</span>
+          </div>
+          <nav class="foot-links" aria-label="Footer navigation">
+            <a href="../work/index.html">Work</a>
+            <a href="../melsplains/index.html">Melsplains</a>
+            <a href="../melsplains/tools.html">Free Tools</a>
+            <a href="index.html">About</a>
+            <a href="../contact/index.html">Let's Talk</a>
+          </nav>
+        </div>
+        <div class="foot-social">
+          <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); },
+        { threshold: 0.10 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    })();
+  </script>
+</body>
+</html>

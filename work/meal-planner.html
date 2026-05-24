@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Meal Planning System · Melanie Dunn</title>
+  <meta name="description" content="A Claude MCP integration that connects a 500+ recipe library to a shopping list app, plans the week, and eliminates Saturday morning meal planning stress." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:          #E8185A;
+      --pink-deep:     #C71450;
+      --warm-black:    #14110E;
+      --warm-black-2:  #1C1917;
+      --mid-gray:      #6B6560;
+      --light-gray:    #A8A29E;
+      --sage:          #4E7564;
+      --border:        #E2E4E8;
+      --border-soft:   #ECEEF1;
+      --bg:            #FAFAFB;
+      --bg-warm:       #F1F2F4;
+      --teal:          #00C9C8;
+      --violet:        #7C3AED;
+      --holo:          linear-gradient(135deg, #E8185A 0%, #7C3AED 50%, #00C9C8 100%);
+      --holo-wide:     linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --max:           1180px;
+      --gutter:        clamp(20px, 4vw, 56px);
+      --serif:         'DM Serif Display', 'Times New Roman', serif;
+      --sans:          'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:          'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--warm-black); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); display: inline-flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .eyebrow.holo { background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow.holo::before { background: var(--pink); }
+    .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.02; color: var(--warm-black); }
+    .serif-display em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .h1 { font-size: clamp(48px, 6.5vw, 88px); }
+    .lede { font-size: 17.5px; line-height: 1.6; color: var(--mid-gray); font-weight: 400; }
+    .margin-note { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--mid-gray); letter-spacing: 0.01em; padding-left: 14px; border-left: 2px solid var(--pink); }
+    .margin-note::before { content: "/* "; color: var(--pink); }
+    .margin-note::after  { content: " */"; color: var(--pink); }
+    .holo-rule { height: 2px; border: 0; background: var(--holo-wide); border-radius: 2px; width: 100%; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px; font-family: var(--sans); font-weight: 500; font-size: 14px; border-radius: 4px; transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer; white-space: nowrap; border: none; }
+    .btn .arr { transition: transform 0.3s cubic-bezier(.22,.61,.36,1); display: inline-block; }
+    .btn:hover .arr { transform: translateX(5px); }
+    .btn-holo { background: var(--holo); background-size: 200% 200%; background-position: 0% 50%; color: white; box-shadow: 0 1px 0 rgba(232,24,90,0.3), 0 14px 32px -14px rgba(124,58,237,0.5); }
+    .btn-holo:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--warm-black); border: 1px solid var(--warm-black); }
+    .btn-secondary:hover { background: var(--warm-black); color: var(--bg); }
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(251,250,247,0.78); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid rgba(229,225,220,0.6); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav .logo-mark { height: 32px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 38px; align-items: center; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--warm-black); position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--holo); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--pink); }
+    .nav .right { display: flex; align-items: center; gap: 24px; }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+    .breadcrumb { padding: 16px 0; border-bottom: 1px solid var(--border-soft); background: var(--bg-warm); }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .breadcrumb-inner a { color: var(--mid-gray); transition: color 0.2s; }
+    .breadcrumb-inner a:hover { color: var(--pink); }
+    .breadcrumb-sep { color: var(--light-gray); }
+    .breadcrumb-current { color: var(--warm-black); font-weight: 500; }
+    .article-hero { padding: clamp(64px, 8vw, 112px) 0 clamp(48px, 6vw, 72px); background: var(--bg); }
+    .article-hero-inner { max-width: 760px; display: flex; flex-direction: column; gap: 24px; }
+    .article-wrap { padding: clamp(56px, 7vw, 96px) 0; }
+    .article-layout { display: grid; grid-template-columns: 1fr 280px; gap: clamp(40px, 6vw, 80px); align-items: start; }
+    @media (max-width: 900px) { .article-layout { grid-template-columns: 1fr; } }
+    .article-body { max-width: 680px; display: flex; flex-direction: column; gap: 0; }
+    .article-body p { font-size: 16.5px; line-height: 1.75; color: var(--warm-black-2); margin-bottom: 24px; }
+    .article-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.01em; line-height: 1.15; color: var(--warm-black); margin-top: 56px; margin-bottom: 20px; }
+    .article-sidebar { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 28px; }
+    @media (max-width: 900px) { .article-sidebar { position: static; } }
+    .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .stack-badge { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: var(--bg-warm); border: 1px solid var(--border); color: var(--mid-gray); }
+    .sidebar-card { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .sidebar-card .s-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-gray); }
+    .sidebar-card .s-title { font-family: var(--serif); font-size: 20px; font-weight: 400; line-height: 1.2; color: var(--warm-black); }
+    .sidebar-card .s-desc { font-size: 13.5px; color: var(--mid-gray); line-height: 1.6; }
+    .sidebar-divider { height: 1px; background: var(--border); }
+    .cta-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
+    .cta-inner { display: flex; flex-direction: column; gap: 24px; }
+    .cta-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.01em; color: var(--warm-black); }
+    .cta-desc { font-size: 16px; color: var(--mid-gray); line-height: 1.65; max-width: 52ch; }
+    .cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .article-nav { padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--border); background: var(--bg); }
+    .article-nav-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .article-nav-link { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); transition: color 0.2s; }
+    .article-nav-link:hover { color: var(--pink); }
+    .foot { padding: 56px 0 64px; border-top: 1px solid var(--border); background: var(--bg); }
+    .foot-grid { display: flex; flex-direction: column; gap: 28px; }
+    .foot-row1 { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .foot-left { display: flex; align-items: center; gap: 18px; }
+    .foot .logo-mark { height: 30px; width: auto; }
+    .foot .micro { font-size: 12px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.02em; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-links a:hover { color: var(--pink); }
+    .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-social a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-social a:hover { color: var(--pink); }
+    .foot-also { font-size: 11.5px; color: rgba(20,17,14,0.35); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+    .foot-also a { color: rgba(232,24,90,0.6); border-bottom: 1px solid rgba(232,24,90,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.delay-1 { transition-delay: 0.06s; }
+    .reveal.delay-2 { transition-delay: 0.12s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html" aria-label="Melanie Dunn home">
+          <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+            <defs>
+              <linearGradient id="holo-nav-mp" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8185A"/>
+                <stop offset="50%" stop-color="#7C3AED"/>
+                <stop offset="100%" stop-color="#00C9C8"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#holo-nav-mp)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+            <path fill="url(#holo-nav-mp)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Work</a></li>
+          <li><a href="../melsplains/index.html">Melsplains</a></li>
+          <li><a href="../about/index.html">About</a></li>
+        </ul>
+        <div class="right">
+          <a href="../contact/index.html" class="btn btn-holo" style="padding: 11px 18px; font-size: 13px;">Let's Talk</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="index.html">Work</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">The Meal Planning System</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ARTICLE HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="article-hero-inner">
+        <div class="reveal">
+          <span class="eyebrow holo">AI &amp; Automation · Personal project</span>
+        </div>
+        <div class="reveal delay-1">
+          <h1 class="serif-display h1">The Meal Planning <em>System</em></h1>
+        </div>
+        <div class="reveal delay-2">
+          <p class="lede">
+            For years, Saturday mornings had a certain dread to them. Not because the weekend was starting. Because I had to figure out dinner for the week: real meals, for a real person who will be 8 years old and has opinions about vegetables, using whatever was in the freezer and whatever I could remember we hadn't made recently.
+          </p>
+        </div>
+        <div class="reveal delay-2">
+          <p class="lede">I tried meal planning apps. I tried Notion templates. I tried just winging it and then texting "what do you want for dinner" every night like that was a system.</p>
+        </div>
+        <div class="reveal delay-2">
+          <p class="lede" style="font-style: italic; color: var(--warm-black);">It wasn't a system.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="holo-rule" />
+
+
+  <!-- ARTICLE BODY -->
+  <section class="article-wrap">
+    <div class="container">
+      <div class="article-layout">
+
+        <div class="article-body reveal">
+
+          <h3>The actual problem</h3>
+          <p>I had a 500+ recipe library in AnyList. The recipes were there. The problem was the weekly gap between "we should eat at home more" and actually knowing what to buy at Kroger on Saturday.</p>
+          <p>Every approach I tried had the same failure mode: the planning part happened in one place, the recipes in another, and the shopping list in a third. There was always a translation step where I had to hold everything in my head at once. That's the step that breaks down when you're tired or distracted or both.</p>
+          <p>I needed the AI to live where the system already lives, not pull me into a new one.</p>
+
+          <h3>How it works</h3>
+          <p>I built a Claude MCP integration that connects directly to my AnyList recipe library. On Saturday or Sunday morning, I tell Claude what sounds good this week, what we had recently, and what's already in the fridge. It pulls from the actual library, not a generic list, and proposes a week of dinners. I can push back, swap things out, say "something faster on Tuesday," and it adjusts.</p>
+          <p>When the plan is finalized, it generates a shopping list organized by section: produce, proteins, pantry, dairy. I add it straight to AnyList. Kroger pickup, Saturday morning, done before coffee's cold.</p>
+          <p>The AI isn't replacing a tool I love. It's adding a layer of intelligence on top of one I already use. The system meets me where I already am.</p>
+
+          <h3>What changed</h3>
+          <p>I stopped dreading Sundays. That's the unglamorous, completely real outcome.</p>
+          <p>More specifically: we cook at home more often because the friction of planning is gone. The mental load of "figuring out dinner" no longer leaks into the rest of the week. The shopping list is accurate because it comes from actual recipes, not my best guess at what I'll need.</p>
+
+          <h3>How it was built</h3>
+          <div class="stack-row" style="margin-bottom: 20px;">
+            <span class="stack-badge">Claude Code</span>
+            <span class="stack-badge">MCP server</span>
+            <span class="stack-badge">AnyList API</span>
+            <span class="stack-badge">recipe parsing</span>
+            <span class="stack-badge">structured output</span>
+          </div>
+          <p>The hardest part was writing prompts that understood our actual preferences. Not dietary restrictions and cuisine types, but the real things: fast enough for a Tuesday, fancy enough to feel like Saturday, nothing with more than 40 minutes of active time.</p>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="article-sidebar reveal delay-1">
+          <div class="sidebar-card">
+            <span class="s-label">Type</span>
+            <p class="s-title">Personal project</p>
+            <div class="sidebar-divider"></div>
+            <span class="s-label">The result</span>
+            <p class="s-desc">≈4 hours/week reclaimed. One son, eating at home more. Shopping list accuracy: dramatically up. Saturday morning stress: gone.</p>
+          </div>
+          <div class="sidebar-card">
+            <span class="s-label">Want the kit?</span>
+            <p class="s-desc">The Meal Planning Prompt Kit is free. The prompts, logic, and workflow, ready to adapt to your own recipe system.</p>
+            <a href="../melsplains/tools.html" class="btn btn-holo" style="padding: 11px 18px; font-size: 13px; margin-top: 4px;">Get the free kit <span class="arr">→</span></a>
+          </div>
+          <p class="margin-note">works in AnyList, Paprika, or any app with an accessible recipe list.</p>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="reveal">
+          <span class="eyebrow holo">Take it with you</span>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="cta-heading">The Meal Planning Prompt Kit is free.</h2>
+        </div>
+        <div class="reveal delay-1">
+          <p class="cta-desc">The prompts, the logic, and the workflow I use every week. Ready to adapt to your recipe system. No email required.</p>
+        </div>
+        <div class="cta-btns reveal delay-2">
+          <a href="../melsplains/tools.html" class="btn btn-holo">Get the free kit <span class="arr">→</span></a>
+          <a href="index.html" class="btn btn-secondary">Back to Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ARTICLE NAV -->
+  <div class="article-nav">
+    <div class="container">
+      <div class="article-nav-inner">
+        <a href="pip.html" class="article-nav-link">← Pip: AI Project Manager</a>
+        <a href="data-stories.html" class="article-nav-link">Next: Data Stories →</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-row1">
+          <div class="foot-left">
+            <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+              <defs>
+                <linearGradient id="holo-foot-mp" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E8185A"/>
+                  <stop offset="50%" stop-color="#7C3AED"/>
+                  <stop offset="100%" stop-color="#00C9C8"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#holo-foot-mp)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+              <path fill="url(#holo-foot-mp)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+            </svg>
+            <span class="micro">© 2026 Melanie Dunn. Built without buzzwords.</span>
+          </div>
+          <nav class="foot-links" aria-label="Footer navigation">
+            <a href="index.html">Work</a>
+            <a href="../melsplains/index.html">Melsplains</a>
+            <a href="../melsplains/tools.html">Free Tools</a>
+            <a href="../about/index.html">About</a>
+            <a href="../contact/index.html">Let's Talk</a>
+          </nav>
+        </div>
+        <div class="foot-social">
+          <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">
+          Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); },
+        { threshold: 0.10 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    })();
+  </script>
+
+</body>
+</html>

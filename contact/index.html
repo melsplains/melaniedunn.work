@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <title>Let's Talk — Melanie Dunn</title>
+  <meta name="description" content="Consulting inquiries, speaking requests, collaborations, and anything else worth saying." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:          #E8185A;
+      --pink-deep:     #C71450;
+      --warm-black:    #14110E;
+      --warm-black-2:  #1C1917;
+      --mid-gray:      #6B6560;
+      --light-gray:    #A8A29E;
+      --sage:          #4E7564;
+      --border:        #E2E4E8;
+      --border-soft:   #ECEEF1;
+      --bg:            #FAFAFB;
+      --bg-warm:       #F1F2F4;
+      --teal:          #00C9C8;
+      --violet:        #7C3AED;
+      --holo:          linear-gradient(135deg, #E8185A 0%, #7C3AED 50%, #00C9C8 100%);
+      --holo-wide:     linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --max:           1180px;
+      --gutter:        clamp(20px, 4vw, 56px);
+      --serif:         'DM Serif Display', 'Times New Roman', serif;
+      --sans:          'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:          'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html, body { background: var(--bg); color: var(--warm-black); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    svg { display: block; max-width: 100%; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); display: inline-flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .eyebrow.holo { background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow.holo::before { background: var(--pink); }
+    .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.02; color: var(--warm-black); }
+    .serif-display em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .h1 { font-size: clamp(48px, 6.5vw, 88px); }
+    .h2 { font-size: clamp(32px, 3.8vw, 52px); }
+    .h3 { font-size: clamp(22px, 2.4vw, 30px); }
+    .lede { font-size: 17.5px; line-height: 1.6; color: var(--mid-gray); font-weight: 400; }
+    .margin-note { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--mid-gray); letter-spacing: 0.01em; padding-left: 14px; border-left: 2px solid var(--pink); }
+    .margin-note::before { content: "/* "; color: var(--pink); }
+    .margin-note::after  { content: " */"; color: var(--pink); }
+    .holo-rule { height: 2px; border: 0; background: var(--holo-wide); border-radius: 2px; width: 100%; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px; font-family: var(--sans); font-weight: 500; font-size: 14px; border-radius: 4px; transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer; white-space: nowrap; border: none; }
+    .btn .arr { transition: transform 0.3s cubic-bezier(.22,.61,.36,1); display: inline-block; }
+    .btn:hover .arr { transform: translateX(5px); }
+    .btn-holo { background: var(--holo); background-size: 200% 200%; background-position: 0% 50%; color: white; box-shadow: 0 1px 0 rgba(232,24,90,0.3), 0 14px 32px -14px rgba(124,58,237,0.5); }
+    .btn-holo:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--warm-black); border: 1px solid var(--warm-black); }
+    .btn-secondary:hover { background: var(--warm-black); color: var(--bg); }
+
+    /* NAV */
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(251,250,247,0.78); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid rgba(229,225,220,0.6); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav .logo-mark { height: 32px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 38px; align-items: center; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--warm-black); position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--holo); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--pink); }
+    .nav .right { display: flex; align-items: center; gap: 16px; }
+    .nav .right .btn-holo.active-page { background: var(--warm-black); background-image: none; box-shadow: none; }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--warm-black); flex-direction: column; gap: 5px; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; }
+    @media (max-width: 760px) { .nav-hamburger { display: flex; } }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-mobile { display: none; position: fixed; top: 77px; left: 0; right: 0; background: rgba(251,250,247,0.97); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid var(--border); padding: 8px var(--gutter) 24px; flex-direction: column; z-index: 48; }
+    .nav-mobile.open { display: flex; animation: mobileNavIn 0.2s ease both; }
+    @keyframes mobileNavIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-mobile a { font-size: 17px; font-weight: 500; color: var(--warm-black); padding: 15px 0; border-bottom: 1px solid var(--border-soft); text-decoration: none; transition: color 0.2s; }
+    .nav-mobile a:last-of-type { border-bottom: 0; }
+    .nav-mobile a:hover { color: var(--pink); }
+
+    /* PAGE HERO */
+    .page-hero { padding: clamp(72px, 9vw, 120px) 0 clamp(56px, 7vw, 80px); background: var(--bg); }
+    .page-hero-inner { display: flex; flex-direction: column; gap: 20px; max-width: 720px; }
+
+    /* CONTACT BODY */
+    .contact-section { padding: clamp(64px, 8vw, 104px) 0; background: var(--bg); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(48px, 7vw, 100px); align-items: start; }
+    @media (max-width: 840px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    /* Left: intro */
+    .contact-left { display: flex; flex-direction: column; gap: 40px; }
+    .when-list { display: flex; flex-direction: column; gap: 0; list-style: none; }
+    .when-list li { font-size: 15.5px; line-height: 1.65; color: var(--warm-black-2); padding: 14px 0; border-bottom: 1px solid var(--border-soft); display: flex; gap: 14px; align-items: baseline; }
+    .when-list li:first-child { border-top: 1px solid var(--border-soft); }
+    .when-list li .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--holo); flex-shrink: 0; margin-top: 7px; display: inline-block; }
+    .when-list li strong { font-weight: 600; color: var(--warm-black); }
+    .recruiter-note { font-size: 14px; color: var(--mid-gray); padding-top: 4px; }
+
+    /* Response note block */
+    .response-block { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px; }
+    .response-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-gray); }
+    .response-body { font-size: 14.5px; line-height: 1.7; color: var(--warm-black-2); }
+
+    /* Social links */
+    .social-block { display: flex; flex-direction: column; gap: 12px; }
+    .social-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid-gray); }
+    .social-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .social-links a { font-size: 14px; font-weight: 500; color: var(--warm-black); border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+    .social-links a:hover { color: var(--pink); border-color: var(--pink); }
+
+    /* Right: form */
+    .contact-right { display: flex; flex-direction: column; gap: 0; }
+    .form-block { display: flex; flex-direction: column; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-gray); }
+    .form-label span { color: var(--pink); margin-left: 2px; }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--warm-black);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 13px 16px;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      outline: none;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.10);
+    }
+    .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B6560' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+    .form-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+    .form-submit { margin-top: 8px; }
+    .form-submit .btn-holo { width: 100%; justify-content: center; padding: 16px 24px; font-size: 15px; }
+    .form-note { font-family: var(--mono); font-size: 11px; color: var(--light-gray); letter-spacing: 0.04em; text-align: center; margin-top: 8px; }
+
+    /* PRESS CTA */
+    .press-section { padding: clamp(48px, 6vw, 80px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
+    .press-box { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 36px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .press-copy { display: flex; flex-direction: column; gap: 8px; }
+    .press-copy-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-gray); }
+    .press-copy-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(20px, 2.2vw, 26px); color: var(--warm-black); line-height: 1.2; }
+    .press-copy-desc { font-size: 14.5px; color: var(--mid-gray); line-height: 1.6; max-width: 44ch; }
+
+    /* FOOTER */
+    .foot { padding: 56px 0 64px; border-top: 1px solid var(--border); background: var(--bg); }
+    .foot-grid { display: flex; flex-direction: column; gap: 28px; }
+    .foot-row1 { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .foot-left { display: flex; align-items: center; gap: 18px; }
+    .foot .logo-mark { height: 30px; width: auto; }
+    .foot .micro { font-size: 12px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.02em; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a, .foot-social a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-links a:hover, .foot-social a:hover { color: var(--pink); }
+    .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-also { font-size: 11.5px; color: rgba(20,17,14,0.35); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+    .foot-also a { color: rgba(232,24,90,0.6); border-bottom: 1px solid rgba(232,24,90,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
+
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.delay-1 { transition-delay: 0.06s; }
+    .reveal.delay-2 { transition-delay: 0.12s; }
+    .reveal.delay-3 { transition-delay: 0.18s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html" aria-label="Melanie Dunn home">
+          <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+            <defs><linearGradient id="holo-nav-contact" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8185A"/><stop offset="50%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#00C9C8"/></linearGradient></defs>
+            <path fill="url(#holo-nav-contact)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+            <path fill="url(#holo-nav-contact)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../work/index.html">Work</a></li>
+          <li><a href="../melsplains/index.html">Melsplains</a></li>
+          <li><a href="../about/index.html">About</a></li>
+        </ul>
+        <div class="right">
+          <a href="index.html" class="btn btn-holo active-page" style="padding: 11px 18px; font-size: 13px;">Let's Talk</a>
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Mobile navigation">
+    <a href="../work/index.html">Work</a>
+    <a href="../melsplains/index.html">Melsplains</a>
+    <a href="../about/index.html">About</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <div class="reveal"><span class="eyebrow holo">Contact</span></div>
+        <div class="reveal delay-1">
+          <h1 class="serif-display h1">Let's <em>talk.</em></h1>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="holo-rule" />
+
+  <!-- CONTACT BODY -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: when to reach out + meta -->
+        <div class="contact-left reveal">
+
+          <h3 class="h3 serif-display" style="margin-bottom: 24px;">Here's when reaching out makes sense.</h3>
+
+          <ul class="when-list" aria-label="Good reasons to reach out">
+            <li>
+              <span class="dot" aria-hidden="true"></span>
+              <span>You need an <strong>AI readiness audit</strong> or implementation sprint</span>
+            </li>
+            <li>
+              <span class="dot" aria-hidden="true"></span>
+              <span>You're looking for a <strong>fractional AI strategist</strong></span>
+            </li>
+            <li>
+              <span class="dot" aria-hidden="true"></span>
+              <span>You want to <strong>book a workshop or training</strong> for your team</span>
+            </li>
+            <li>
+              <span class="dot" aria-hidden="true"></span>
+              <span>You heard me on a podcast and want to <strong>continue the conversation</strong></span>
+            </li>
+            <li>
+              <span class="dot" aria-hidden="true"></span>
+              <span>You want to <strong>collaborate on Melsplains</strong> content</span>
+            </li>
+          </ul>
+
+          <p class="recruiter-note">If you're a recruiter, that's fine too. Just be upfront about it.</p>
+
+          <div class="response-block">
+            <p class="response-label">Response time</p>
+            <p class="response-body">I read everything. I respond to most things. If it's a fit, I'll usually get back to you within 2 business days. If it's not, I'll tell you that too. I'd rather save us both the time.</p>
+          </div>
+
+          <div class="social-block">
+            <p class="social-label">Find me here too</p>
+            <div class="social-links">
+              <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+            </div>
+          </div>
+
+          <p class="margin-note">every field optional except the email. unless you want a reply to the void.</p>
+
+        </div>
+
+        <!-- Right: form -->
+        <div class="contact-right reveal delay-1">
+          <form class="form-block" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="contact" />
+            <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-name">Name</label>
+              <input class="form-input" id="contact-name" name="name" type="text" placeholder="Your name" autocomplete="name" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Email <span aria-hidden="true">*</span></label>
+              <input class="form-input" id="contact-email" name="email" type="email" placeholder="you@example.com" required autocomplete="email" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-topic">What's this about?</label>
+              <select class="form-select" id="contact-topic" name="topic">
+                <option value="" disabled selected>Select one</option>
+                <option value="consulting">Consulting inquiry</option>
+                <option value="speaking">Speaking or podcast</option>
+                <option value="collaboration">Collaboration</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-message">Tell me more</label>
+              <textarea class="form-textarea" id="contact-message" name="message" placeholder="A sentence or two is plenty."></textarea>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn-holo">
+                Send it <span class="arr" aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <p class="form-note">No newsletter signup. No retargeting. Just a message.</p>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS CTA -->
+  <section class="press-section">
+    <div class="container">
+      <div class="press-box reveal">
+        <div class="press-copy">
+          <p class="press-copy-label">Speaking &amp; media</p>
+          <h2 class="press-copy-heading serif-display">Reaching out about a speaking engagement or media request?</h2>
+          <p class="press-copy-desc">The press kit has the short bio, headshots, and talking points you'll probably need.</p>
+        </div>
+        <a href="../about/press.html" class="btn btn-secondary">View press kit <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-row1">
+          <div class="foot-left">
+            <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+              <defs><linearGradient id="holo-foot-contact" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8185A"/><stop offset="50%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#00C9C8"/></linearGradient></defs>
+              <path fill="url(#holo-foot-contact)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+              <path fill="url(#holo-foot-contact)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+            </svg>
+            <span class="micro">© 2026 Melanie Dunn. Built without buzzwords.</span>
+          </div>
+          <nav class="foot-links" aria-label="Footer navigation">
+            <a href="../work/index.html">Work</a>
+            <a href="../melsplains/index.html">Melsplains</a>
+            <a href="../melsplains/tools.html">Free Tools</a>
+            <a href="../about/index.html">About</a>
+            <a href="index.html">Let's Talk</a>
+          </nav>
+        </div>
+        <div class="foot-social">
+          <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); },
+        { threshold: 0.10 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    })();
+    (function () {
+      const form = document.querySelector('form[data-netlify]');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        fetch('/', { method: 'POST', body: data })
+          .then(function () {
+            form.innerHTML = '<div style="text-align:center; padding: 48px 0; display:flex; flex-direction:column; gap:16px; align-items:center;"><p style="font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink);">Message received</p><p style="font-family:var(--serif); font-size:clamp(24px,3vw,36px); font-weight:400; color:var(--warm-black); line-height:1.2;">Got it. I\'ll be in touch.</p><p style="font-size:15px; color:var(--mid-gray);">I read everything. You\'ll hear from me within 2 business days.</p></div>';
+          })
+          .catch(function () {
+            alert('Something went wrong. Try emailing melanie@threesevenmarketing.com directly.');
+          });
+      });
+    })();
+    (function () {
+      const btn = document.getElementById('nav-hamburger');
+      const panel = document.getElementById('nav-mobile');
+      if (!btn || !panel) return;
+      btn.addEventListener('click', function () {
+        const open = panel.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open);
+      });
+      panel.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          panel.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
