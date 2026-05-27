@@ -6,7 +6,7 @@ MESSAGE=${1:-"update site"}
 
 git add -A
 git commit -m "$MESSAGE"
-git push origin main
+git push netlify main
 
 echo ""
 echo "Pushed. Netlify is deploying — live in ~30 seconds."
