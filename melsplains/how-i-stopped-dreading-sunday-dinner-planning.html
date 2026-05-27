@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How I Stopped Dreading Sunday Dinner Planning · Melsplains</title>
+  <meta name="description" content="For years I was storing an entire week's worth of dinner logic in my head every Sunday. Then I built something that carries it for me. Here's what happened." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:          #E8185A;
+      --pink-deep:     #C71450;
+      --warm-black:    #14110E;
+      --warm-black-2:  #1C1917;
+      --mid-gray:      #6B6560;
+      --light-gray:    #A8A29E;
+      --sage:          #4E7564;
+      --border:        #E2E4E8;
+      --border-soft:   #ECEEF1;
+      --bg:            #FAFAFB;
+      --bg-warm:       #F1F2F4;
+      --teal:          #00C9C8;
+      --violet:        #7C3AED;
+      --holo:          linear-gradient(135deg, #E8185A 0%, #7C3AED 50%, #00C9C8 100%);
+      --holo-wide:     linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --max:           1180px;
+      --gutter:        clamp(20px, 4vw, 56px);
+      --serif:         'DM Serif Display', 'Times New Roman', serif;
+      --sans:          'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:          'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--warm-black); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); display: inline-flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .eyebrow.holo { background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow.holo::before { background: var(--pink); }
+    .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.02; color: var(--warm-black); }
+    .serif-display em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .h1 { font-size: clamp(40px, 5.5vw, 72px); }
+    .lede { font-size: 17.5px; line-height: 1.6; color: var(--mid-gray); font-weight: 400; }
+    .margin-note { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--mid-gray); letter-spacing: 0.01em; padding-left: 14px; border-left: 2px solid var(--pink); }
+    .margin-note::before { content: "/* "; color: var(--pink); }
+    .margin-note::after  { content: " */"; color: var(--pink); }
+    .holo-rule { height: 2px; border: 0; background: var(--holo-wide); border-radius: 2px; width: 100%; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px; font-family: var(--sans); font-weight: 500; font-size: 14px; border-radius: 4px; transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer; white-space: nowrap; border: none; }
+    .btn .arr { transition: transform 0.3s cubic-bezier(.22,.61,.36,1); display: inline-block; }
+    .btn:hover .arr { transform: translateX(5px); }
+    .btn-holo { background: var(--holo); background-size: 200% 200%; background-position: 0% 50%; color: white; box-shadow: 0 1px 0 rgba(232,24,90,0.3), 0 14px 32px -14px rgba(124,58,237,0.5); }
+    .btn-holo:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--warm-black); border: 1px solid var(--warm-black); }
+    .btn-secondary:hover { background: var(--warm-black); color: var(--bg); }
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(251,250,247,0.78); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid rgba(229,225,220,0.6); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav .logo-mark { height: 32px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 38px; align-items: center; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--warm-black); position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--holo); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--pink); }
+    .nav .right { display: flex; align-items: center; gap: 24px; }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+    .breadcrumb { padding: 16px 0; border-bottom: 1px solid var(--border-soft); background: var(--bg-warm); }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .breadcrumb-inner a { color: var(--mid-gray); transition: color 0.2s; }
+    .breadcrumb-inner a:hover { color: var(--pink); }
+    .breadcrumb-sep { color: var(--light-gray); }
+    .breadcrumb-current { color: var(--warm-black); font-weight: 500; }
+    .article-hero { padding: clamp(64px, 8vw, 112px) 0 clamp(48px, 6vw, 72px); background: var(--bg); }
+    .article-hero-inner { max-width: 760px; display: flex; flex-direction: column; gap: 24px; }
+    .article-wrap { padding: clamp(56px, 7vw, 96px) 0; }
+    .article-body { max-width: 680px; display: flex; flex-direction: column; gap: 0; }
+    .article-body p { font-size: 16.5px; line-height: 1.75; color: var(--warm-black-2); margin-bottom: 24px; }
+    .article-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.01em; line-height: 1.15; color: var(--warm-black); margin-top: 56px; margin-bottom: 20px; }
+    .article-body blockquote { border-left: 3px solid var(--pink); padding-left: 20px; margin: 32px 0; }
+    .article-body blockquote p { font-style: italic; color: var(--mid-gray); margin-bottom: 0; }
+    .cta-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
+    .cta-inner { display: flex; flex-direction: column; gap: 24px; }
+    .cta-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.01em; color: var(--warm-black); }
+    .cta-desc { font-size: 16px; color: var(--mid-gray); line-height: 1.65; max-width: 52ch; }
+    .cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .article-nav { padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--border); background: var(--bg); }
+    .article-nav-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .article-nav-link { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); transition: color 0.2s; }
+    .article-nav-link:hover { color: var(--pink); }
+    .foot { padding: 56px 0 64px; border-top: 1px solid var(--border); background: var(--bg); }
+    .foot-grid { display: flex; flex-direction: column; gap: 28px; }
+    .foot-row1 { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .foot-left { display: flex; align-items: center; gap: 18px; }
+    .foot .logo-mark { height: 30px; width: auto; }
+    .foot .micro { font-size: 12px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.02em; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-links a:hover { color: var(--pink); }
+    .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-social a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-social a:hover { color: var(--pink); }
+    .foot-also { font-size: 11.5px; color: rgba(20,17,14,0.35); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+    .foot-also a { color: rgba(232,24,90,0.6); border-bottom: 1px solid rgba(232,24,90,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.delay-1 { transition-delay: 0.06s; }
+    .reveal.delay-2 { transition-delay: 0.12s; }
+    .post-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .post-meta .meta-sep { color: var(--border); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html" aria-label="Melanie Dunn home">
+          <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+            <defs>
+              <linearGradient id="holo-nav" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8185A"/>
+                <stop offset="50%" stop-color="#7C3AED"/>
+                <stop offset="100%" stop-color="#00C9C8"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#holo-nav)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+            <path fill="url(#holo-nav)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../work/index.html">Work</a></li>
+          <li><a href="index.html" class="active">Melsplains</a></li>
+          <li><a href="../about/index.html">About</a></li>
+        </ul>
+        <div class="right">
+          <a href="../contact/index.html" class="btn btn-holo" style="padding: 11px 18px; font-size: 13px;">Let's Talk</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="index.html">Melsplains</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="index.html#ai-automation">AI &amp; Automation</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">How I Stopped Dreading Sunday Dinner Planning</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ARTICLE HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="article-hero-inner">
+        <div class="reveal">
+          <span class="eyebrow holo">Melsplains · AI &amp; Automation</span>
+        </div>
+        <div class="reveal delay-1">
+          <h1 class="serif-display h1">How I Stopped Dreading <em>Sunday</em> Dinner Planning</h1>
+        </div>
+        <div class="reveal delay-2">
+          <p class="lede">
+            I had over 500 recipes saved. The problem was never the recipes. It was the mental load of figuring out which ones to cook, every single week, with everything else already filling my head.
+          </p>
+        </div>
+        <div class="reveal delay-2">
+          <div class="post-meta">
+            <span>Melanie Dunn</span>
+            <span class="meta-sep">|</span>
+            <span>AI &amp; Automation</span>
+            <span class="meta-sep">|</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="holo-rule" />
+
+
+  <!-- ARTICLE BODY -->
+  <section class="article-wrap">
+    <div class="container">
+      <div class="article-body reveal">
+
+        <p>Every Sunday — or Saturday, depending on when I finally remembered that meals needed to exist next week — I'd stand in front of the freezer and run the full calculation. What's in the fridge that needs to get used. What we had last week, because repeating it would get noticed. Which nights are long and need something fast, and which ones have enough margin for something that requires actual attention. Whether it's going to be hot enough that turning on the oven is genuinely unreasonable. My kid's current list of strongly held opinions about what is and is not food.</p>
+
+        <p>All of that, simultaneously, in my head, while the weekend was ticking by.</p>
+
+        <p>I tried meal planning apps. Several of them. I tried Notion templates, which were organized and attractive and which I stopped updating within two weeks. I tried texting "what do you want for dinner" every night like that would help. It did not help. It just added a response-waiting period before I still had to make the decision myself.</p>
+
+        <p>What I had was a decision problem, and I was solving it with organizational tools. Those are not the same thing.</p>
+
+        <h3>The recipes were never the problem</h3>
+
+        <p>I've used AnyList for years. It's genuinely good software — clean, syncs well, handles shopping lists in a way that doesn't make me want to throw my phone. I had saved recipes from years of cooking: weeknight standbys, things that required a Saturday, vegetable-forward things I made when I was trying to balance against the weeks when we'd eaten like college students.</p>
+
+        <p>More than 500 recipes, sitting there, entirely accessible, doing nothing useful on Sunday morning when I needed them most.</p>
+
+        <p>The gap wasn't the library. It was the step between the library and a plan — the part where someone has to consider all the constraints at once, weigh them against each other, and make a series of calls. That step was always me. And after a full week of working, managing, making decisions constantly, I was running on fumes by the time Sunday came around and that step was due.</p>
+
+        <h3>When I realized what I was actually doing</h3>
+
+        <p>I started working with Claude Code for other projects. At some point I learned that Claude Code can connect to external tools and services through something called MCP — it's a way of giving the AI actual access to real systems, not just a conversation about them. I realized I could connect it directly to my AnyList recipe library. Not describe my recipes to an AI and hope for the best, but let it actually browse the thing.</p>
+
+        <p>So I started building that. And while I was building it, I had to write down everything the system would need to know. My family's preferences. The constraints. Which nights were reliably hectic. What kinds of meals worked on different days of the week. Rules I'd been following for years without ever articulating them: nothing with more than 40 minutes of active time on a Tuesday, something warm and involved if we have a slow Saturday, rotate the proteins.</p>
+
+        <p>I was typing things I had never typed before. Things I had just been holding.</p>
+
+        <p>There was this strange moment where I looked at what I'd written and thought: I've been carrying all of this. Every week, I've been loading all of this back into working memory and running it. And I hadn't named it as a burden because it wasn't optional — it was just the thing that had to happen so dinner would exist.</p>
+
+        <p>That's the mental load, the specific version of it that belongs to whoever in your house is the one who knows when the chicken needs to get used and which nights the kid has practice. It doesn't always feel like weight. It just feels like knowing what you're supposed to know. Until you write it all down and see it.</p>
+
+        <h3>How Roux works now</h3>
+
+        <p>I built the system and named it Roux. Here's what actually happens each week:</p>
+
+        <p>I spend about three minutes filling in the week's schedule — which nights are busy, anything unusual in the fridge, whatever constraints apply that week. Claude reads my AnyList library, takes what I've told it, applies the rules I've built in, and proposes a full week of dinners. I look it over, swap one thing if something feels off, and the plan goes back into AnyList's meal calendar.</p>
+
+        <p>The shopping list generates from the actual recipes. Not from my best guess at what I'll need — from the ingredients the recipes actually call for. I add it to AnyList, place the Kroger pickup order Saturday morning, and the whole thing is done before I've finished a second cup of coffee.</p>
+
+        <p>I want to be specific about what changed and what didn't. I still look at the plan. I still make the final call. The AI doesn't run the household. What it does is take that full-calculation step — all the variables, all the constraints, held simultaneously — and run it so I don't have to. Every week.</p>
+
+        <h3>Why I wanted to tell everyone I know</h3>
+
+        <p>When Roux worked the first time, my immediate instinct was to text a specific group of people. Women I know who are managing a lot. Working moms who are sharp and capable and spend genuine mental energy on this exact problem and have never once thought of it as something that could be automated, because why would they? It's just dinner planning.</p>
+
+        <p>But it's not just dinner planning. It's a decision that happens every week, requires real cognitive load to make well, and has historically had no good alternative to just doing it yourself.</p>
+
+        <p>That's what I wanted Melsplains to be about. Not AI in the abstract. Not hype. The specific, practical cases where a tool actually absorbs something you've been carrying. Explained clearly, without a sales pitch attached.</p>
+
+        <p>Roux is free. The prompts, templates, and setup instructions are all there, built to work with AnyList or any recipe app where you can access your library. If Sunday mornings have been a low-grade dread for you too, this is probably worth twenty minutes of your time.</p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="reveal">
+          <span class="eyebrow holo">Free tool</span>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="cta-heading">Get Roux — it's free.</h2>
+        </div>
+        <div class="reveal delay-1">
+          <p class="cta-desc">The prompts, templates, and setup to connect Claude to your recipe library and plan your week in minutes. No email required.</p>
+        </div>
+        <div class="cta-btns reveal delay-2">
+          <a href="roux.html" class="btn btn-holo">Get Roux free <span class="arr">→</span></a>
+          <a href="index.html" class="btn btn-secondary">More Melsplains</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ARTICLE NAV -->
+  <div class="article-nav">
+    <div class="container">
+      <div class="article-nav-inner">
+        <a href="index.html" class="article-nav-link">← All Posts</a>
+        <a href="what-i-learned-building-an-ai-project-manager.html" class="article-nav-link">Next: Building an AI PM →</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-row1">
+          <div class="foot-left">
+            <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+              <defs>
+                <linearGradient id="holo-foot" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E8185A"/>
+                  <stop offset="50%" stop-color="#7C3AED"/>
+                  <stop offset="100%" stop-color="#00C9C8"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#holo-foot)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+              <path fill="url(#holo-foot)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+            </svg>
+            <span class="micro">© 2026 Melanie Dunn. Explained for you. Not at you.</span>
+          </div>
+          <nav class="foot-links" aria-label="Footer navigation">
+            <a href="../work/index.html">Work</a>
+            <a href="index.html">Melsplains</a>
+            <a href="tools.html">Free Tools</a>
+            <a href="../about/index.html">About</a>
+            <a href="../contact/index.html">Let's Talk</a>
+          </nav>
+        </div>
+        <div class="foot-social">
+          <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">
+          Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); },
+        { threshold: 0.10 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    })();
+  </script>
+
+</body>
+</html>

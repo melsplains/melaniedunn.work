@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What I Learned Building an AI Project Manager from Scratch · Melsplains</title>
+  <meta name="description" content="I built Pip — a custom AI project manager for our agency team. Here's what I got wrong first, and what actually made it useful." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:          #E8185A;
+      --pink-deep:     #C71450;
+      --warm-black:    #14110E;
+      --warm-black-2:  #1C1917;
+      --mid-gray:      #6B6560;
+      --light-gray:    #A8A29E;
+      --sage:          #4E7564;
+      --border:        #E2E4E8;
+      --border-soft:   #ECEEF1;
+      --bg:            #FAFAFB;
+      --bg-warm:       #F1F2F4;
+      --teal:          #00C9C8;
+      --violet:        #7C3AED;
+      --holo:          linear-gradient(135deg, #E8185A 0%, #7C3AED 50%, #00C9C8 100%);
+      --holo-wide:     linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --max:           1180px;
+      --gutter:        clamp(20px, 4vw, 56px);
+      --serif:         'DM Serif Display', 'Times New Roman', serif;
+      --sans:          'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:          'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--warm-black); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); display: inline-flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .eyebrow.holo { background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow.holo::before { background: var(--pink); }
+    .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.02; color: var(--warm-black); }
+    .serif-display em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .h1 { font-size: clamp(38px, 5vw, 66px); }
+    .lede { font-size: 17.5px; line-height: 1.6; color: var(--mid-gray); font-weight: 400; }
+    .margin-note { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--mid-gray); letter-spacing: 0.01em; padding-left: 14px; border-left: 2px solid var(--pink); }
+    .margin-note::before { content: "/* "; color: var(--pink); }
+    .margin-note::after  { content: " */"; color: var(--pink); }
+    .holo-rule { height: 2px; border: 0; background: var(--holo-wide); border-radius: 2px; width: 100%; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px; font-family: var(--sans); font-weight: 500; font-size: 14px; border-radius: 4px; transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer; white-space: nowrap; border: none; }
+    .btn .arr { transition: transform 0.3s cubic-bezier(.22,.61,.36,1); display: inline-block; }
+    .btn:hover .arr { transform: translateX(5px); }
+    .btn-holo { background: var(--holo); background-size: 200% 200%; background-position: 0% 50%; color: white; box-shadow: 0 1px 0 rgba(232,24,90,0.3), 0 14px 32px -14px rgba(124,58,237,0.5); }
+    .btn-holo:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--warm-black); border: 1px solid var(--warm-black); }
+    .btn-secondary:hover { background: var(--warm-black); color: var(--bg); }
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(251,250,247,0.78); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid rgba(229,225,220,0.6); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav .logo-mark { height: 32px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 38px; align-items: center; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--warm-black); position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--holo); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--pink); }
+    .nav .right { display: flex; align-items: center; gap: 24px; }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+    .breadcrumb { padding: 16px 0; border-bottom: 1px solid var(--border-soft); background: var(--bg-warm); }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .breadcrumb-inner a { color: var(--mid-gray); transition: color 0.2s; }
+    .breadcrumb-inner a:hover { color: var(--pink); }
+    .breadcrumb-sep { color: var(--light-gray); }
+    .breadcrumb-current { color: var(--warm-black); font-weight: 500; }
+    .article-hero { padding: clamp(64px, 8vw, 112px) 0 clamp(48px, 6vw, 72px); background: var(--bg); }
+    .article-hero-inner { max-width: 760px; display: flex; flex-direction: column; gap: 24px; }
+    .article-wrap { padding: clamp(56px, 7vw, 96px) 0; }
+    .article-body { max-width: 680px; display: flex; flex-direction: column; gap: 0; }
+    .article-body p { font-size: 16.5px; line-height: 1.75; color: var(--warm-black-2); margin-bottom: 24px; }
+    .article-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.01em; line-height: 1.15; color: var(--warm-black); margin-top: 56px; margin-bottom: 20px; }
+    .article-body blockquote { border-left: 3px solid var(--pink); padding: 16px 20px; margin: 32px 0; background: var(--bg-warm); border-radius: 0 4px 4px 0; }
+    .article-body blockquote p { font-style: italic; color: var(--warm-black); margin-bottom: 0; font-size: 17px; }
+    .article-body .callout { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; margin: 32px 0; }
+    .article-body .callout p { margin-bottom: 0; font-size: 15.5px; color: var(--mid-gray); }
+    .article-body .callout strong { color: var(--warm-black); font-weight: 600; }
+    .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 28px; }
+    .stack-badge { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: var(--bg-warm); border: 1px solid var(--border); color: var(--mid-gray); }
+    .cta-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
+    .cta-inner { display: flex; flex-direction: column; gap: 24px; }
+    .cta-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.01em; color: var(--warm-black); }
+    .cta-desc { font-size: 16px; color: var(--mid-gray); line-height: 1.65; max-width: 52ch; }
+    .cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .article-nav { padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--border); background: var(--bg); }
+    .article-nav-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .article-nav-link { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); transition: color 0.2s; }
+    .article-nav-link:hover { color: var(--pink); }
+    .foot { padding: 56px 0 64px; border-top: 1px solid var(--border); background: var(--bg); }
+    .foot-grid { display: flex; flex-direction: column; gap: 28px; }
+    .foot-row1 { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .foot-left { display: flex; align-items: center; gap: 18px; }
+    .foot .logo-mark { height: 30px; width: auto; }
+    .foot .micro { font-size: 12px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.02em; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-links a:hover { color: var(--pink); }
+    .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-social a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-social a:hover { color: var(--pink); }
+    .foot-also { font-size: 11.5px; color: rgba(20,17,14,0.35); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+    .foot-also a { color: rgba(232,24,90,0.6); border-bottom: 1px solid rgba(232,24,90,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.delay-1 { transition-delay: 0.06s; }
+    .reveal.delay-2 { transition-delay: 0.12s; }
+    .post-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .post-meta .meta-sep { color: var(--border); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html" aria-label="Melanie Dunn home">
+          <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+            <defs>
+              <linearGradient id="holo-nav" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8185A"/>
+                <stop offset="50%" stop-color="#7C3AED"/>
+                <stop offset="100%" stop-color="#00C9C8"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#holo-nav)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+            <path fill="url(#holo-nav)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../work/index.html">Work</a></li>
+          <li><a href="index.html" class="active">Melsplains</a></li>
+          <li><a href="../about/index.html">About</a></li>
+        </ul>
+        <div class="right">
+          <a href="../contact/index.html" class="btn btn-holo" style="padding: 11px 18px; font-size: 13px;">Let's Talk</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="index.html">Melsplains</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="index.html#ai-automation">AI &amp; Automation</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">What I Learned Building an AI Project Manager from Scratch</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ARTICLE HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="article-hero-inner">
+        <div class="reveal">
+          <span class="eyebrow holo">Melsplains · AI &amp; Automation</span>
+        </div>
+        <div class="reveal delay-1">
+          <h1 class="serif-display h1">What I Learned Building an AI Project Manager <em>from Scratch</em></h1>
+        </div>
+        <div class="reveal delay-2">
+          <p class="lede">
+            I built Pip — a custom AI project manager that runs on slash commands and connects Monday.com, Toggl, Fireflies, and Google Drive. The first version was impressive and completely useless. Here's what I figured out the second time.
+          </p>
+        </div>
+        <div class="reveal delay-2">
+          <div class="post-meta">
+            <span>Melanie Dunn</span>
+            <span class="meta-sep">|</span>
+            <span>AI &amp; Automation</span>
+            <span class="meta-sep">|</span>
+            <span>8 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="holo-rule" />
+
+
+  <!-- ARTICLE BODY -->
+  <section class="article-wrap">
+    <div class="container">
+      <div class="article-body reveal">
+
+        <p>At Three Seven Marketing, we run a lot of retainer clients. That means a lot of recurring tasks, a lot of meeting follow-through, a lot of "what did we tell them we'd do by Friday" conversations. It's the operational layer under the strategy work, and it's genuinely hard to manage well without a system that has memory.</p>
+
+        <p>Most of our workflow lives in Monday.com, Toggl, Fireflies, and Google Drive. Four different tools, none of them talking to each other in any particularly intelligent way. So I built something that sits on top of all of them: Pip, a custom AI project manager built in Claude Code with slash commands that give our team one place to run retainer work, meeting follow-through, and weekly capacity planning.</p>
+
+        <p>It works well now. Getting there was instructive.</p>
+
+        <div class="stack-row">
+          <span class="stack-badge">Claude Code</span>
+          <span class="stack-badge">Monday.com MCP</span>
+          <span class="stack-badge">Toggl</span>
+          <span class="stack-badge">Fireflies</span>
+          <span class="stack-badge">Google Drive</span>
+        </div>
+
+        <h3>The hardest part wasn't the AI</h3>
+
+        <p>When people imagine building an AI system, they usually imagine the AI part being hard. Writing the right prompts, getting the model to behave, figuring out what it can and can't do. That's all real work, but it's not where I spent most of my time.</p>
+
+        <p>The hard part was sitting down and actually mapping what the system needed to do. Not in the abstract — not "it should help with project management" — but specifically. What does a weekly retainer check-in actually require? What information does someone need to have available before that meeting, and where does that information live? What happens after the meeting that currently falls through the cracks?</p>
+
+        <p>You have to understand a workflow before you can automate it. This is so obvious it sounds patronizing to say out loud, and yet almost everyone tries to automate before they've done that work. They pick a tool, start building, and discover three months in that they've automated a broken process and made it faster to do things wrong.</p>
+
+        <p>I spent real time documenting our actual workflows before I wrote a single prompt. What we do for each client, in what order, how often, what decisions get made by whom. The AI came after that. It only works because the map came first.</p>
+
+        <h3>Prompts are the last 10%</h3>
+
+        <p>There's a version of AI building that treats prompts as the product. You write a really good prompt, you paste it in, the AI does something impressive. This is how most AI tutorials work, and it's not wrong exactly, but it gives you a completely skewed picture of where the value actually comes from.</p>
+
+        <p>For Pip, the prompts are maybe the last 10% of what makes it useful. The 90% is everything underneath them: the structured markdown files for every client, the context documents that explain how we work and what our standards are, the files that describe each recurring task pattern and what a good output looks like for that task. The AI is only as useful as what you give it to work with.</p>
+
+        <p>Building those context files took a long time. Not because they're technically complex — they're just markdown — but because I had to think clearly about things that had previously existed only as accumulated intuition. What does a good monthly client report look like? What information do we always need before a strategy call? What are the things that, when they go wrong, are almost always because someone missed a specific step?</p>
+
+        <p>Writing it down is the work. The prompts reference what you wrote. That order matters.</p>
+
+        <h3>It broke. More than once.</h3>
+
+        <p>The first version of Pip was genuinely impressive to demo. It could pull data from Monday.com, summarize Fireflies meeting transcripts, generate a status update. I showed it to a few people and they were interested. Nobody used it.</p>
+
+        <p>After enough time watching that, I started asking why. The answer was friction. Pip version one required context I hadn't built in yet — you had to know what to ask for, in what format, and it still sometimes returned things that needed significant cleanup before they were useful. Using it added a step instead of removing one. For busy people running client work all day, that math doesn't work.</p>
+
+        <p>The rebuild started from a different question: where does work actually get dropped or duplicated right now? Not "what could an AI do" but "what are the specific points in our workflow where things go sideways?" Meeting follow-up tasks that don't make it into Monday. Time logged in Toggl that doesn't match what we told the client. The gap between what was discussed and what got documented.</p>
+
+        <p>When I rebuilt Pip around those specific friction points instead of around impressive capabilities, it started getting used. That's the test. Not whether it demos well — whether it actually gets used.</p>
+
+        <h3>The real value is memory, not speed</h3>
+
+        <p>Here's the thing I got wrong at first: I was thinking about this as an efficiency problem. How do we do things faster? How do we reduce the time it takes to do a monthly report or prep for a client call?</p>
+
+        <p>Speed is fine but it's not where the value landed. The value landed in memory.</p>
+
+        <p>A good AI system remembers what you decided last time. It remembers what you told the client in March and can surface that when you're drafting the April recap. It remembers what you said you were going to follow up on and asks about it. That's not efficiency. It's cognitive offload — moving something out of your head and into a system that will surface it at the right moment.</p>
+
+        <p>When I thought about it as an efficiency tool, the question was "how much time does this save?" When I thought about it as a memory tool, the question became "what are we currently dropping because nobody has the mental bandwidth to carry it?" That second question has a much more useful set of answers.</p>
+
+        <p>Memory is also where AI systems have a structural advantage over traditional project management tools. Monday.com is very good at tracking tasks. It doesn't read your meeting transcripts and notice that a client mentioned a concern about Q3 planning that nobody created a task for yet. Pip does that. Not perfectly, but consistently enough to be worth something.</p>
+
+        <h3>You probably don't need to build Pip</h3>
+
+        <p>Pip is internal to Three Seven. It's not a product, it's not publicly available, and building it required a meaningful investment of time and some technical comfort. I'm not writing this to suggest that everyone should build a custom AI project manager.</p>
+
+        <p>The thing worth taking from this is the underlying question: what are you carrying in your head right now that a system could carry instead?</p>
+
+        <p>That's what Roux was for dinner planning. Every week, I was loading a set of variables into working memory and running a calculation that took real cognitive effort. I built something that runs that calculation. Same principle, very different context.</p>
+
+        <p>The entry point doesn't have to be a custom-built system with slash commands and API integrations. It can be a structured prompt you run every Monday morning. It can be a template that captures meeting decisions in a consistent format. It can be a document you maintain that an AI can reference to give you useful output instead of generic output. Start with the question of what you're carrying, and work backward from there to what would actually help carry it.</p>
+
+        <p>That's where the systems worth building come from. Not from what's technically possible, but from what's actually weighing on you.</p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="reveal">
+          <span class="eyebrow holo">Free tool</span>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="cta-heading">Start with one thing you're carrying.</h2>
+        </div>
+        <div class="reveal delay-1">
+          <p class="cta-desc">Roux is the meal planning version of this idea — a free system that takes the weekly dinner calculation off your plate. A good place to see the principle in practice.</p>
+        </div>
+        <div class="cta-btns reveal delay-2">
+          <a href="roux.html" class="btn btn-holo">Get Roux free <span class="arr">→</span></a>
+          <a href="index.html" class="btn btn-secondary">More Melsplains</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ARTICLE NAV -->
+  <div class="article-nav">
+    <div class="container">
+      <div class="article-nav-inner">
+        <a href="your-dashboard-is-lying-to-you.html" class="article-nav-link">← Dashboard Post</a>
+        <a href="how-i-stopped-dreading-sunday-dinner-planning.html" class="article-nav-link">Next: Sunday Dinner Planning →</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-row1">
+          <div class="foot-left">
+            <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+              <defs>
+                <linearGradient id="holo-foot" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E8185A"/>
+                  <stop offset="50%" stop-color="#7C3AED"/>
+                  <stop offset="100%" stop-color="#00C9C8"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#holo-foot)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+              <path fill="url(#holo-foot)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+            </svg>
+            <span class="micro">© 2026 Melanie Dunn. Explained for you. Not at you.</span>
+          </div>
+          <nav class="foot-links" aria-label="Footer navigation">
+            <a href="../work/index.html">Work</a>
+            <a href="index.html">Melsplains</a>
+            <a href="tools.html">Free Tools</a>
+            <a href="../about/index.html">About</a>
+            <a href="../contact/index.html">Let's Talk</a>
+          </nav>
+        </div>
+        <div class="foot-social">
+          <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">
+          Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); },
+        { threshold: 0.10 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    })();
+  </script>
+
+</body>
+</html>
