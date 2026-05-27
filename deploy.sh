@@ -8,6 +8,8 @@ git add -A
 git commit -m "$MESSAGE"
 git push netlify main
 
+npx wrangler pages deploy . --project-name=melaniedunn --branch=main --commit-dirty=true 2>&1 | tail -5
+
 echo ""
-echo "Pushed. Netlify is deploying — live in ~30 seconds."
+echo "Deployed. Live in ~10 seconds."
 echo "https://www.melaniedunn.work"

@@ -282,9 +282,11 @@
 
         <!-- Right: form -->
         <div class="contact-right reveal delay-1">
-          <form class="form-block" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-            <input type="hidden" name="form-name" value="contact" />
-            <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+          <form class="form-block" name="contact" method="POST" action="https://api.web3forms.com/submit" novalidate>
+            <input type="hidden" name="access_key" value="0297438e-0fe9-4f95-9639-85b6d34f93d1" />
+            <input type="hidden" name="subject" value="New contact from melaniedunn.work" />
+            <input type="hidden" name="redirect" value="false" />
+            <p style="display:none;"><label>Don't fill this out: <input name="botcheck" /></label></p>
 
             <div class="form-group">
               <label class="form-label" for="contact-name">Name</label>
@@ -382,14 +384,19 @@
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
     })();
     (function () {
-      const form = document.querySelector('form[data-netlify]');
+      const form = document.querySelector('form[name="contact"]');
       if (!form) return;
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         const data = new FormData(form);
-        fetch('/', { method: 'POST', body: data })
-          .then(function () {
-            form.innerHTML = '<div style="text-align:center; padding: 48px 0; display:flex; flex-direction:column; gap:16px; align-items:center;"><p style="font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink);">Message received</p><p style="font-family:var(--serif); font-size:clamp(24px,3vw,36px); font-weight:400; color:var(--warm-black); line-height:1.2;">Got it. I\'ll be in touch.</p><p style="font-size:15px; color:var(--mid-gray);">I read everything. You\'ll hear from me within 2 business days.</p></div>';
+        fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+          .then(function (res) { return res.json(); })
+          .then(function (json) {
+            if (json.success) {
+              form.innerHTML = '<div style="text-align:center; padding: 48px 0; display:flex; flex-direction:column; gap:16px; align-items:center;"><p style="font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink);">Message received</p><p style="font-family:var(--serif); font-size:clamp(24px,3vw,36px); font-weight:400; color:var(--warm-black); line-height:1.2;">Got it. I\'ll be in touch.</p><p style="font-size:15px; color:var(--mid-gray);">I read everything. You\'ll hear from me within 2 business days.</p></div>';
+            } else {
+              alert('Something went wrong. Try emailing melanie@threesevenmarketing.com directly.');
+            }
           })
           .catch(function () {
             alert('Something went wrong. Try emailing melanie@threesevenmarketing.com directly.');
