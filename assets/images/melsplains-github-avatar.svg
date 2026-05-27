@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Aurora background gradient -->
+    <radialGradient id="bg-radial" cx="35%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1A0A2E"/>
+      <stop offset="55%" stop-color="#0A0E1A"/>
+      <stop offset="100%" stop-color="#081018"/>
+    </radialGradient>
+
+    <!-- Holo gradient for text -->
+    <linearGradient id="holo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#FF4E80"/>
+      <stop offset="48%"  stop-color="#B289FF"/>
+      <stop offset="100%" stop-color="#5EE8E7"/>
+    </linearGradient>
+
+    <!-- Soft glow behind the M -->
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#7C3AED" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Clip to circle -->
+    <clipPath id="circle-clip">
+      <circle cx="200" cy="200" r="200"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#circle-clip)">
+    <!-- Background -->
+    <rect width="400" height="400" fill="url(#bg-radial)"/>
+
+    <!-- Ambient glow blob -->
+    <ellipse cx="200" cy="195" rx="160" ry="150" fill="url(#glow)"/>
+
+    <!-- Subtle teal glow bottom-right -->
+    <ellipse cx="310" cy="310" rx="120" ry="100" fill="#00C9C8" fill-opacity="0.07"/>
+
+    <!-- The M — bold serif italic, holo fill -->
+    <text
+      x="200"
+      y="268"
+      font-family="'Georgia', 'Times New Roman', serif"
+      font-size="248"
+      font-weight="700"
+      font-style="italic"
+      text-anchor="middle"
+      fill="url(#holo)"
+      letter-spacing="-8"
+    >m</text>
+
+    <!-- Thin holo rule at bottom -->
+    <rect x="80" y="316" width="240" height="2" rx="1" fill="url(#holo)" opacity="0.6"/>
+
+    <!-- "melsplains" wordmark in mono below rule -->
+    <text
+      x="200"
+      y="345"
+      font-family="'JetBrains Mono', 'Courier New', monospace"
+      font-size="22"
+      font-weight="500"
+      text-anchor="middle"
+      fill="#5EE8E7"
+      letter-spacing="5"
+      opacity="0.85"
+    >melsplains</text>
+  </g>
+</svg>
