@@ -249,6 +249,25 @@
     .footer-also-me a { color: rgba(255,78,128,0.55); border-bottom: 1px solid rgba(255,78,128,0.25); transition: opacity 0.2s; }
     .footer-also-me a:hover { opacity: 0.7; }
 
+    /* TWO-PATH DOWNLOAD */
+    .download-paths { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .path-card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 32px; display: flex; flex-direction: column; }
+    .path-card.path-advanced { border-color: rgba(124,58,237,0.3); border-width: 1.5px; }
+    .path-label { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+    .path-label.teal { color: var(--teal); }
+    .path-label.violet { color: var(--violet); }
+    .path-title { font-family: var(--serif); font-size: 1.5rem; letter-spacing: -0.01em; color: var(--warm-black); margin-bottom: 10px; line-height: 1.2; }
+    .path-desc { font-size: 0.875rem; color: var(--mid-gray); line-height: 1.75; margin-bottom: 20px; flex: 1; }
+    .path-includes { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .path-includes li { font-size: 0.875rem; color: var(--warm-black-2); display: flex; align-items: center; gap: 8px; }
+    .path-includes li::before { font-size: 11px; font-weight: 700; }
+    .path-includes.teal li::before { content: '✓'; color: var(--teal); }
+    .path-includes.violet li::before { content: '✓'; color: var(--violet); }
+    .btn-path-violet { display: flex; align-items: center; justify-content: center; width: 100%; background: var(--violet); color: white; padding: 15px 24px; border-radius: 4px; font-size: 0.9375rem; font-weight: 500; font-family: var(--sans); text-decoration: none; transition: opacity 0.2s; box-shadow: 0 14px 32px -14px rgba(124,58,237,0.5); margin-bottom: 8px; }
+    .btn-path-violet:hover { opacity: 0.88; }
+    .path-footnote { font-family: var(--mono); font-size: 10px; color: var(--mid-gray); text-align: center; letter-spacing: 0.04em; }
+    @media (max-width: 680px) { .download-paths { grid-template-columns: 1fr; } }
+
     /* BUILD YOUR OWN — prompt cards */
     .prompt-card-light { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fff; }
     .prompt-card-header { display: flex; align-items: center; gap: 14px; padding: 13px 20px; border-bottom: 1px solid var(--border-soft); background: var(--bg-warm); }
@@ -353,25 +372,13 @@
           I'd been meal planning for over ten years — notebooks, then AnyList with 500+ recipes saved. Still spent 45 minutes on it every week. Not because I didn't have the recipes. Because all the actual thinking lived in my brain. When I finally built something to hold it instead of me, the whole thing changed.
         </p>
         <div class="hero-meta">
-          <a href="#download" class="meta-badge badge-free" style="text-decoration:none;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Free Download</a>
-          <a href="#download" class="meta-badge badge-format" style="text-decoration:none;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Prompt Kit + Templates</a>
-          <a href="#download" class="meta-badge badge-works" style="text-decoration:none;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Claude.ai version (start here) · Advanced (Claude Code + AnyList)</a>
+          <span class="meta-badge badge-free">Free</span>
+          <span class="meta-badge badge-format">Prompt Kit + Templates</span>
+          <span class="meta-badge badge-works">Claude.ai or Claude Code Desktop</span>
         </div>
-
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
-          <a href="#download"
-            class="btn-download"
-            style="display:inline-flex;align-items:center;gap:8px;width:auto;padding:13px 28px;font-size:0.9375rem;box-shadow:0 14px 32px -14px rgba(124,58,237,0.45);"
-            onclick="gtag('event','hero_cta_click',{event_label:'get_kit'})">
+        <div style="margin-top:28px;">
+          <a href="#download" class="btn-download" style="display:inline-flex;width:auto;padding:13px 28px;font-size:0.9375rem;" onclick="gtag('event','hero_cta_click',{event_label:'get_kit'})">
             Get the Free Kit →
-          </a>
-          <a href="/downloads/roux-build-your-own-guide.pdf"
-            download
-            style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid var(--border);color:var(--mid-gray);padding:13px 22px;border-radius:4px;font-size:0.875rem;font-weight:500;font-family:var(--sans);text-decoration:none;transition:border-color 0.2s,color 0.2s;"
-            onmouseover="this.style.borderColor='#7C3AED';this.style.color='#7C3AED'"
-            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--mid-gray)'"
-            onclick="trackDownload('build_your_own_pdf_hero')">
-            ↓ Build Your Own Guide (PDF)
           </a>
         </div>
       </div>
@@ -843,79 +850,66 @@ Save as CLAUDE.md.</div>
        DOWNLOAD CTA
   =========================== -->
   <section class="download-section" id="download">
-    <div class="container download-inner">
+    <div class="container">
 
-      <div class="download-text">
-        <p class="download-eyebrow">Get the kit</p>
-        <h2 class="download-headline">
-          Here's the thing I built.<br>It's yours.<br><em>Free.</em>
-        </h2>
-        <p class="download-desc">
-          Both versions included — Claude.ai Version (start here, no setup required) and Advanced (Claude Code + AnyList). No email required. Just the thing.
-        </p>
-        <ul class="download-includes">
-          <li>Sunday Planning Prompt — Claude.ai &amp; Advanced versions</li>
-          <li>Family Preferences Template</li>
-          <li>Weekly Schedule Template</li>
-          <li>Freezer &amp; Pantry Inventory Template</li>
-          <li>Grocery List Output Format</li>
-          <li>Setup Guide — Claude.ai walkthrough &amp; AnyList + Claude Code walkthrough</li>
-        </ul>
-        <p style="margin-top: 20px; font-size: 0.875rem; color: var(--mid-gray); line-height: 1.65;">
-          <strong style="color: var(--warm-black);">No Microsoft Word needed.</strong> The output is plain text you can read anywhere, copy to your phone, or paste into any app. If you want a formatted document, just ask Claude to make one.
-        </p>
+      <p class="download-eyebrow">Get the kit</p>
+      <h2 class="download-headline" style="margin-bottom:10px;">
+        Here's the thing I built.<br>It's yours. <em>Free.</em>
+      </h2>
+      <p class="download-desc">Pick what makes sense for where you are right now. You can always start simple and build your own Roux later.</p>
+
+      <div class="download-paths">
+
+        <!-- PATH 1: Simple -->
+        <div class="path-card">
+          <p class="path-label teal">Start here</p>
+          <h3 class="path-title">Just start using it</h3>
+          <p class="path-desc">No installation. No setup. Paste prompts into Claude.ai each week and get a plan back. Takes 5 minutes to download and 15 minutes to do your first plan.</p>
+          <ul class="path-includes teal">
+            <li>Sunday planning prompt</li>
+            <li>Family preferences template</li>
+            <li>Pantry &amp; schedule templates</li>
+            <li>Works with a free Claude account</li>
+          </ul>
+          <a href="/downloads/sunday-meal-planning-kit.zip" class="btn-download" onclick="trackDownload('simple_kit')" download>
+            Download the Kit — Free →
+          </a>
+          <p class="path-footnote" style="margin-top:8px;">No email required</p>
+        </div>
+
+        <!-- PATH 2: Build Your Own -->
+        <div class="path-card path-advanced">
+          <p class="path-label violet">More powerful</p>
+          <h3 class="path-title">Build your own Roux</h3>
+          <p class="path-desc">Answer 5 questions in Claude Code Desktop. Claude writes all the files. You end up with a personalized assistant that knows your family's rules — and never forgets them.</p>
+          <ul class="path-includes violet">
+            <li>5 setup prompts — copy &amp; paste, in order</li>
+            <li>Claude builds your files as you answer</li>
+            <li>/plan, /shop, /deals slash commands</li>
+            <li>~20 min setup, then 5 min/week</li>
+          </ul>
+          <a href="/downloads/roux-build-your-own-guide.pdf" class="btn-path-violet" onclick="trackDownload('build_your_own_pdf')" download>
+            Download Setup Guide (PDF) →
+          </a>
+          <p class="path-footnote">4-page guide · all 5 prompts included</p>
+        </div>
+
       </div>
 
-      <div class="download-card">
-        <span class="download-card-badge">Free Download</span>
-        <h3 class="download-card-title">Roux by Melsplains</h3>
-        <p class="download-card-meta">
-          Includes both versions · Claude.ai Version (start here, no setup) · Advanced (Claude Code + AnyList)
-        </p>
-
-        <p style="margin-bottom: 16px; font-size: 0.8125rem; color: var(--mid-gray); line-height: 1.6; background: rgba(0,201,200,0.06); border: 1px solid rgba(0,201,200,0.18); border-radius: 4px; padding: 10px 14px;">
-          <strong style="color: var(--warm-black);">New here?</strong> Download, open <code style="font-size: 0.75rem; background: rgba(0,0,0,0.05); padding: 1px 4px; border-radius: 2px;">START-HERE.md</code>, and use the Claude.ai version. No AnyList. No Claude Code. No technical setup.
-        </p>
-        <!-- Primary download button -->
-        <a
-          href="/downloads/sunday-meal-planning-kit.zip"
-          class="btn-download"
-          onclick="trackDownload('meal_planning_kit_main')"
-          download
-        >
-          Download the Kit — Free →
-        </a>
-        <p class="download-no-gate">No email required. Just yours.</p>
-
-        <a
-          href="/downloads/roux-build-your-own-guide.pdf"
-          style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:rgba(124,58,237,0.08);border:1.5px solid rgba(124,58,237,0.25);color:#7C3AED;padding:12px 20px;border-radius:4px;font-size:0.875rem;font-weight:500;font-family:var(--sans);margin-top:10px;transition:background 0.15s;"
-          onmouseover="this.style.background='rgba(124,58,237,0.14)'"
-          onmouseout="this.style.background='rgba(124,58,237,0.08)'"
-          onclick="trackDownload('build_your_own_pdf')"
-          download
-        >
-          ↓ Build Your Own Roux — Setup Guide (PDF)
-        </a>
-        <p style="text-align:center;margin-top:6px;font-family:var(--mono);font-size:10px;color:var(--mid-gray);letter-spacing:0.03em;">4-page printable guide · all 5 prompts included</p>
-
-        <p style="text-align: center; margin-top: 14px; font-family: var(--mono); font-size: 11px; color: var(--mid-gray); letter-spacing: 0.04em;">
-          Also on GitHub:
-          <a href="https://github.com/melsplains/roux" target="_blank" rel="noopener" style="color: var(--pink); border-bottom: 1px solid rgba(232,24,90,0.3); padding-bottom: 1px;">melsplains/roux →</a>
-        </p>
-
-        <hr class="download-divider" />
-
-        <!-- Optional email opt-in — soft, below the fold -->
-        <p class="email-opt-in-label">Want to know when I build something else?</p>
-        <p class="email-opt-in-desc">
-          I don't have a newsletter schedule. When the dopamine hits and I make something worth sharing, I'll send it. That's the whole commitment.
-        </p>
+      <!-- Email + GitHub footer -->
+      <div style="margin-top:32px;padding:24px 28px;background:var(--bg);border:1px solid var(--border);border-radius:6px;display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:center;">
+        <div>
+          <p class="email-opt-in-label">Want to know when I build something else?</p>
+          <p class="email-opt-in-desc" style="margin-bottom:0;">I don't have a newsletter schedule. When I make something worth sharing, I'll send it.</p>
+        </div>
         <form class="email-inline" action="#" onsubmit="handleEmailSignup(event)">
           <input type="email" placeholder="your@email.com" aria-label="Email for updates" />
           <button type="submit">I'm in</button>
         </form>
       </div>
+      <p style="text-align:center;margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--mid-gray);letter-spacing:0.04em;">
+        Also on GitHub: <a href="https://github.com/melsplains/roux" target="_blank" rel="noopener" style="color:var(--pink);border-bottom:1px solid rgba(232,24,90,0.3);padding-bottom:1px;">melsplains/roux →</a>
+      </p>
 
     </div>
   </section>
