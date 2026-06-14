@@ -896,8 +896,23 @@ Save as CLAUDE.md.</div>
 
       </div>
 
-      <!-- Email + GitHub footer -->
-      <div style="margin-top:32px;padding:24px 28px;background:var(--bg);border:1px solid var(--border);border-radius:6px;display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:center;">
+      <!-- GitHub row -->
+      <div style="margin-top:12px;background:#fff;border:1px solid var(--border);border-radius:6px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div>
+          <p style="font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid-gray);margin-bottom:4px;">Prefer to DIY from source</p>
+          <p style="font-size:0.9375rem;font-weight:500;color:var(--warm-black);margin-bottom:2px;">Also on GitHub — melsplains/roux</p>
+          <p style="font-size:0.8125rem;color:var(--mid-gray);">Browse the files, fork it, or grab just the pieces you need.</p>
+        </div>
+        <a href="https://github.com/melsplains/roux" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid var(--border);color:var(--warm-black);padding:11px 22px;border-radius:4px;font-size:0.875rem;font-weight:500;font-family:var(--sans);text-decoration:none;white-space:nowrap;transition:border-color 0.2s,color 0.2s;flex-shrink:0;"
+          onmouseover="this.style.borderColor=var('--warm-black');this.style.color='var(--pink)';this.style.borderColor='rgba(232,24,90,0.4)'"
+          onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--warm-black)'">
+          View on GitHub →
+        </a>
+      </div>
+
+      <!-- Email -->
+      <div style="margin-top:12px;padding:24px 28px;background:var(--bg);border:1px solid var(--border);border-radius:6px;display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:center;">
         <div>
           <p class="email-opt-in-label">Want to know when I build something else?</p>
           <p class="email-opt-in-desc" style="margin-bottom:0;">I don't have a newsletter schedule. When I make something worth sharing, I'll send it.</p>
@@ -907,9 +922,6 @@ Save as CLAUDE.md.</div>
           <button type="submit">I'm in</button>
         </form>
       </div>
-      <p style="text-align:center;margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--mid-gray);letter-spacing:0.04em;">
-        Also on GitHub: <a href="https://github.com/melsplains/roux" target="_blank" rel="noopener" style="color:var(--pink);border-bottom:1px solid rgba(232,24,90,0.3);padding-bottom:1px;">melsplains/roux →</a>
-      </p>
 
     </div>
   </section>
