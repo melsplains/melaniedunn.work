@@ -249,6 +249,23 @@
     .footer-also-me a { color: rgba(255,78,128,0.55); border-bottom: 1px solid rgba(255,78,128,0.25); transition: opacity 0.2s; }
     .footer-also-me a:hover { opacity: 0.7; }
 
+    /* BUILD YOUR OWN — prompt cards */
+    .prompt-card-light { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fff; }
+    .prompt-card-header { display: flex; align-items: center; gap: 14px; padding: 13px 20px; border-bottom: 1px solid var(--border-soft); background: var(--bg-warm); }
+    .prompt-step-pill { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pink); background: var(--pink-tint); border: 1px solid rgba(232,24,90,0.2); padding: 3px 10px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; }
+    .prompt-card-title { font-size: 0.875rem; font-weight: 600; color: var(--warm-black); }
+    .prompt-text-light { font-family: var(--mono); font-size: 0.7875rem; line-height: 1.8; color: var(--warm-black-2); padding: 20px; white-space: pre-wrap; background: #fff; border-bottom: 1px solid var(--border-soft); }
+    .prompt-fill-hint { color: var(--teal); font-style: italic; }
+    .prompt-card-footer { display: flex; justify-content: flex-end; padding: 10px 20px; background: var(--bg); }
+    .btn-copy-prompt { font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 16px; border-radius: 4px; border: 1.5px solid var(--border); background: #fff; color: var(--warm-black); cursor: pointer; transition: all 0.15s; }
+    .btn-copy-prompt:hover { border-color: var(--pink); color: var(--pink); }
+    .btn-copy-prompt.copied { border-color: var(--teal); color: var(--teal); background: rgba(0,201,200,0.05); }
+    .byo-done-note { margin-top: 8px; background: rgba(0,201,200,0.06); border: 1px solid rgba(0,201,200,0.2); border-radius: 4px; padding: 14px 18px; font-size: 0.875rem; color: var(--warm-black-2); line-height: 1.6; }
+    .byo-done-note code { font-size: 0.8rem; background: rgba(0,0,0,0.05); padding: 1px 5px; border-radius: 3px; }
+    .byo-anylist-note { margin-top: 14px; padding: 14px 18px; border: 1.5px dashed var(--border); border-radius: 4px; font-size: 0.8125rem; color: var(--mid-gray); line-height: 1.65; }
+    .byo-anylist-note strong { color: var(--warm-black); }
+    .byo-anylist-note em { color: var(--warm-black-2); font-style: italic; }
+
     /* RESPONSIVE */
     @media (max-width: 960px) {
       .page-hero-inner { grid-template-columns: 1fr; }
@@ -611,7 +628,7 @@
           Claude.ai Version — Start here
         </button>
         <button class="version-btn" role="tab" aria-selected="false" onclick="switchVersion('code')">
-          Advanced — Claude Code + AnyList
+          Build Your Own — Claude Code Desktop
         </button>
       </div>
 
@@ -648,37 +665,157 @@
         </div>
       </div>
 
-      <!-- Full system (AnyList + Claude Code) -->
+      <!-- Build Your Own — Claude Code Desktop -->
       <div class="version-panel" id="panel-code">
-        <div class="steps-grid">
+
+        <p style="font-size: 1rem; color: var(--mid-gray); line-height: 1.8; max-width: 600px; margin-bottom: 44px;">
+          This version builds a Roux that knows your family by heart — your rules, your pantry, your stores. You answer questions in Claude Code Desktop. Claude writes the files. By the fifth prompt, you have a fully configured meal planning assistant. No manual file editing, no technical setup beyond downloading an app.
+        </p>
+
+        <!-- 3 pre-steps -->
+        <div class="steps-grid" style="grid-template-columns: repeat(3,1fr); margin-bottom: 44px;">
           <div class="step">
             <div class="step-number">01</div>
-            <h3 class="step-title">Set up AnyList + Claude Code</h3>
-            <p class="step-desc">Get AnyList (free download, paid sub recommended), set up Claude Code on your computer, and connect them via the AnyList MCP. The setup guide walks you through each step. One-time setup, about 30 minutes.</p>
-            <span class="step-time">Once, ~30 min</span>
+            <h3 class="step-title">Download Claude Code Desktop</h3>
+            <p class="step-desc">Free app at <strong>claude.ai/download</strong>. Works on Mac and Windows. No terminal, no command line — just an app. Sign in and you're ready.</p>
+            <span class="step-time">~2 minutes</span>
           </div>
           <div class="step">
             <div class="step-number">02</div>
-            <h3 class="step-title">Update inventory</h3>
-            <p class="step-desc">Each week, edit your freezer and pantry files to reflect what you used. Claude Code reads them directly — no copy-pasting.</p>
-            <span class="step-time">Weekly, ~3 min</span>
+            <h3 class="step-title">Create your Roux folder</h3>
+            <p class="step-desc">Make a new folder called Roux anywhere on your computer — Documents works great. Open that folder in Claude Code. This is where all your files will live.</p>
+            <span class="step-time">~1 minute</span>
           </div>
-          <div class="step">
+          <div class="step" style="border-right: none;">
             <div class="step-number">03</div>
-            <h3 class="step-title">Fill in the schedule</h3>
-            <p class="step-desc">Open this week's schedule file and note busy nights, weather, anything that needs to get used. This is what makes the plan fit your actual week instead of a generic one.</p>
-            <span class="step-time">Weekly, ~3 min</span>
-          </div>
-          <div class="step">
-            <div class="step-number">04</div>
-            <h3 class="step-title">Run and review</h3>
-            <p class="step-desc">Run the planning prompt. Claude browses your AnyList recipes directly, builds a week plan, and pushes the meals right into your AnyList calendar with the actual recipes attached. Review, adjust if needed, shop.</p>
-            <span class="step-time">Weekly, ~5 min</span>
+            <h3 class="step-title">Paste these 5 prompts in order</h3>
+            <p class="step-desc">Start a new chat. Copy each prompt below and answer Claude's questions honestly. By Prompt 5, all your files are written and your Roux is live.</p>
+            <span class="step-time" style="color: var(--violet);">You answer. Claude builds.</span>
           </div>
         </div>
-        <div class="version-note">
-          <strong>What you need:</strong> AnyList, Claude Code, and the AnyList MCP connected. More to set up — the guide walks through every step, and it's not as scary as "MCP" sounds. The payoff: Claude works from your actual recipe library and delivers the plan right into AnyList. <strong>Optional:</strong> connect your Kroger and/or Meijer accounts so Claude can factor in this week's sales and your available coupons when building the list. The setup guide covers how to do this — my account info isn't in the download, you'll connect your own. <a href="/work/meal-planner">See the full technical breakdown →</a>
+
+        <!-- 5 setup prompts -->
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:32px;">
+
+          <div class="prompt-card-light">
+            <div class="prompt-card-header">
+              <span class="prompt-step-pill">Prompt 1 of 5</span>
+              <span class="prompt-card-title">Tell Claude about your family</span>
+            </div>
+            <div class="prompt-text-light" id="byo-p1-display">I'm setting up Roux, my personal AI meal planning assistant. Let's start with my family profile.
+
+Ask me everything you need to know about my household so you can plan meals we'll actually eat. Cover:
+— Who's in my family and their ages
+— Dietary restrictions and hard allergies
+— What each person loves and flat-out refuses to eat (be specific — "no cilantro" is more useful than "picky eater")
+— My weekly grocery budget
+— Which stores I shop at and which is primary
+— When I usually shop each week
+— Any weekly dinner traditions (taco night, pizza Friday, etc.)
+— Nights when dinner needs to be fast or in the crockpot
+— Cooking equipment I have (crockpot, Instant Pot, air fryer, grill, etc.)
+
+Ask everything at once — I'll fill it all in.</div>
+            <div class="prompt-card-footer">
+              <button class="btn-copy-prompt" onclick="copySetupPrompt('byo-p1', this)">Copy prompt</button>
+            </div>
+          </div>
+
+          <div class="prompt-card-light">
+            <div class="prompt-card-header">
+              <span class="prompt-step-pill">Prompt 2 of 5</span>
+              <span class="prompt-card-title">Claude writes your family file</span>
+            </div>
+            <div class="prompt-text-light" id="byo-p2-display">Based on everything I just told you, write my family.md file and save it to this folder.
+
+Include:
+— Household overview (members, budget, stores)
+— Hard rules table — the absolute non-negotiables
+— A section per person: favorites, dislikes, meal patterns
+— Dinner planning logic: protein rotation, easy night options, sides pairings
+— Seasonal notes if relevant
+
+Be thorough. This is the file Roux reads every time it plans a meal.</div>
+            <div class="prompt-card-footer">
+              <button class="btn-copy-prompt" onclick="copySetupPrompt('byo-p2', this)">Copy prompt</button>
+            </div>
+          </div>
+
+          <div class="prompt-card-light">
+            <div class="prompt-card-header">
+              <span class="prompt-step-pill">Prompt 3 of 5</span>
+              <span class="prompt-card-title">Capture your pantry</span>
+            </div>
+            <div class="prompt-text-light" id="byo-p3-display">Now let's build my inventory so Roux knows what I already have before it plans or shops.
+
+Ask me what's in my freezer, fridge, and pantry. As I answer:
+— Note quantity or status where I give it (LOW, 1 pack, plenty)
+— Anything I say I "always have" or "always keep stocked" goes in a Staples section — we won't track those weekly
+
+When I'm done, write everything to inventory.md organized into: Freezer, Fridge, Pantry, Staples.</div>
+            <div class="prompt-card-footer">
+              <button class="btn-copy-prompt" onclick="copySetupPrompt('byo-p3', this)">Copy prompt</button>
+            </div>
+          </div>
+
+          <div class="prompt-card-light">
+            <div class="prompt-card-header">
+              <span class="prompt-step-pill">Prompt 4 of 5</span>
+              <span class="prompt-card-title">Set up your stores — <span style="color:var(--teal); font-size:0.8rem; font-weight:400;">fill in the brackets first</span></span>
+            </div>
+            <div class="prompt-text-light" id="byo-p4-display">Let's set up my stores and create a weekly deals template.
+
+My stores: <span class="prompt-fill-hint">[e.g. Kroger, Meijer, Trader Joe's]</span>
+Primary store: <span class="prompt-fill-hint">[name]</span>
+Their weekly deals reset on: <span class="prompt-fill-hint">[day — usually Wednesday or Sunday]</span>
+I usually shop on: <span class="prompt-fill-hint">[day]</span>
+
+Create stores/this_week.md as a template I'll fill in each week with sales.
+Format: a simple table — Item | Sale Price | Store | Notes — with a couple example rows so I know how to use it.</div>
+            <div class="prompt-card-footer">
+              <button class="btn-copy-prompt" onclick="copySetupPrompt('byo-p4', this)">Copy prompt</button>
+            </div>
+          </div>
+
+          <div class="prompt-card-light" style="border-color: rgba(124,58,237,0.3);">
+            <div class="prompt-card-header" style="background: rgba(124,58,237,0.04); border-color: rgba(124,58,237,0.15);">
+              <span class="prompt-step-pill" style="color: var(--violet); background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.2);">Prompt 5 of 5</span>
+              <span class="prompt-card-title">Claude becomes Roux</span>
+            </div>
+            <div class="prompt-text-light" id="byo-p5-display">Now write my CLAUDE.md — the file that turns Claude into Roux, my personal meal planning assistant.
+
+Using everything in family.md, inventory.md, and my store setup, define:
+
+1. Roux's persona — efficient, organized, thinks like an executive assistant who knows food and family logistics. Makes me feel like I have help, not homework.
+
+2. Core files table — what each file is and when to load it (only load what each command actually needs)
+
+3. Full command definitions for: /plan, /shop, /deals, /inventory-add, /inventory-remove, /recipe-used [name], /week-used
+
+4. My family rules baked in as non-negotiable behaviors — not "see family.md," write them out so they're enforced every single time
+
+5. /plan output format: lead with the complete meal list so I can scan the whole week in 5 seconds, then details below
+
+6. Tone: efficient, no fluff, surface what matters
+
+Save as CLAUDE.md.</div>
+            <div class="prompt-card-footer" style="background: rgba(124,58,237,0.03);">
+              <button class="btn-copy-prompt" style="border-color: rgba(124,58,237,0.3); color: var(--violet);" onclick="copySetupPrompt('byo-p5', this)">Copy prompt</button>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Done state -->
+        <div class="byo-done-note">
+          <strong>You're live.</strong> Start a new chat in Claude Code (Roux folder still open) and type <code>/plan</code>. Tell Claude your week's schedule and any busy nights. That's it. <a href="/work/meal-planner" style="color: var(--pink); font-weight: 500; border-bottom: 1px solid rgba(232,24,90,0.3);">See the full technical breakdown →</a>
+        </div>
+
+        <!-- AnyList optional -->
+        <div class="byo-anylist-note">
+          <strong>Using AnyList?</strong> Before Prompt 5, add this line: <em>"Include AnyList MCP integration via the mealplanner server. On /plan: pull my recipe library and check the meal plan calendar to avoid repeats. On /shop: push each dinner to the AnyList calendar and add ingredients to the correct store shopping list."</em> Then <code>/shop</code> writes your lists directly to AnyList — no copy-paste.
+        </div>
+
       </div>
 
     </div>
@@ -831,6 +968,69 @@
   <!-- =========================================
        JAVASCRIPT
   ========================================= -->
+  <!-- Hidden plain-text for copy buttons -->
+  <div id="byo-p1" style="display:none">I'm setting up Roux, my personal AI meal planning assistant. Let's start with my family profile.
+
+Ask me everything you need to know about my household so you can plan meals we'll actually eat. Cover:
+— Who's in my family and their ages
+— Dietary restrictions and hard allergies
+— What each person loves and flat-out refuses to eat (be specific — "no cilantro" is more useful than "picky eater")
+— My weekly grocery budget
+— Which stores I shop at and which is primary
+— When I usually shop each week
+— Any weekly dinner traditions (taco night, pizza Friday, etc.)
+— Nights when dinner needs to be fast or in the crockpot
+— Cooking equipment I have (crockpot, Instant Pot, air fryer, grill, etc.)
+
+Ask everything at once — I'll fill it all in.</div>
+
+  <div id="byo-p2" style="display:none">Based on everything I just told you, write my family.md file and save it to this folder.
+
+Include:
+— Household overview (members, budget, stores)
+— Hard rules table — the absolute non-negotiables
+— A section per person: favorites, dislikes, meal patterns
+— Dinner planning logic: protein rotation, easy night options, sides pairings
+— Seasonal notes if relevant
+
+Be thorough. This is the file Roux reads every time it plans a meal.</div>
+
+  <div id="byo-p3" style="display:none">Now let's build my inventory so Roux knows what I already have before it plans or shops.
+
+Ask me what's in my freezer, fridge, and pantry. As I answer:
+— Note quantity or status where I give it (LOW, 1 pack, plenty)
+— Anything I say I "always have" or "always keep stocked" goes in a Staples section — we won't track those weekly
+
+When I'm done, write everything to inventory.md organized into: Freezer, Fridge, Pantry, Staples.</div>
+
+  <div id="byo-p4" style="display:none">Let's set up my stores and create a weekly deals template.
+
+My stores: [e.g. Kroger, Meijer, Trader Joe's]
+Primary store: [name]
+Their weekly deals reset on: [day — usually Wednesday or Sunday]
+I usually shop on: [day]
+
+Create stores/this_week.md as a template I'll fill in each week with sales.
+Format: a simple table — Item | Sale Price | Store | Notes — with a couple example rows so I know how to use it.</div>
+
+  <div id="byo-p5" style="display:none">Now write my CLAUDE.md — the file that turns Claude into Roux, my personal meal planning assistant.
+
+Using everything in family.md, inventory.md, and my store setup, define:
+
+1. Roux's persona — efficient, organized, thinks like an executive assistant who knows food and family logistics. Makes me feel like I have help, not homework.
+
+2. Core files table — what each file is and when to load it (only load what each command actually needs)
+
+3. Full command definitions for: /plan, /shop, /deals, /inventory-add, /inventory-remove, /recipe-used [name], /week-used
+
+4. My family rules baked in as non-negotiable behaviors — not "see family.md," write them out so they're enforced every single time
+
+5. /plan output format: lead with the complete meal list so I can scan the whole week in 5 seconds, then details below
+
+6. Tone: efficient, no fluff, surface what matters
+
+Save as CLAUDE.md.</div>
+
   <script>
     // Version toggle (Claude.ai vs Claude Code)
     function switchVersion(v) {
@@ -838,6 +1038,26 @@
       document.querySelectorAll('.version-panel').forEach(panel => panel.classList.remove('active'));
       document.getElementById('panel-' + v).classList.add('active');
       event.currentTarget.classList.add('active');
+    }
+
+    // Copy setup prompts
+    function copySetupPrompt(id, btn) {
+      const text = document.getElementById(id).textContent.trim();
+      const orig = btn.textContent;
+      const done = () => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
+      } else { fallback(text, done); }
+    }
+    function fallback(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.cssText = 'position:fixed;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta); cb();
     }
 
     // Optional email signup handler
