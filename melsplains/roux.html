@@ -353,9 +353,26 @@
           I'd been meal planning for over ten years — notebooks, then AnyList with 500+ recipes saved. Still spent 45 minutes on it every week. Not because I didn't have the recipes. Because all the actual thinking lived in my brain. When I finally built something to hold it instead of me, the whole thing changed.
         </p>
         <div class="hero-meta">
-          <span class="meta-badge badge-free">Free Download</span>
-          <span class="meta-badge badge-format">Prompt Kit + Templates</span>
-          <span class="meta-badge badge-works">Claude.ai version (start here) · Advanced (Claude Code + AnyList)</span>
+          <a href="#download" class="meta-badge badge-free" style="text-decoration:none;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Free Download</a>
+          <a href="#download" class="meta-badge badge-format" style="text-decoration:none;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Prompt Kit + Templates</a>
+          <a href="#download" class="meta-badge badge-works" style="text-decoration:none;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">Claude.ai version (start here) · Advanced (Claude Code + AnyList)</a>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
+          <a href="#download"
+            class="btn-download"
+            style="display:inline-flex;align-items:center;gap:8px;width:auto;padding:13px 28px;font-size:0.9375rem;box-shadow:0 14px 32px -14px rgba(124,58,237,0.45);"
+            onclick="gtag('event','hero_cta_click',{event_label:'get_kit'})">
+            Get the Free Kit →
+          </a>
+          <a href="/downloads/roux-build-your-own-guide.pdf"
+            download
+            style="display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid var(--border);color:var(--mid-gray);padding:13px 22px;border-radius:4px;font-size:0.875rem;font-weight:500;font-family:var(--sans);text-decoration:none;transition:border-color 0.2s,color 0.2s;"
+            onmouseover="this.style.borderColor='#7C3AED';this.style.color='#7C3AED'"
+            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--mid-gray)'"
+            onclick="trackDownload('build_your_own_pdf_hero')">
+            ↓ Build Your Own Guide (PDF)
+          </a>
         </div>
       </div>
 
