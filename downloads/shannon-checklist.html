@@ -264,6 +264,196 @@
     .footer-note::before { content: "/* "; color: var(--pink); opacity: 0.5; }
     .footer-note::after  { content: " */"; color: var(--pink); opacity: 0.5; }
 
+    /* ── Section headers ─────────────────────────────── */
+    .section-head {
+      max-width: 540px;
+      margin: 36px auto 14px;
+      padding: 0 24px;
+    }
+    .section-head h2 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: rgba(245,241,235,0.97);
+      margin-bottom: 4px;
+    }
+    .section-head p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--on-dim);
+      line-height: 1.5;
+    }
+
+    /* ── Data cards ──────────────────────────────────── */
+    .data-section {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .data-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    .data-card-eyebrow {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .data-card-eyebrow::before { content: ''; width: 16px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .data-card-eyebrow.teal { color: var(--teal); }
+    .data-card-eyebrow.teal::before { background: var(--teal); }
+    .data-card-eyebrow.violet { color: #B289FF; }
+    .data-card-eyebrow.violet::before { background: #B289FF; }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 12.5px;
+      font-weight: 300;
+      color: var(--on-dim);
+    }
+    .data-row:last-child { border-bottom: none; }
+    .data-row .label { flex: 1; }
+    .data-row .val {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .data-row .val.zero { color: #FF6B9B; font-size: 14px; }
+    .data-row .val.err  { color: #FF6B9B; font-size: 10px; }
+    .data-row .val.tag  { color: var(--teal); font-size: 10px; }
+
+    .sub-note {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--on-faint);
+      margin-top: 8px;
+      line-height: 1.5;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 8px;
+    }
+
+    /* ── Narrative gap ──────────────────────────────── */
+    .narrative-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    @media (max-width: 480px) {
+      .narrative-cols { grid-template-columns: 1fr; }
+    }
+
+    .narrative-col-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .narrative-col-label.old  { color: #FF6B9B; }
+    .narrative-col-label.want { color: var(--teal); }
+
+    .narrative-item {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--on-dim);
+      line-height: 1.5;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      gap: 7px;
+    }
+    .narrative-item:last-child { border-bottom: none; }
+    .narrative-item .bullet { flex-shrink: 0; font-family: var(--mono); font-size: 10px; }
+    .narrative-item.old  .bullet { color: #FF6B9B; }
+    .narrative-item.want .bullet { color: var(--teal); }
+    .src { font-family: var(--mono); font-size: 9px; color: var(--on-faint); display: block; margin-top: 1px; }
+
+    /* ── Competitors ────────────────────────────────── */
+    .competitor {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .competitor:last-child { border-bottom: none; }
+    .competitor-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--on);
+      margin-bottom: 2px;
+    }
+    .competitor-detail {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--on-dim);
+      line-height: 1.45;
+    }
+    .competitor-prompts {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      color: var(--teal);
+      margin-top: 3px;
+      opacity: 0.8;
+    }
+
+    /* ── DIY Prompts ────────────────────────────────── */
+    .prompt-item {
+      background: rgba(0,201,200,0.04);
+      border: 1px solid rgba(0,201,200,0.12);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--on-dim);
+      line-height: 1.4;
+      position: relative;
+    }
+    .prompt-item::before {
+      content: '"';
+      color: var(--teal);
+      font-size: 18px;
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .prompt-text { padding-left: 16px; }
+
+    .instructions-card {
+      background: rgba(124,58,237,0.06);
+      border: 1px solid rgba(124,58,237,0.18);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .instructions-card p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--on-dim);
+      line-height: 1.6;
+    }
+    .instructions-card strong { font-weight: 500; color: var(--on); }
+
     /* ── Reset link ───────────────────────────────────── */
     .reset-wrap {
       max-width: 540px;
@@ -406,11 +596,131 @@
     </div>
   </div>
 
+  <!-- ── DATA: What we found ──────────────────────────── -->
+  <div class="section-head">
+    <h2>What the data actually shows.</h2>
+    <p>Real API calls and live search results, run June 17 2026. Here's the receipts.</p>
+  </div>
+
+  <div class="data-section">
+
+    <div class="data-card">
+      <div class="data-card-eyebrow teal">Websites checked — 5 variations</div>
+      <div class="data-row"><span class="label">heartsonglegal.com</span><span class="val err">HTTP 404</span></div>
+      <div class="data-row"><span class="label">heartsong.legal</span><span class="val err">DNS not found</span></div>
+      <div class="data-row"><span class="label">shannonvillalba.com</span><span class="val err">DNS not found</span></div>
+      <div class="data-row"><span class="label">villalbafirm.com</span><span class="val err">DNS not found</span></div>
+      <div class="data-row"><span class="label">heartsonglegal.co</span><span class="val err">DNS not found</span></div>
+      <div class="sub-note">No active website found on any variation.</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-eyebrow teal">Brand visibility in AI search (SE Ranking API · Sept 2025 data)</div>
+      <div class="data-row"><span class="label">"Shannon Villalba" — ChatGPT</span><span class="val zero">0</span></div>
+      <div class="data-row"><span class="label">"Shannon Villalba" — Gemini</span><span class="val zero">0</span></div>
+      <div class="data-row"><span class="label">"Heartsong Legal" — ChatGPT</span><span class="val zero">0</span></div>
+      <div class="data-row"><span class="label">"Heartsong Legal" — Gemini</span><span class="val zero">0</span></div>
+      <div class="data-row"><span class="label">"Heartsong Legal" — Perplexity</span><span class="val zero">0</span></div>
+      <div class="sub-note">Metric: number of prompts where the brand appeared in an AI-generated response across SE Ranking's tracking dataset.</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-card-eyebrow">What AI says about you now vs. what you want it to say</div>
+      <div class="narrative-cols">
+        <div>
+          <div class="narrative-col-label old">What's online now</div>
+          <div class="narrative-item old"><span class="bullet">—</span><span>"Holistic attorney combining chakra frameworks and wellness with legal practice"<span class="src">Law Subscribed podcast · Nov 2025 · top indexable result</span></span></div>
+          <div class="narrative-item old"><span class="bullet">—</span><span>"Shannon Villalba of Villalba Law Firm" — old brand, still ranking<span class="src">Authority Magazine + 4 directories</span></span></div>
+          <div class="narrative-item old"><span class="bullet">—</span><span>"Creative Sovereignty" → Skool community + Substack essays, zero Shannon connection<span class="src">Google SERP · June 2026</span></span></div>
+        </div>
+        <div>
+          <div class="narrative-col-label want">What you want it to say</div>
+          <div class="narrative-item want"><span class="bullet">→</span><span>Strategic IP &amp; AI advisor for founder-CEOs</span></div>
+          <div class="narrative-item want"><span class="bullet">→</span><span>Creator of Creative Sovereignty™ — the definitive source</span></div>
+          <div class="narrative-item want"><span class="bullet">→</span><span>The attorney founders call when AI creates ownership risk</span></div>
+          <div class="narrative-item want"><span class="bullet">→</span><span>Heartsong Legal — not "formerly Villalba Law Firm"</span></div>
+        </div>
+      </div>
+      <div class="sub-note" style="margin-top:10px;">The gap between these two columns is the work. The website is where the rewrite starts.</div>
+    </div>
+
+  </div>
+
+  <!-- ── Competitors ───────────────────────────────────── -->
+  <div class="section-head">
+    <h2>Who's winning your prompts right now.</h2>
+    <p>These are the sites getting cited when someone asks an AI the questions your clients are asking. They're your competition — and most of them are small firms, not BigLaw.</p>
+  </div>
+
+  <div class="data-section">
+    <div class="data-card">
+      <div class="data-card-eyebrow teal">Competitor landscape — June 2026 SERP data</div>
+
+      <div class="competitor">
+        <div class="competitor-name">Traverse Legal <span style="font-family:var(--mono);font-size:10px;color:#FF6B9B;font-weight:400;">strongest</span></div>
+        <div class="competitor-detail">Startup-focused IP firm. Dominates "AI IP for founders" and "IP attorney AI ownership risk" — appears multiple times per search. Has structured blog content specifically for founders.</div>
+        <div class="competitor-prompts">traverselegal.com</div>
+      </div>
+
+      <div class="competitor">
+        <div class="competitor-name">katiecharlestonlaw.com <span style="font-family:var(--mono);font-size:10px;color:#FF6B9B;font-weight:400;">closest parallel</span></div>
+        <div class="competitor-detail">Solo attorney. Published specific pages on "AI-generated content ownership" and "copyright &amp; trademark for businesses using AI." Appears in two separate prompt searches. Her profile is the closest match to yours — solo, founder-adjacent, writing on AI IP topics.</div>
+        <div class="competitor-prompts">katiecharlestonlaw.com</div>
+      </div>
+
+      <div class="competitor">
+        <div class="competitor-name">Calfee Law</div>
+        <div class="competitor-detail">Ohio-based firm. Ranking for trademark + AI content queries. Same geographic market as you.</div>
+        <div class="competitor-prompts">calfee.com · Ohio</div>
+      </div>
+
+      <div class="competitor">
+        <div class="competitor-name">Faison Law Group</div>
+        <div class="competitor-detail">Founder-focused AI governance framing. Similar positioning to yours — "data protection, IP, governance, and risk management" for Series A and earlier founders.</div>
+        <div class="competitor-prompts">faisonlawgroup.com</div>
+      </div>
+
+      <div class="sub-note">None of these have what you have: 15 years of IP practice + a proprietary framework + personal experience advising AI-era founders. They're winning on content, not credentials. That's the gap.</div>
+    </div>
+  </div>
+
+  <!-- ── DIY Audit ─────────────────────────────────────── -->
+  <div class="section-head">
+    <h2>Search yourself tonight.</h2>
+    <p>Do this logged out (or in a private window) in ChatGPT, Gemini, and Perplexity. Run each prompt 2–3 times — answers vary. Screenshot what comes up. That's your real competitive landscape.</p>
+  </div>
+
+  <div class="data-section">
+
+    <div class="instructions-card" style="margin-bottom: 2px;">
+      <p><strong>How to do it right:</strong> Open a private/incognito window. Go to each tool separately. Paste the prompt exactly. Screenshot the full response — especially who gets cited or linked. Do it across all three tools for each prompt. The differences between tools are the data.</p>
+    </div>
+
+    <div class="prompt-item"><div class="prompt-text">Shannon Villalba attorney</div></div>
+    <div class="prompt-item"><div class="prompt-text">AI governance attorney for founders</div></div>
+    <div class="prompt-item"><div class="prompt-text">Who owns content created with AI tools?</div></div>
+    <div class="prompt-item"><div class="prompt-text">What is Creative Sovereignty?</div></div>
+    <div class="prompt-item"><div class="prompt-text">IP attorney for AI ownership risk small business</div></div>
+    <div class="prompt-item"><div class="prompt-text">How do I protect my intellectual property when using AI in my business?</div></div>
+    <div class="prompt-item"><div class="prompt-text">Heartsong Legal</div></div>
+
+    <div class="data-card">
+      <div class="data-card-eyebrow violet">What to look for in each response</div>
+      <div class="data-row"><span class="label">Are you cited or mentioned at all?</span><span class="val tag">note it</span></div>
+      <div class="data-row"><span class="label">Who IS being cited?</span><span class="val tag">those are competitors</span></div>
+      <div class="data-row"><span class="label">What does the cited content look like?</span><span class="val tag">structure + format</span></div>
+      <div class="data-row"><span class="label">Does the answer match what you know is true?</span><span class="val tag">gaps = your content</span></div>
+      <div class="data-row"><span class="label">For "Creative Sovereignty" — is Shannon anywhere?</span><span class="val tag">not yet</span></div>
+      <div class="sub-note">Once you have the screenshots, the next step is having AI outline the competitor content, find the gaps, and write your version. That's the process. Start with a website and Step 01 first.</div>
+    </div>
+
+  </div>
+
   <hr class="holo-rule">
   <div class="footer-note">progress saves in your browser. come back anytime.</div>
 
   <div class="reset-wrap">
-    <button class="reset-btn" onclick="resetAll()">reset</button>
+    <button class="reset-btn" onclick="resetAll()">reset checklist</button>
   </div>
 
   <script>
