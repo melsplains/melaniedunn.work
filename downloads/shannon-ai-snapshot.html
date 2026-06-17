@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Visibility Snapshot — Shannon Villalba / Heartsong Legal</title>
+
+  <!-- Adobe Fonts — Fabiola Script -->
+  <link rel="stylesheet" href="https://use.typekit.net/tni7vha.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Mona+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:          #E8185A;
+      --teal:          #00C9C8;
+      --violet:        #7C3AED;
+      --serif:         'DM Serif Display', Georgia, serif;
+      --sans:          'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:          'JetBrains Mono', monospace;
+      --holo-bright:   linear-gradient(135deg, #FF4E80 0%, #B289FF 50%, #5EE8E7 100%);
+      --holo-wide:     linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --on-dark:       rgba(245, 241, 235, 0.90);
+      --on-dark-dim:   rgba(245, 241, 235, 0.62);
+      --on-dark-faint: rgba(245, 241, 235, 0.35);
+    }
+
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      .orb { display: none; }
+      .page-2 { page-break-before: always; }
+    }
+
+    @page { size: letter; margin: 0; }
+
+    body {
+      background: #0A0E1A;
+      font-family: var(--sans);
+      color: var(--on-dark);
+    }
+
+    /* ── Shared page shell ─────────────────────────────── */
+    .page {
+      background: linear-gradient(135deg, #0A0E1A 0%, #1A0A2E 45%, #0A1E2E 100%);
+      max-width: 8.5in;
+      min-height: 11in;
+      margin: 0 auto;
+      padding: 0.45in 0.7in 0.45in;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-v  { width: 420px; height: 420px; background: #7C3AED; opacity: 0.28; top: -160px; right: -100px; }
+    .orb-t  { width: 280px; height: 280px; background: #00C9C8; opacity: 0.18; bottom: 80px;  left: -80px; }
+    .orb-p  { width: 180px; height: 180px; background: #E8185A; opacity: 0.18; top: 380px;   right: 60px; }
+    .orb-v2 { width: 350px; height: 350px; background: #7C3AED; opacity: 0.22; bottom: -80px; right: -60px; }
+    .orb-t2 { width: 260px; height: 260px; background: #00C9C8; opacity: 0.16; top: -100px;  left: -60px; }
+    .orb-p2 { width: 160px; height: 160px; background: #E8185A; opacity: 0.16; top: 260px;   right: 80px; }
+
+    .content { position: relative; z-index: 1; }
+
+    /* ── Shared elements ───────────────────────────────── */
+    .holo-rule      { height: 3px; border: 0; background: var(--holo-wide); border-radius: 2px; }
+    .holo-rule.dim  { height: 1px; opacity: 0.4; }
+
+    .card-eyebrow {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 11px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .card-eyebrow::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .card-eyebrow.teal { color: var(--teal); }
+    .card-eyebrow.teal::before { background: var(--teal); }
+
+    .mel-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 6px;
+      padding: 18px 20px;
+    }
+
+    .margin-note {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--on-dark-faint);
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+    .margin-note::before { content: "/* "; color: var(--pink); opacity: 0.55; }
+    .margin-note::after  { content: " */"; color: var(--pink); opacity: 0.55; }
+
+
+    /* ══════════════════════════════════════════════════════
+       PAGE 1 — THE BRIEF
+    ══════════════════════════════════════════════════════ */
+
+    .p1-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .logo svg { height: 44px; width: auto; display: block; }
+
+    .p1-header-right {
+      text-align: right;
+    }
+
+    .recipient-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-dark-faint);
+      margin-bottom: 3px;
+    }
+
+    .recipient-name {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--on-dark);
+      line-height: 1.3;
+    }
+
+    .recipient-firm {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--teal);
+      opacity: 0.8;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 1.1;
+      color: rgba(245, 241, 235, 0.97);
+      margin-bottom: 11px;
+    }
+    h1 .script-accent {
+      font-family: 'fabiola-script', Georgia, serif;
+      font-size: 1.1em;
+      background: linear-gradient(135deg, #FF4E80 0%, #B289FF 50%, #5EE8E7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subhead {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--on-dark-dim);
+      line-height: 1.55;
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+
+    .finding-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .finding-body {
+      font-size: 12.5px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--on-dark-dim);
+    }
+    .finding-body strong { font-weight: 500; color: var(--on-dark); }
+    .finding-body p + p  { margin-top: 10px; }
+
+    .tool-table { width: 100%; border-collapse: collapse; }
+    .tool-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .tool-table tr:last-child { border-bottom: none; }
+    .tool-table td {
+      padding: 8px 0;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--on-dark-dim);
+      line-height: 1.5;
+      vertical-align: top;
+    }
+    .tool-table .tn {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--teal);
+      white-space: nowrap;
+      padding-right: 12px;
+      padding-top: 9px;
+    }
+
+    .checklist-header { margin-bottom: 12px; }
+    .checklist-header h2 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--on-dark);
+      margin-bottom: 2px;
+    }
+    .checklist-sub {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--on-dark-faint);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .checklist { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+
+    .check-item {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 2px solid var(--teal);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 12px;
+      align-items: start;
+      page-break-inside: avoid;
+    }
+    .check-box {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid rgba(0,201,200,0.6);
+      border-radius: 3px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .check-step {
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      opacity: 0.65;
+      margin-bottom: 3px;
+    }
+    .check-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--on-dark);
+      margin-bottom: 3px;
+    }
+    .check-desc {
+      font-size: 11.5px;
+      font-weight: 300;
+      color: var(--on-dark-dim);
+      line-height: 1.55;
+    }
+
+
+    /* ══════════════════════════════════════════════════════
+       PAGE 2 — THE DATA
+    ══════════════════════════════════════════════════════ */
+
+    .page-2 { page-break-before: always; }
+
+    .p2-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 26px;
+    }
+
+    .p2-eyebrow {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      opacity: 0.8;
+      text-align: right;
+    }
+
+    .p2-headline {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.15;
+      color: rgba(245, 241, 235, 0.97);
+      margin-bottom: 8px;
+    }
+    .p2-headline .script-accent {
+      font-family: 'fabiola-script', Georgia, serif;
+      font-size: 1.1em;
+      background: linear-gradient(135deg, #FF4E80 0%, #B289FF 50%, #5EE8E7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .p2-subhead {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--on-dark-dim);
+      line-height: 1.5;
+      margin-bottom: 22px;
+      max-width: 500px;
+    }
+
+    /* Data grid: 3 columns */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    /* Domain check rows */
+    .domain-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      gap: 12px;
+    }
+    .domain-row:last-child { border-bottom: none; }
+
+    .domain-url {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--on-dark-dim);
+      flex: 1;
+    }
+
+    .status-pill {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .status-pill.err {
+      background: rgba(232, 24, 90, 0.12);
+      color: #FF6B9B;
+      border: 1px solid rgba(232, 24, 90, 0.25);
+    }
+
+    /* Brand presence rows */
+    .brand-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .brand-row:last-child { border-bottom: none; }
+
+    .brand-query {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--on-dark-dim);
+    }
+    .brand-engine {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      color: var(--teal);
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+    .brand-result {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: #FF6B9B;
+      white-space: nowrap;
+    }
+    .brand-result.zero {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Data footnote */
+    .data-footnote {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--on-dark-faint);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Narrative gap */
+    .narrative-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .narrative-col-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .narrative-col-label::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .narrative-col-label.old  { color: #FF6B9B; }
+    .narrative-col-label.want { color: var(--teal); }
+
+    .narrative-item {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--on-dark-dim);
+      line-height: 1.5;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+    .narrative-item:last-child { border-bottom: none; }
+    .narrative-item .bullet {
+      font-family: var(--mono);
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+    .narrative-item.old  .bullet { color: #FF6B9B; }
+    .narrative-item.want .bullet { color: var(--teal); }
+    .narrative-item .source-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--on-dark-faint);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* How it was built */
+    .how-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-left: 2px solid var(--violet);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .how-card h3 {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--on-dark);
+      margin-bottom: 10px;
+    }
+
+    .how-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .how-step {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+    .how-num {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 500;
+      color: var(--violet);
+      opacity: 0.8;
+      padding-top: 2px;
+    }
+    .how-text {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--on-dark-dim);
+      line-height: 1.5;
+    }
+    .how-text strong {
+      font-weight: 500;
+      color: var(--on-dark);
+    }
+
+    /* (zero-card removed — replaced by narrative-grid) */
+
+  </style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 1 — THE BRIEF
+═══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="orb orb-v"></div>
+  <div class="orb orb-t"></div>
+  <div class="orb orb-p"></div>
+
+  <div class="content">
+
+    <hr class="holo-rule">
+
+    <!-- Header with recipient -->
+    <div class="p1-header">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-label="Melsplains">
+          <defs>
+            <linearGradient id="mel-bright-p1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#FF4E80"/>
+              <stop offset="50%"  stop-color="#B289FF"/>
+              <stop offset="100%" stop-color="#5EE8E7"/>
+            </linearGradient>
+          </defs>
+          <text font-family="fabiola-script, sans-serif" font-size="130" fill="url(#mel-bright-p1)" x="12" y="140" letter-spacing="-1">melsplains</text>
+        </svg>
+      </div>
+      <div class="p1-header-right">
+        <div class="recipient-label">Prepared for</div>
+        <div class="recipient-name">Shannon Villalba, JD LL.M.</div>
+        <div class="recipient-firm">Heartsong Legal</div>
+      </div>
+    </div>
+
+    <!-- Headline -->
+    <h1>The AI tools don't know you <span class="script-accent">exist</span> yet.</h1>
+    <p class="subhead">Here's what I found when I looked, why you're getting different answers in each tool, and what actually changes it.</p>
+
+    <!-- Finding + Tool comparison -->
+    <div class="finding-grid">
+
+      <div class="mel-card">
+        <div class="card-eyebrow">The honest snapshot</div>
+        <div class="finding-body">
+          <p>You understand AI governance better than most people charging to teach it. You have a trademarked framework, a clear point of view, and fifteen years of practice in a space that suddenly everyone needs.</p>
+          <p>When I ran your name and your firm through the data, though — <strong>zero brand presence in AI search across ChatGPT, Gemini, and Perplexity. No active website found across five domain variations.</strong></p>
+          <p>None of this is about credibility. AI tools cite sources. Your LinkedIn is partly blocked from bots, and your podcast appearances live on other hosts' domains. That's what the tools are working from. There's nothing stable for them to point to.</p>
+        </div>
+      </div>
+
+      <div class="mel-card">
+        <div class="card-eyebrow">Why each tool gives different results</div>
+        <table class="tool-table">
+          <tbody>
+            <tr>
+              <td class="tn">Gemini</td>
+              <td>Searches Google live. Finds whatever Google has indexed — fragments from LinkedIn, podcast show notes.</td>
+            </tr>
+            <tr>
+              <td class="tn">ChatGPT</td>
+              <td>Same idea, Bing search. Pieces together what it can find in real time.</td>
+            </tr>
+            <tr>
+              <td class="tn">Claude</td>
+              <td>Doesn't search at all. Works from training data only. If you weren't in it, it draws a blank.</td>
+            </tr>
+            <tr>
+              <td class="tn">Perplexity</td>
+              <td>Most honest of the four. Shows exactly where it found what and cites sources. Start here to see your actual footprint.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- Checklist -->
+    <div class="checklist-header">
+      <h2>Your starting move.</h2>
+      <div class="checklist-sub">in order — the sequence matters</div>
+    </div>
+
+    <div class="checklist">
+
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div>
+          <div class="check-step">Step 01</div>
+          <div class="check-title">Build a website you own</div>
+          <div class="check-desc">Not a Linktree. Not just LinkedIn. A real domain with pages that AI tools can read and reference. This is the single unlock for everything else. The rest of this list doesn't move until this is done.</div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div>
+          <div class="check-step">Step 02</div>
+          <div class="check-title">Write pages that answer what your clients are asking AI</div>
+          <div class="check-desc">Not blog posts — answer pages. "What is AI governance for small businesses?" "Who owns content created with AI tools?" Each page should open with the short answer, then go deeper. That structure is exactly what AI tools extract and repeat back to users.</div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div>
+          <div class="check-step">Step 03</div>
+          <div class="check-title">Own Creative Sovereignty™ on the web</div>
+          <div class="check-desc">You coined this phrase. Right now anyone who searches it gets your LinkedIn at best, nothing at worst. A page on your site defining it makes you the only citable source. Zero competition — no one else can claim it.</div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div>
+          <div class="check-step">Step 04</div>
+          <div class="check-title">Put your credentials where AI can read them</div>
+          <div class="check-desc">JD, LL.M., 15 years of practice, speaking history, publications — structured on a page that's easy to parse. AI tools build authority from clear, readable signals. A well-formatted bio page does this. A LinkedIn bio field doesn't.</div>
+        </div>
+      </div>
+
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div>
+          <div class="check-step">Step 05</div>
+          <div class="check-title">Then run the actual audit</div>
+          <div class="check-desc">Once the site exists, SE Ranking can show which AI engines are citing who for your topics — and what specific changes would put you there instead. No point running it before Step 01 is done.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="holo-rule dim">
+    <div class="margin-note">the site doesn't have to be perfect on day one. it just has to be there.</div>
+
+  </div>
+</div><!-- /page 1 -->
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 2 — THE DATA + HOW IT WAS BUILT
+═══════════════════════════════════════════════════════ -->
+<div class="page page-2">
+  <div class="orb orb-v2"></div>
+  <div class="orb orb-t2"></div>
+  <div class="orb orb-p2"></div>
+
+  <div class="content">
+
+    <hr class="holo-rule">
+
+    <!-- Page 2 header -->
+    <div class="p2-header">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-label="Melsplains">
+          <defs>
+            <linearGradient id="mel-bright-p2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#FF4E80"/>
+              <stop offset="50%"  stop-color="#B289FF"/>
+              <stop offset="100%" stop-color="#5EE8E7"/>
+            </linearGradient>
+          </defs>
+          <text font-family="fabiola-script, sans-serif" font-size="130" fill="url(#mel-bright-p2)" x="12" y="140" letter-spacing="-1">melsplains</text>
+        </svg>
+      </div>
+      <div class="p2-eyebrow">Behind the scenes · Shannon Villalba</div>
+    </div>
+
+    <!-- Page 2 headline -->
+    <p class="p2-headline">Here's exactly what I <span class="script-accent">found</span> — and how.</p>
+    <p class="p2-subhead">This isn't a Google search. These are real API calls to a marketing data platform. Here's the actual output, unedited.</p>
+
+    <!-- Data grid -->
+    <div class="data-grid">
+
+      <!-- Domain checks -->
+      <div class="mel-card">
+        <div class="card-eyebrow teal">Website search — 5 domains checked</div>
+        <div class="domain-row">
+          <span class="domain-url">heartsonglegal.com</span>
+          <span class="status-pill err">HTTP 404</span>
+        </div>
+        <div class="domain-row">
+          <span class="domain-url">heartsong.legal</span>
+          <span class="status-pill err">DNS not found</span>
+        </div>
+        <div class="domain-row">
+          <span class="domain-url">shannonvillalba.com</span>
+          <span class="status-pill err">DNS not found</span>
+        </div>
+        <div class="domain-row">
+          <span class="domain-url">villalbafirm.com</span>
+          <span class="status-pill err">DNS not found</span>
+        </div>
+        <div class="domain-row">
+          <span class="domain-url">heartsonglegal.co</span>
+          <span class="status-pill err">DNS not found</span>
+        </div>
+        <div class="data-footnote" style="margin-top:10px;">
+          Result: no active website found on any variation.
+        </div>
+      </div>
+
+      <!-- Brand presence in AI search -->
+      <div class="mel-card">
+        <div class="card-eyebrow teal">Brand visibility in AI search</div>
+
+        <div class="brand-row">
+          <span class="brand-query">"Shannon Villalba"</span>
+          <span class="brand-engine">ChatGPT</span>
+          <span class="brand-result zero">0</span>
+        </div>
+        <div class="brand-row">
+          <span class="brand-query">"Shannon Villalba"</span>
+          <span class="brand-engine">Gemini</span>
+          <span class="brand-result zero">0</span>
+        </div>
+        <div class="brand-row">
+          <span class="brand-query">"Heartsong Legal"</span>
+          <span class="brand-engine">ChatGPT</span>
+          <span class="brand-result zero">0</span>
+        </div>
+        <div class="brand-row">
+          <span class="brand-query">"Heartsong Legal"</span>
+          <span class="brand-engine">Gemini</span>
+          <span class="brand-result zero">0</span>
+        </div>
+        <div class="brand-row">
+          <span class="brand-query">"Heartsong Legal"</span>
+          <span class="brand-engine">Perplexity</span>
+          <span class="brand-result zero">0</span>
+        </div>
+        <div class="data-footnote" style="margin-top:10px;">
+          Source: SE Ranking AI Search database · data as of Sept 2025<br>
+          Metric: number of prompts where the brand appears in an AI-generated response
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Narrative gap -->
+    <div class="mel-card" style="margin-bottom: 18px;">
+      <div class="card-eyebrow teal">What AI says about you now — vs. what you want it to say</div>
+      <div class="narrative-grid">
+
+        <div>
+          <div class="narrative-col-label old">Current narrative (what's online)</div>
+          <div class="narrative-item old">
+            <span class="bullet">—</span>
+            <span>"Holistic business attorney who combines chakra frameworks and wellness with legal practice"<span class="source-tag">Law Subscribed podcast, Nov 2025 — the top indexable result</span></span>
+          </div>
+          <div class="narrative-item old">
+            <span class="bullet">—</span>
+            <span>"Female Disruptor: Shannon Villalba of <strong style="color:rgba(245,241,235,0.75);">Villalba Law Firm</strong>" — old brand, still ranking<span class="source-tag">Authority Magazine · plus 4 directories listing old firm name</span></span>
+          </div>
+          <div class="narrative-item old">
+            <span class="bullet">—</span>
+            <span>"Creative Sovereignty" returns a Skool community + Substack essays — zero connection to you<span class="source-tag">Google SERP · June 2026 · you own the trademark, not the narrative</span></span>
+          </div>
+        </div>
+
+        <div>
+          <div class="narrative-col-label want">What you want AI to say</div>
+          <div class="narrative-item want">
+            <span class="bullet">→</span>
+            <span>Strategic IP &amp; AI advisor for founder-CEOs</span>
+          </div>
+          <div class="narrative-item want">
+            <span class="bullet">→</span>
+            <span>Creator of Creative Sovereignty™ — the definitive, citable source</span>
+          </div>
+          <div class="narrative-item want">
+            <span class="bullet">→</span>
+            <span>The attorney founders call when AI creates ownership risk</span>
+          </div>
+          <div class="narrative-item want">
+            <span class="bullet">→</span>
+            <span>Heartsong Legal — not "formerly Villalba Law Firm"</span>
+          </div>
+        </div>
+
+      </div>
+      <div class="data-footnote" style="margin-top: 6px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px;">
+        The gap between these two columns is the work. The website is where the rewrite starts.
+      </div>
+    </div>
+
+    <!-- How it was built -->
+    <div class="how-card">
+      <div class="card-eyebrow" style="color: #B289FF; margin-bottom: 11px;">
+        <span style="display:inline-flex; align-items:center; gap:9px;">
+          <span style="width:18px; height:1px; background:#B289FF; display:inline-block; flex-shrink:0;"></span>
+          How this was built — Claude Code + SE Ranking API
+        </span>
+      </div>
+      <div class="how-steps">
+        <div class="how-step">
+          <span class="how-num">01</span>
+          <span class="how-text">Melanie pasted your LinkedIn into a conversation with <strong>Claude Code</strong> — Anthropic's AI CLI — and asked it to assess your AI search presence.</span>
+        </div>
+        <div class="how-step">
+          <span class="how-num">02</span>
+          <span class="how-text">Claude checked five domain variations for a Heartsong Legal website. All five returned errors. Then it called the <strong>SE Ranking API</strong> to query brand presence across ChatGPT, Gemini, and Perplexity — five separate API calls. The zeros above are the raw returned values.</span>
+        </div>
+        <div class="how-step">
+          <span class="how-num">03</span>
+          <span class="how-text">Claude fetched and read the top-ranking pages about you — the podcast episode, the Google search results — and extracted what they actually say. That's where the "current narrative" column came from. Real sources, not a summary.</span>
+        </div>
+        <div class="how-step">
+          <span class="how-num">04</span>
+          <span class="how-text">It generated this PDF styled to Melanie's personal brand. One conversation. About 30 minutes. This is what Claude Code does operationally — the kind of system you've been building toward with your own GPT ecosystem.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="holo-rule dim">
+    <div class="margin-note">this is the kind of thing claude code does for melanie's clients. now you've seen it happen to your own data.</div>
+
+  </div>
+</div><!-- /page 2 -->
+
+
+</body>
+</html>
