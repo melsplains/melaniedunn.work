@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your AI Visibility Checklist — Melsplains</title>
+  <link rel="stylesheet" href="https://use.typekit.net/tni7vha.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Mona+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:    #E8185A;
+      --teal:    #00C9C8;
+      --violet:  #7C3AED;
+      --serif:   'DM Serif Display', Georgia, serif;
+      --sans:    'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:    'JetBrains Mono', monospace;
+      --bg:      #0A0E1A;
+      --surface: rgba(255,255,255,0.05);
+      --border:  rgba(255,255,255,0.09);
+      --on:      rgba(245,241,235,0.92);
+      --on-dim:  rgba(245,241,235,0.58);
+      --on-faint:rgba(245,241,235,0.32);
+    }
+
+    body {
+      background: linear-gradient(135deg, #0A0E1A 0%, #1A0A2E 45%, #0A1E2E 100%);
+      background-attachment: fixed;
+      font-family: var(--sans);
+      color: var(--on);
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* ── Header ──────────────────────────────────────── */
+    header {
+      padding: 28px 24px 0;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .logo svg { height: 38px; width: auto; display: block; }
+
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(26px, 6vw, 34px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-top: 20px;
+      margin-bottom: 6px;
+      color: rgba(245,241,235,0.97);
+    }
+    .page-title .script {
+      font-family: 'fabiola-script', Georgia, serif;
+      font-size: 1.1em;
+      background: linear-gradient(135deg, #FF4E80 0%, #B289FF 50%, #5EE8E7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .page-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--on-dim);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* ── Progress bar ─────────────────────────────────── */
+    .progress-wrap {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 24px 20px;
+    }
+
+    .progress-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-faint);
+      margin-bottom: 7px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress-label .count {
+      color: var(--teal);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .progress-track {
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #E8185A, #7C3AED, #00C9C8);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.4s cubic-bezier(.22,.61,.36,1);
+    }
+
+    /* ── Checklist ────────────────────────────────────── */
+    .checklist {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Hide native checkbox */
+    .check-input { display: none; }
+
+    /* The label IS the card */
+    .check-label {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2.5px solid var(--teal);
+      border-radius: 10px;
+      padding: 16px 18px 16px 0;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, opacity 0.3s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .check-label:active { background: rgba(255,255,255,0.08); }
+
+    /* Checkbox visual */
+    .check-visual {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 3px;
+    }
+
+    .check-box-ui {
+      width: 22px;
+      height: 22px;
+      border: 2px solid rgba(0,201,200,0.5);
+      border-radius: 5px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    .check-box-ui .tick {
+      opacity: 0;
+      transform: scale(0.5) rotate(-10deg);
+      transition: opacity 0.2s, transform 0.2s cubic-bezier(.22,.61,.36,1);
+    }
+
+    /* Checked state */
+    .check-input:checked + .check-label {
+      opacity: 0.55;
+      border-left-color: rgba(0,201,200,0.3);
+    }
+    .check-input:checked + .check-label .check-box-ui {
+      background: var(--teal);
+      border-color: var(--teal);
+      transform: scale(1.05);
+    }
+    .check-input:checked + .check-label .check-box-ui .tick {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+    .check-input:checked + .check-label .check-title {
+      text-decoration: line-through;
+      text-decoration-color: rgba(0,201,200,0.5);
+    }
+
+    .check-body {}
+
+    .check-step {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      opacity: 0.7;
+      margin-bottom: 3px;
+    }
+
+    .check-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(245,241,235,0.97);
+      line-height: 1.25;
+      margin-bottom: 5px;
+      transition: text-decoration 0.2s;
+    }
+
+    .check-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--on-dim);
+      line-height: 1.55;
+    }
+
+    /* ── Done state ───────────────────────────────────── */
+    .done-banner {
+      max-width: 540px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+      display: none;
+    }
+    .done-banner.visible { display: block; }
+
+    .done-inner {
+      background: rgba(0,201,200,0.07);
+      border: 1px solid rgba(0,201,200,0.2);
+      border-radius: 10px;
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .done-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .done-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--on-dim);
+      line-height: 1.5;
+    }
+
+    /* ── Divider ──────────────────────────────────────── */
+    .holo-rule {
+      height: 2px;
+      border: 0;
+      background: linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      border-radius: 2px;
+      max-width: 540px;
+      margin: 28px auto 0;
+    }
+
+    /* ── Footer note ──────────────────────────────────── */
+    .footer-note {
+      max-width: 540px;
+      margin: 10px auto 0;
+      padding: 0 24px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--on-faint);
+      line-height: 1.5;
+    }
+    .footer-note::before { content: "/* "; color: var(--pink); opacity: 0.5; }
+    .footer-note::after  { content: " */"; color: var(--pink); opacity: 0.5; }
+
+    /* ── Reset link ───────────────────────────────────── */
+    .reset-wrap {
+      max-width: 540px;
+      margin: 16px auto 0;
+      padding: 0 24px;
+      text-align: right;
+    }
+    .reset-btn {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--on-faint);
+      background: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .reset-btn:hover { color: var(--pink); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-label="Melsplains">
+        <defs>
+          <linearGradient id="mel-bright" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"  stop-color="#FF4E80"/>
+            <stop offset="50%" stop-color="#B289FF"/>
+            <stop offset="100%" stop-color="#5EE8E7"/>
+          </linearGradient>
+        </defs>
+        <text font-family="fabiola-script, sans-serif" font-size="130" fill="url(#mel-bright)" x="12" y="140" letter-spacing="-1">melsplains</text>
+      </svg>
+    </div>
+    <h1 class="page-title">Shannon's AI <span class="script">visibility</span> checklist.</h1>
+    <p class="page-sub">Five steps, in order. Progress saves automatically.</p>
+  </header>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Your progress</span>
+      <span class="count" id="progress-count">0 of 5 done</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="checklist">
+
+    <input type="checkbox" class="check-input" id="step1">
+    <label class="check-label" for="step1">
+      <div class="check-visual">
+        <div class="check-box-ui">
+          <svg class="tick" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1.5 5L5 8.5L11.5 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="check-body">
+        <div class="check-step">Step 01</div>
+        <div class="check-title">Build a website you own</div>
+        <div class="check-desc">Not a Linktree. Not just LinkedIn. A real domain with pages that AI tools can read and cite. Everything else on this list depends on this one.</div>
+      </div>
+    </label>
+
+    <input type="checkbox" class="check-input" id="step2">
+    <label class="check-label" for="step2">
+      <div class="check-visual">
+        <div class="check-box-ui">
+          <svg class="tick" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1.5 5L5 8.5L11.5 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="check-body">
+        <div class="check-step">Step 02</div>
+        <div class="check-title">Write pages that answer what your clients ask AI</div>
+        <div class="check-desc">Answer pages, not blog posts. "What is AI governance for small businesses?" "Who owns content created with AI?" Open with a short direct answer, then go deeper — that's the structure AI tools extract and repeat.</div>
+      </div>
+    </label>
+
+    <input type="checkbox" class="check-input" id="step3">
+    <label class="check-label" for="step3">
+      <div class="check-visual">
+        <div class="check-box-ui">
+          <svg class="tick" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1.5 5L5 8.5L11.5 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="check-body">
+        <div class="check-step">Step 03</div>
+        <div class="check-title">Own Creative Sovereignty™ on the web</div>
+        <div class="check-desc">You coined it. Right now a Skool community and random Substack essays are ranking for it — not you. One dedicated page defining the term makes you the only citable source. Zero competition.</div>
+      </div>
+    </label>
+
+    <input type="checkbox" class="check-input" id="step4">
+    <label class="check-label" for="step4">
+      <div class="check-visual">
+        <div class="check-box-ui">
+          <svg class="tick" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1.5 5L5 8.5L11.5 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="check-body">
+        <div class="check-step">Step 04</div>
+        <div class="check-title">Put your credentials where AI can read them</div>
+        <div class="check-desc">JD, LL.M., 15 years of practice, speaking history — on a structured page, not buried in a bio field. AI tools build authority from clear, readable signals.</div>
+      </div>
+    </label>
+
+    <input type="checkbox" class="check-input" id="step5">
+    <label class="check-label" for="step5">
+      <div class="check-visual">
+        <div class="check-box-ui">
+          <svg class="tick" width="13" height="10" viewBox="0 0 13 10" fill="none">
+            <path d="M1.5 5L5 8.5L11.5 1.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="check-body">
+        <div class="check-step">Step 05</div>
+        <div class="check-title">Then run the actual audit</div>
+        <div class="check-desc">Once the site exists, SE Ranking can show which AI engines are citing who for your topics — and what changes would get you cited instead. Not worth doing before Step 01 is complete.</div>
+      </div>
+    </label>
+
+  </div>
+
+  <div class="done-banner" id="done-banner">
+    <div class="done-inner">
+      <div class="done-title">All five. Done.</div>
+      <div class="done-sub">Time for the audit. You know who to call.</div>
+    </div>
+  </div>
+
+  <hr class="holo-rule">
+  <div class="footer-note">progress saves in your browser. come back anytime.</div>
+
+  <div class="reset-wrap">
+    <button class="reset-btn" onclick="resetAll()">reset</button>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'shannon-ai-checklist-v1';
+    const inputs = document.querySelectorAll('.check-input');
+    const fill = document.getElementById('progress-fill');
+    const countEl = document.getElementById('progress-count');
+    const doneBanner = document.getElementById('done-banner');
+
+    function updateProgress() {
+      const checked = document.querySelectorAll('.check-input:checked').length;
+      const total = inputs.length;
+      const pct = (checked / total) * 100;
+      fill.style.width = pct + '%';
+      countEl.textContent = checked + ' of ' + total + ' done';
+      doneBanner.classList.toggle('visible', checked === total);
+    }
+
+    function saveState() {
+      const state = {};
+      inputs.forEach(cb => { state[cb.id] = cb.checked; });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateProgress();
+    }
+
+    function loadState() {
+      try {
+        const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        inputs.forEach(cb => { if (state[cb.id]) cb.checked = true; });
+      } catch(e) {}
+      updateProgress();
+    }
+
+    function resetAll() {
+      inputs.forEach(cb => { cb.checked = false; });
+      localStorage.removeItem(STORAGE_KEY);
+      updateProgress();
+    }
+
+    inputs.forEach(cb => cb.addEventListener('change', saveState));
+    loadState();
+  </script>
+
+</body>
+</html>
