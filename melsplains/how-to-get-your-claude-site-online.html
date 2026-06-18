@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <title>How I Stopped Dreading Sunday Dinner Planning · Melsplains</title>
-  <meta name="description" content="For years I was storing an entire week's worth of dinner logic in my head every Sunday. Then I built something that carries it for me. Here's what happened." />
-  <meta property="og:title" content="How I Stopped Dreading Sunday Dinner Planning · Melsplains" />
-  <meta property="og:description" content="For years I was storing an entire week's worth of dinner logic in my head every Sunday. Then I built something that carries it for me. Here's what happened." />
+  <title>How to Get Your Claude-Built Website Online · Melsplains</title>
+  <meta name="description" content="The part nobody explains in the tutorials: how to go from local files to a live URL. GitHub, Cloudflare Pages, and the editing workflow I use every day." />
+  <meta property="og:title" content="How to Get Your Claude-Built Website Online · Melsplains" />
+  <meta property="og:description" content="The part nobody explains in the tutorials: how to go from local files to a live URL. GitHub, Cloudflare Pages, and the editing workflow I use every day." />
   <meta property="og:image" content="https://www.melaniedunn.work/assets/images/melanie-melsplains-hero.png" />
-  <meta property="og:url" content="https://www.melaniedunn.work/melsplains/how-i-stopped-dreading-sunday-dinner-planning" />
+  <meta property="og:url" content="https://www.melaniedunn.work/melsplains/how-to-get-your-claude-site-online" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -87,6 +87,11 @@
     .article-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.01em; line-height: 1.15; color: var(--warm-black); margin-top: 56px; margin-bottom: 20px; }
     .article-body blockquote { border-left: 3px solid var(--pink); padding-left: 20px; margin: 32px 0; }
     .article-body blockquote p { font-style: italic; color: var(--mid-gray); margin-bottom: 0; }
+    .article-body .step-list { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 12px; }
+    .article-body .step-list li { font-size: 16.5px; line-height: 1.65; color: var(--warm-black-2); padding-left: 28px; position: relative; }
+    .article-body .step-list li::before { content: counter(step); counter-increment: step; position: absolute; left: 0; top: 2px; font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--pink); letter-spacing: 0.08em; width: 18px; height: 18px; border: 1px solid var(--pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .article-body .step-list { counter-reset: step; }
+    .article-body code { font-family: var(--mono); font-size: 13px; background: var(--bg-warm); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; color: var(--pink-deep); }
     .cta-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
     .cta-inner { display: flex; flex-direction: column; gap: 24px; }
     .cta-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.01em; color: var(--warm-black); }
@@ -159,7 +164,7 @@
         <span class="breadcrumb-sep">›</span>
         <a href="index.html#ai-automation">AI &amp; Automation</a>
         <span class="breadcrumb-sep">›</span>
-        <span class="breadcrumb-current">How I Stopped Dreading Sunday Dinner Planning</span>
+        <span class="breadcrumb-current">How to Get Your Claude-Built Website Online</span>
       </div>
     </div>
   </div>
@@ -173,11 +178,11 @@
           <span class="eyebrow holo">Melsplains · AI &amp; Automation</span>
         </div>
         <div class="reveal delay-1">
-          <h1 class="serif-display h1">How I Stopped Dreading <em>Sunday</em> Dinner Planning</h1>
+          <h1 class="serif-display h1">Your Claude Website Is Built. Here's How to Actually Get It <em>Online.</em></h1>
         </div>
         <div class="reveal delay-2">
           <p class="lede">
-            I had over 500 recipes saved. The problem was never the recipes. It was the mental load of figuring out which ones to cook, every single week, with everything else already filling my head.
+            You have a site that works beautifully in your browser. It exists only on your laptop, visible to no one, which is technically not a website — that's just a folder with opinions. Here's the part nobody explains in the tutorials.
           </p>
         </div>
         <div class="reveal delay-2">
@@ -186,7 +191,7 @@
             <span class="meta-sep">|</span>
             <span>AI &amp; Automation</span>
             <span class="meta-sep">|</span>
-            <span>6 min read</span>
+            <span>7 min read</span>
           </div>
         </div>
       </div>
@@ -200,53 +205,111 @@
     <div class="container">
       <div class="article-body reveal">
 
-        <p>Every Sunday — or Saturday, depending on when I finally remembered that meals needed to exist next week — I'd stand in front of the freezer and run the full calculation. What's in the fridge that needs to get used. What we had last week, because repeating it would get noticed. Which nights are long and need something fast, and which ones have enough margin for something that requires actual attention. Whether it's going to be hot enough that turning on the oven is genuinely unreasonable. My kid's current list of strongly held opinions about what is and is not food.</p>
+        <p>Building a site in Claude Code is genuinely surprising in the best way. You describe what you want. You say "make the headline bigger" or "I want an aurora gradient in the background" and it just does it. You end up with something that actually looks like a real website, except you built it on a Tuesday evening while also monitoring a school group chat.</p>
 
-        <p>All of that, simultaneously, in my head, while the weekend was ticking by.</p>
+        <p>And then you close the laptop and the site is... nowhere. On your computer. Which is not a website.</p>
 
-        <p>I tried meal planning apps. Several of them. I tried Notion templates, which were organized and attractive and which I stopped updating within two weeks. I tried texting "what do you want for dinner" every night like that would help. It did not help. It just added a response-waiting period before I still had to make the decision myself.</p>
+        <p>The gap between "local files I can see" and "a URL I can text to people" is the step where most non-developers get stuck. Not because it's actually hard — it's three steps, and one of them is just clicking buttons. The problem is that everything written about deployment is written for people who already know what "push to production" means.</p>
 
-        <p>What I had was a decision problem, and I was solving it with organizational tools. Those are not the same thing.</p>
+        <p>So here's what's actually happening, and how to get from your laptop to live.</p>
 
-        <h3>The recipes were never the problem</h3>
+        <h3>You need GitHub. Stick with me.</h3>
 
-        <p>I've used AnyList for years. It's genuinely good software — clean, syncs well, handles shopping lists in a way that doesn't make me want to throw my phone. I had saved recipes from years of cooking: weeknight standbys, things that required a Saturday, vegetable-forward things I made when I was trying to balance against the weeks when we'd eaten like college students.</p>
+        <p>GitHub is where your site files live on the internet — not as a website, but as a storage place that Cloudflare Pages (your actual host) watches. When you push changes to GitHub, Cloudflare sees them and updates your live site automatically. That's the whole mechanism behind the editing workflow I use: change something in Claude Code, push it, reload the browser, done.</p>
 
-        <p>More than 500 recipes, sitting there, entirely accessible, doing nothing useful on Sunday morning when I needed them most.</p>
+        <p>You don't need to understand most of what GitHub does. You need three things: a free account at github.com, a repository (basically a named folder for your project), and a way to push your files into it.</p>
 
-        <p>The gap wasn't the library. It was the step between the library and a plan — the part where someone has to consider all the constraints at once, weigh them against each other, and make a series of calls. That step was always me. And after a full week of working, managing, making decisions constantly, I was running on fumes by the time Sunday came around and that step was due.</p>
+        <p>Claude Code can handle the pushing for you — just tell it "commit and push everything to my GitHub repo" and give it the URL. Or download GitHub Desktop if you'd rather click than type anything in a terminal. Both work.</p>
 
-        <h3>When I realized what I was actually doing</h3>
+        <p>One thing worth knowing upfront: your GitHub repo can be private. Files aren't visible to the public just because they're on GitHub — Cloudflare is what makes them a website. Private repo, public site, totally normal setup.</p>
 
-        <p>I started working with Claude Code for other projects. At some point I learned that Claude Code can connect to external tools and services through something called MCP — it's a way of giving the AI actual access to real systems, not just a conversation about them. I realized I could connect it directly to my AnyList recipe library. Not describe my recipes to an AI and hope for the best, but let it actually browse the thing.</p>
+        <h3>Cloudflare Pages takes about four minutes</h3>
 
-        <p>So I started building that. And while I was building it, I had to write down everything the system would need to know. My family's preferences. The constraints. Which nights were reliably hectic. What kinds of meals worked on different days of the week. Rules I'd been following for years without ever articulating them: nothing with more than 40 minutes of active time on a Tuesday, something warm and involved if we have a slow Saturday, rotate the proteins.</p>
+        <p>Once your files are in GitHub, this part moves fast. Go to cloudflare.com, create a free account, and navigate to Workers &amp; Pages. Hit Create, then Pages, then Connect to Git. Pick your GitHub repository.</p>
 
-        <p>I was typing things I had never typed before. Things I had just been holding.</p>
+        <p>For a plain HTML site — no React, no build step, just files — leave the build settings completely blank. No build command, no output directory. Hit deploy.</p>
 
-        <p>There was this strange moment where I looked at what I'd written and thought: I've been carrying all of this. Every week, I've been loading all of this back into working memory and running it. And I hadn't named it as a burden because it wasn't optional — it was just the thing that had to happen so dinner would exist.</p>
+        <p>Cloudflare gives you a free URL ending in <code>.pages.dev</code>. That URL works immediately; share it and people can see your site. If you have a domain already (or want to buy one), you connect it in Cloudflare's DNS settings. But the <code>.pages.dev</code> URL is a perfectly reasonable place to start while you're getting it all set up.</p>
 
-        <p>That's the mental load, the specific version of it that belongs to whoever in your house is the one who knows when the chicken needs to get used and which nights the kid has practice. It doesn't always feel like weight. It just feels like knowing what you're supposed to know. Until you write it all down and see it.</p>
+        <p>Total time: under ten minutes if you move through it, longer if you stop to read every tooltip.</p>
 
-        <h3>How Roux works now</h3>
+        <h3>How editing works after that</h3>
 
-        <p>I built the system and named it Roux. Here's what actually happens each week:</p>
+        <p>This is the part I wanted most when I was figuring it out — what does the actual day-to-day workflow look like?</p>
 
-        <p>I spend about three minutes filling in the week's schedule — which nights are busy, anything unusual in the fridge, whatever constraints apply that week. Claude reads my AnyList library, takes what I've told it, applies the rules I've built in, and proposes a full week of dinners. I look it over, swap one thing if something feels off, and the plan goes back into AnyList's meal calendar.</p>
+        <p>You open your site folder in Claude Code. You tell it what to change. It changes the files. You tell it "commit and push," and Cloudflare picks up the update, usually within a minute. Refresh your live URL and the change is there.</p>
 
-        <p>The shopping list generates from the actual recipes. Not from my best guess at what I'll need — from the ingredients the recipes actually call for. I add it to AnyList, place the Kroger pickup order Saturday morning, and the whole thing is done before I've finished a second cup of coffee.</p>
+        <p>No logging into a CMS. No clicking around a visual editor wondering what you actually changed. Your files are on your computer, you can read them, Claude can edit them, and the live site stays in sync. I've made changes to my site mid-meeting because it took less time than writing a task for it.</p>
 
-        <p>I want to be specific about what changed and what didn't. I still look at the plan. I still make the final call. The AI doesn't run the household. What it does is take that full-calculation step — all the variables, all the constraints, held simultaneously — and run it so I don't have to. Every week.</p>
+        <h3>What to put in CLAUDE.md so it remembers you</h3>
 
-        <h3>Why I wanted to tell everyone I know</h3>
+        <p>The one setup step that pays off immediately: a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every time you open the project. It's how you stop re-explaining your brand every single session.</p>
 
-        <p>When Roux worked the first time, my immediate instinct was to text a specific group of people. Women I know who are managing a lot. Working moms who are sharp and capable and spend genuine mental energy on this exact problem and have never once thought of it as something that could be automated, because why would they? It's just dinner planning.</p>
+        <p>What to put in it:</p>
 
-        <p>But it's not just dinner planning. It's a decision that happens every week, requires real cognitive load to make well, and has historically had no good alternative to just doing it yourself.</p>
+        <p>Your name and what the site is for. Your exact colors — hex codes, not "kind of a warm pink." Your fonts. Your voice, written like you're briefing a copywriter: the tone, what to avoid, who you're talking to. Any standing rules: "don't add features I didn't ask for," "keep copy short," "no bullet lists unless I ask."</p>
 
-        <p>That's what I wanted Melsplains to be about. Not AI in the abstract. Not hype. The specific, practical cases where a tool actually absorbs something you've been carrying. Explained clearly, without a sales pitch attached.</p>
+        <p>Mine lives as a skill — a more portable version that works across all my projects, not just the site folder — but <code>CLAUDE.md</code> is the right starting point and it's enough to get consistent results from day one. You write it once and Claude stops asking.</p>
 
-        <p>Roux is free. The prompts, templates, and setup instructions are all there, built to work with AnyList or any recipe app where you can access your library. If Sunday mornings have been a low-grade dread for you too, this is probably worth twenty minutes of your time.</p>
+        <blockquote>
+          <p>A CLAUDE.md is like a standing brief you'd give a contractor before they started working on your house. You don't re-explain your preferences every visit. You write it down once and they reference it.</p>
+        </blockquote>
+
+        <h3>The skills that shaped my site</h3>
+
+        <p>Claude Code has a skill system — reusable instruction sets you install once and then invoke by name, like plugins. They're optional, and you definitely don't need them on day one. But if you're building something with a real visual identity and more than a few pages, they start to matter.</p>
+
+        <p>The ones that shaped this site most: a brand skill that holds my full visual identity (colors, fonts, aesthetic rules, the two-tier professional vs. Melsplains aesthetic) so Claude always knows what I look like. A voice skill that keeps my writing sounding like me across every page. And a frontend design skill that guides how Claude structures HTML and CSS layout.</p>
+
+        <p>Skills live in your <code>~/.claude/</code> folder and you invoke them with a slash command. Once they're set up, you just say things like "use my brand skill" and Claude reads the whole brief before touching the file. It's the difference between Claude knowing your brand and you describing it again every session.</p>
+
+        <p>Build the site first. Get it live. Then invest in a brand skill when you notice Claude needing reminders about things you've already told it three times.</p>
+
+        <h3>Netlify vs. Cloudflare Pages — and why I switched</h3>
+
+        <p>I started on Netlify. If you've done any reading about deploying simple websites, you've probably seen it mentioned. It's genuinely good — easy setup, connects to GitHub the same way, free tier that covers a personal site with room to spare.</p>
+
+        <p>The thing Netlify has that Cloudflare doesn't: built-in form handling. You add one attribute to your HTML form tag (<code>netlify</code>), and Netlify catches every submission and emails it to you. No third-party service, no account, no access key. It just works. For a contact form on a plain HTML site, that's a meaningful convenience.</p>
+
+        <p>What Cloudflare Pages has that Netlify doesn't: better global performance (Cloudflare's network is enormous), tighter integration with DNS if your domain is already there, and the ability to eventually add edge functions if you want to get fancier. For my site, the performance and DNS consolidation won the argument.</p>
+
+        <p>If you're starting from zero and your domain isn't already anywhere: either works. If you want the easiest possible form setup and don't care much about the rest, Netlify's form handling alone might make it the right call for you. I won't argue with that logic.</p>
+
+        <h3>Getting your domain pointed at your site</h3>
+
+        <p>Your site is live at a <code>.pages.dev</code> URL the moment you deploy. Getting your actual domain (the one you own) to point there is a separate step, and it's the one that trips people up most because it involves DNS, which sounds scarier than it is.</p>
+
+        <p>Here's what I did: my domain (<code>melaniedunn.work</code>) is registered at Squarespace — where I bought it originally, back when I had a Squarespace site. When I moved to Cloudflare Pages, I went into Squarespace's domain settings and changed the nameservers to Cloudflare's. That tells the internet: "for anything involving this domain, ask Cloudflare." From there, I added a CNAME record in Cloudflare pointing my domain at my Pages site, and within a few hours both <code>melaniedunn.work</code> and <code>www.melaniedunn.work</code> resolved correctly.</p>
+
+        <p>The immediate fix — changing nameservers — took about ten minutes and a couple hours to fully propagate. The domain is still registered at Squarespace, which is fine. It's a two-company setup: Squarespace holds the registration, Cloudflare handles everything DNS. It works cleanly.</p>
+
+        <p>The more permanent next step is transferring the domain registration itself to Cloudflare Registrar. That puts everything in one place and Cloudflare charges at-cost for domains, so it's usually cheaper than wherever you bought it. I haven't done this yet because domain transfers come with a 60-day lock and there's no urgency — the current setup works. But it's on the list.</p>
+
+        <h3>Contact forms and newsletter signups on a plain HTML site</h3>
+
+        <p>If you're on Netlify: add <code>netlify</code> to your form tag and you're done. Submissions show up in your Netlify dashboard and email you. Free, no accounts required.</p>
+
+        <p>If you're on Cloudflare Pages: you need a form service. I use Web3Forms — free account, free tier covers 250 submissions a month, and setup is two hidden fields in your existing HTML form. You get an access key from their site, add it as a hidden input, point the form action at their API endpoint, and submissions land in whatever email you specify. The whole setup takes less than fifteen minutes the first time.</p>
+
+        <p>For a newsletter signup, I use MailerLite. Free up to 1,000 subscribers, they give you an embed form with a copy-paste snippet, and you drop it anywhere in your HTML. No backend, no server-side code, no nothing. Your subscribers go into MailerLite, you send from there when you have something to say. I have mine on the Melsplains index page — it took about twenty minutes total to set up including making it match the site design.</p>
+
+        <p>Neither of these requires any coding knowledge beyond pasting code into the right place. If you can follow a recipe, you can do both.</p>
+
+        <h3>The short version, if you want it</h3>
+
+        <p>GitHub account → create a repo → push your site files. Cloudflare Pages → connect to that repo → deploy. After that: edit in Claude Code, push, live in a minute. Put your brand and voice in a <code>CLAUDE.md</code> file so Claude remembers who you are without you having to say it every time.</p>
+
+        <p>For your domain: change the nameservers to point at Cloudflare, add a CNAME record, wait a few hours. For forms: Web3Forms if you're on Cloudflare, native Netlify forms if you're on Netlify. For a newsletter: MailerLite, copy-paste embed.</p>
+
+        <p>That's actually the whole thing. The terminology around it sounds more complicated than the steps are.</p>
+
+        <h3>What this actually costs</h3>
+
+        <p>GitHub: free. Cloudflare Pages: free (unlimited sites, unlimited bandwidth on the free tier). Web3Forms: free up to 250 contact form submissions per month. MailerLite: free up to 1,000 subscribers and 12,000 emails per month. Claude Code: $100/month (that's the Pro plan — it covers the AI assistant doing the actual building and editing). Your domain: wherever you bought it, usually $10–20/year depending on the extension. Cloudflare Registrar charges at-cost if you transfer there, which is typically a few dollars less per year than most registrars.</p>
+
+        <p>The only real line item is Claude Code. Everything else hosting this site — the server, the deploy pipeline, the form handling, the newsletter — runs on free tiers that a personal site will likely never exceed. The domain is the other one, and that's a cost you'd have on any platform.</p>
+
+        <p>For comparison: a Squarespace Business plan (what you'd need for custom code) runs $36/month. You're getting a faster, more flexible setup for less, if you already have Claude Code for other things.</p>
 
       </div>
     </div>
@@ -258,17 +321,17 @@
     <div class="container">
       <div class="cta-inner">
         <div class="reveal">
-          <span class="eyebrow holo">Free tool</span>
+          <span class="eyebrow holo">More from Melsplains</span>
         </div>
         <div class="reveal delay-1">
-          <h2 class="cta-heading">Get Roux — it's free.</h2>
+          <h2 class="cta-heading">More on building with Claude.</h2>
         </div>
         <div class="reveal delay-1">
-          <p class="cta-desc">The prompts, templates, and setup to connect Claude to your recipe library and plan your week in minutes. No email required.</p>
+          <p class="cta-desc">How I built an AI project manager for our agency. What I figured out building a meal planning system. The practical stuff, no hype attached.</p>
         </div>
         <div class="cta-btns reveal delay-2">
-          <a href="roux.html" class="btn btn-holo">Get Roux free <span class="arr">→</span></a>
-          <a href="index.html" class="btn btn-secondary">More Melsplains</a>
+          <a href="what-i-learned-building-an-ai-project-manager.html" class="btn btn-holo">Building an AI PM <span class="arr">→</span></a>
+          <a href="index.html" class="btn btn-secondary">All Posts</a>
         </div>
       </div>
     </div>
