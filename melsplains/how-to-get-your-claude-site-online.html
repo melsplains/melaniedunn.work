@@ -230,17 +230,11 @@
     <div class="container">
       <div class="article-body reveal">
 
-        <p>There's a specific moment that happens when you first build something in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a>. You describe a layout — or a color, or a section you've wanted for months — and it just appears. You tweak it. It changes instantly. You do this a few more times and then you open your Squarespace dashboard and something has shifted. It feels like going back to a flip phone.</p>
+        <p>There's a specific moment when you first build something in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a>. You describe a layout and it appears. You change your mind and it changes. You do this a few times — and then you open your Squarespace dashboard and something has shifted. It feels like going back to a flip phone.</p>
 
-        <p>That feeling is correct. You're not being irrational. Claude Code builds exactly what you describe — no templates, no upgrade walls, no "that feature is Business plan only." Your site looks like your brand, not like the ninth person who picked the same Squarespace theme.</p>
+        <p>That feeling is correct. The only gap is this: Claude builds your site as files on your computer. Getting it to a real URL is three steps. They're not hard. Here's what they actually are.</p>
 
-        <p>The only gap: once Claude builds your site, it lives on your computer as a folder of files. Getting it to an actual URL involves three steps. They're not hard — they just come wrapped in developer terminology that makes them sound harder than they are.</p>
-
-        <p>Here's what's actually happening, and how to get your Squarespace domain pointing at your new site.</p>
-
-        <h3>How the whole thing works</h3>
-
-        <p>Three pieces, in order:</p>
+        <h3>How it works</h3>
 
         <div class="flow-visual">
           <div class="flow-node">
@@ -264,110 +258,100 @@
           </div>
         </div>
 
-        <p>GitHub holds your files on the internet — not as a website, but as a storage place that Cloudflare Pages watches. When you push changes to GitHub, Cloudflare sees them and updates your live site automatically. That's the whole mechanism behind the editing workflow I use: change something in Claude Code, push it, reload the browser, done.</p>
+        <p>GitHub is a storage place your host watches. When you push changes there, Cloudflare sees them and updates your live site. That's the whole mechanism — change something in Claude Code, push it, reload, done.</p>
 
-        <h3>Step 1: GitHub (free, ~5 minutes)</h3>
+        <h3>Step 1: Set up GitHub (free, ~5 minutes)</h3>
 
-        <p>Create a free account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a>. Create a new repository — think of it as a named folder for your project. Make it private if you want; files aren't visible to the public just because they're on GitHub. Cloudflare is what makes them a website.</p>
+        <p>Create a free account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a> and create a new repository. You can make it private — files on GitHub aren't public just because they're there. Cloudflare is what makes them a website.</p>
 
-        <p>You don't need to understand most of what GitHub does. You need three things: the account, the repo, and a way to push your files into it. Claude Code can handle the pushing — just tell it "commit and push everything to my GitHub repo" and give it the URL. Or download <a href="https://desktop.github.com" target="_blank" rel="noopener">GitHub Desktop</a> if you'd rather click than type in a terminal. Both work fine.</p>
+        <p>You don't need to understand most of what GitHub does. Just tell Claude Code "commit and push everything to my GitHub repo" and give it your repo URL. Or use <a href="https://desktop.github.com" target="_blank" rel="noopener">GitHub Desktop</a> if you'd rather click than type. Either works.</p>
 
-        <h3>Step 2: Cloudflare Pages (~4 minutes of clicking)</h3>
+        <h3>Step 2: Deploy on Cloudflare Pages (free, ~4 minutes)</h3>
 
-        <p>Go to <a href="https://cloudflare.com" target="_blank" rel="noopener">cloudflare.com</a>, create a free account, navigate to Workers &amp; Pages. Hit Create → Pages → Connect to Git. Pick your GitHub repo.</p>
+        <p>Go to <a href="https://cloudflare.com" target="_blank" rel="noopener">cloudflare.com</a> → Workers &amp; Pages → Create → Pages → Connect to Git. Pick your GitHub repo.</p>
 
         <div class="callout">
-          <div class="callout-label">Important</div>
-          <p>For a plain HTML site — no React, no build step, just files — leave the build settings completely blank. No build command. No output directory. Just hit Deploy.</p>
+          <div class="callout-label">Don't overthink this part</div>
+          <p>Leave the build settings completely blank. No build command, no output directory. If you're working with plain HTML files, just hit Deploy and you're done.</p>
         </div>
 
-        <p>Cloudflare gives you a free URL ending in <code>.pages.dev</code> that works immediately. Share it, people can see your site. That's a real live URL. Connect your own domain whenever you're ready, but the <code>.pages.dev</code> URL is a perfectly reasonable place to start.</p>
+        <p>Cloudflare hands you a free <code>.pages.dev</code> URL immediately. That's a real, live, shareable link. You can connect your domain later — but you're already online.</p>
 
-        <h3>Step 3: The editing workflow (ongoing)</h3>
+        <h3>Step 3: Editing from here on out</h3>
 
-        <p>This is the part I wanted most when I was figuring it out. Here's what day-to-day actually looks like:</p>
+        <p>This is the part I wanted to know most. Here's the actual day-to-day:</p>
 
         <ol class="step-list">
           <li>Open your site folder in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></li>
-          <li>Tell it what to change — it edits the files</li>
+          <li>Tell it what to change</li>
           <li>Tell it "commit and push"</li>
-          <li>Cloudflare picks up the update, usually within a minute</li>
-          <li>Refresh your live URL — it's there</li>
+          <li>Your live site updates within a minute</li>
         </ol>
 
-        <p>No logging into a CMS. No clicking around a visual editor. Your files are on your computer, Claude can edit them, and the live site stays in sync. I've made changes to my site mid-meeting because it took less time than writing a task for it.</p>
+        <p>No CMS. No visual editor. Changes go live faster than filing a support ticket ever did.</p>
 
-        <h3>Set up CLAUDE.md — your brand brief Claude reads automatically</h3>
+        <h3>Tell Claude who you are — once</h3>
 
-        <p>Here's the thing about switching from Squarespace: you already have a brand. You know your colors, your fonts, your tone. The problem with building in Claude is that every new session, it forgets. You end up re-explaining yourself constantly.</p>
+        <p>You already have a brand. You've had one for years. The annoying thing about Claude is that every new session, it forgets. You end up re-explaining your colors, your tone, your rules.</p>
 
-        <p>Fix this immediately with a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every time you open the project. Think of it as the brief you'd hand a new designer — except you only write it once.</p>
-
-        <p>What to put in it: your business name and what the site is for. Your exact colors (hex codes — pull them from your Squarespace brand settings before you leave). Your fonts. Your voice: the tone, who you're talking to, what to avoid. Any standing rules: "always link to my contact page," "never use stock photo language," "keep copy short."</p>
+        <p>Fix: create a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every time. Put your business name, your hex codes (grab them from Squarespace before you leave), your fonts, your voice, and any rules that matter. Write it once, never explain yourself again.</p>
 
         <blockquote>
-          <p>If you've already told Claude something three times in three different sessions, that belongs in CLAUDE.md. Write it once, never say it again.</p>
+          <p>If you've told Claude the same thing three sessions in a row, it belongs in CLAUDE.md.</p>
         </blockquote>
 
-        <h3>Skills: for when you're ready to go deeper</h3>
+        <h3>Which host should you use?</h3>
 
-        <p>Claude Code has a skill system — reusable instruction sets you install once and invoke by name, like plugins. You don't need them on day one. But if you're building something with a real visual identity and more than a few pages, they start to matter.</p>
-
-        <p>The ones that shaped this site: a brand skill holding my full visual identity (colors, fonts, aesthetic rules), a voice skill keeping my writing sounding like me, and a frontend design skill guiding how Claude structures HTML and CSS. Skills live in your <code>~/.claude/</code> folder and you call them with a slash command.</p>
-
-        <p>Build first. Get it live. Add skills when Claude needs reminders about things you've already told it three times.</p>
-
-        <h3>Netlify vs. Cloudflare Pages</h3>
-
-        <p>I started on <a href="https://netlify.com" target="_blank" rel="noopener">Netlify</a>. I switched to Cloudflare. Here's the honest comparison:</p>
+        <p>I started on <a href="https://netlify.com" target="_blank" rel="noopener">Netlify</a>, switched to Cloudflare. Both are free. The honest difference:</p>
 
         <div class="compare-grid">
           <div class="compare-card">
             <div class="compare-card-label"><a href="https://netlify.com" target="_blank" rel="noopener">Netlify</a></div>
-            <h4>Easier forms</h4>
+            <h4>Pick this if forms matter</h4>
             <ul>
-              <li>Built-in form handling — just add <code>netlify</code> to your form tag</li>
-              <li>Submissions email you automatically, no third-party accounts</li>
-              <li>Free tier covers personal sites easily</li>
-              <li class="neutral">Slightly slower global performance</li>
-              <li class="neutral">DNS separate if domain is elsewhere</li>
+              <li>Built-in contact forms — one attribute, zero setup</li>
+              <li>Submissions email you automatically</li>
+              <li>Easiest possible start</li>
+              <li class="neutral">Slightly slower globally</li>
             </ul>
           </div>
           <div class="compare-card">
             <div class="compare-card-label"><a href="https://pages.cloudflare.com" target="_blank" rel="noopener">Cloudflare Pages</a></div>
-            <h4>Better performance</h4>
+            <h4>Pick this for speed + DNS</h4>
             <ul>
-              <li>Massive global CDN — noticeably faster</li>
-              <li>Tighter DNS integration if domain is at Cloudflare</li>
-              <li>Edge functions available if you want to get fancier later</li>
-              <li class="neutral">No built-in forms — need Web3Forms or similar</li>
-              <li class="neutral">Slightly more setup for forms</li>
+              <li>Noticeably faster global performance</li>
+              <li>DNS lives in the same place as your host</li>
+              <li>More room to grow</li>
+              <li class="neutral">Forms need a free third-party tool</li>
             </ul>
           </div>
         </div>
 
-        <p>If you want the easiest possible setup and don't care about performance differences: Netlify. If you want DNS all in one place and a faster site: Cloudflare. Both are free. Either works.</p>
+        <p>Can't decide? Pick Cloudflare. That's what this site runs on and it's been seamless.</p>
 
-        <h3>Getting your Squarespace domain to point at your new site</h3>
+        <h3>Pointing your Squarespace domain at the new site</h3>
 
-        <p>You get a free <code>.pages.dev</code> URL the moment you deploy — that's already a real, shareable link. But you almost certainly want your existing domain pointing there, not a Squarespace site you're paying for.</p>
+        <p>You get a working <code>.pages.dev</code> URL instantly. When you're ready to use your real domain, here's what to do — it's two changes and a few hours of waiting:</p>
 
-        <p>Good news: you don't have to transfer your domain. You just redirect it. Here's exactly what I did — my domain is registered at Squarespace, same as yours probably is. I went into Squarespace's domain settings, found the nameserver section, and changed the nameservers to Cloudflare's (Cloudflare gives you the exact values when you add your domain). That tells the internet: "for anything involving this domain, ask Cloudflare now." Then in Cloudflare, I added one CNAME record pointing at my Pages site. Within a few hours, my domain resolved to the new site.</p>
-
-        <p>At that point you can cancel your Squarespace subscription. The domain stays registered at Squarespace; it just lives somewhere new.</p>
+        <ol class="step-list">
+          <li>In Squarespace: go to Domains → your domain → Nameservers, and swap them to Cloudflare's (Cloudflare shows you the exact values)</li>
+          <li>In Cloudflare: add your domain, then add a CNAME record pointing at your Pages site</li>
+          <li>Wait a few hours for it to propagate</li>
+          <li>Cancel your Squarespace subscription — your domain stays, your site just lives somewhere better now</li>
+        </ol>
 
         <div class="callout">
-          <div class="callout-label">The permanent fix</div>
-          <p>The setup above works well — Squarespace holds the domain registration, Cloudflare handles DNS. The cleaner long-term move is transferring the domain registration itself to <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a>, which puts everything in one place and usually costs a few dollars less per year (Cloudflare charges at-cost, no markup). There's a 60-day transfer lock to be aware of, so no rush — but it's worth doing eventually.</p>
+          <div class="callout-label">Down the road</div>
+          <p>Your domain is still registered at Squarespace, which is fine. When you're ready, you can transfer it to <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a> — usually a few dollars cheaper per year and everything lives in one place. No rush, 60-day transfer lock applies.</p>
         </div>
 
-        <h3>Contact forms and newsletter signups</h3>
+        <h3>Contact forms and newsletter</h3>
 
-        <p><strong>On Netlify:</strong> Add <code>netlify</code> to your <code>&lt;form&gt;</code> tag. Done. Submissions email you automatically. Zero extra accounts required.</p>
+        <p><strong>On Netlify:</strong> Add <code>netlify</code> to your form tag. Done. No accounts, no setup.</p>
 
-        <p><strong>On Cloudflare Pages:</strong> You need a form service. I use <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> — free for up to 250 submissions/month. Get an access key from their site, add it as a hidden input field, set your form's action to their API endpoint. Submissions land in whatever email you tell it. Under 15 minutes to set up.</p>
+        <p><strong>On Cloudflare:</strong> Use <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> — free up to 250 submissions/month, takes about 15 minutes to set up. Grab an access key, add two hidden fields to your form, submissions land in your inbox.</p>
 
-        <p><strong>Newsletter:</strong> <a href="https://mailerlite.com" target="_blank" rel="noopener">MailerLite</a> is free up to 1,000 subscribers and 12,000 emails/month. They give you a copy-paste embed snippet. Drop it into your HTML. No backend, no server code. I have mine on the <a href="../melsplains/">Melsplains index page</a> — setup including matching the site design took about 20 minutes total.</p>
+        <p><strong>Newsletter:</strong> <a href="https://mailerlite.com" target="_blank" rel="noopener">MailerLite</a> is free up to 1,000 subscribers. They give you a copy-paste embed — drop it into your HTML and you're done. No backend, no server, nothing complicated. I set mine up in about 20 minutes.</p>
 
         <h3>What it actually costs</h3>
 
