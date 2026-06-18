@@ -230,7 +230,7 @@
     <div class="container">
       <div class="article-body reveal">
 
-        <p>Building a site in Claude Code is genuinely surprising in the best way. You describe what you want. You say "make the headline bigger" or "I want an aurora gradient in the background" and it just does it. You end up with something that actually looks like a real website, except you built it on a Tuesday evening while also monitoring a school group chat.</p>
+        <p>Building a site in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a> is genuinely surprising in the best way. You describe what you want. You say "make the headline bigger" or "I want an aurora gradient in the background" and it just does it. You end up with something that actually looks like a real website, except you built it on a Tuesday evening while also monitoring a school group chat.</p>
 
         <p>And then you close the laptop and the site is... nowhere. On your computer. Which is not a website.</p>
 
@@ -268,13 +268,13 @@
 
         <h3>Step 1: GitHub (free, ~5 minutes)</h3>
 
-        <p>Create a free account at github.com. Create a new repository — think of it as a named folder for your project. Make it private if you want; files aren't visible to the public just because they're on GitHub. Cloudflare is what makes them a website.</p>
+        <p>Create a free account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a>. Create a new repository — think of it as a named folder for your project. Make it private if you want; files aren't visible to the public just because they're on GitHub. Cloudflare is what makes them a website.</p>
 
-        <p>You don't need to understand most of what GitHub does. You need three things: the account, the repo, and a way to push your files into it. Claude Code can handle the pushing — just tell it "commit and push everything to my GitHub repo" and give it the URL. Or download GitHub Desktop if you'd rather click than type in a terminal. Both work fine.</p>
+        <p>You don't need to understand most of what GitHub does. You need three things: the account, the repo, and a way to push your files into it. Claude Code can handle the pushing — just tell it "commit and push everything to my GitHub repo" and give it the URL. Or download <a href="https://desktop.github.com" target="_blank" rel="noopener">GitHub Desktop</a> if you'd rather click than type in a terminal. Both work fine.</p>
 
         <h3>Step 2: Cloudflare Pages (~4 minutes of clicking)</h3>
 
-        <p>Go to cloudflare.com, create a free account, navigate to Workers &amp; Pages. Hit Create → Pages → Connect to Git. Pick your GitHub repo.</p>
+        <p>Go to <a href="https://cloudflare.com" target="_blank" rel="noopener">cloudflare.com</a>, create a free account, navigate to Workers &amp; Pages. Hit Create → Pages → Connect to Git. Pick your GitHub repo.</p>
 
         <div class="callout">
           <div class="callout-label">Important</div>
@@ -288,7 +288,7 @@
         <p>This is the part I wanted most when I was figuring it out. Here's what day-to-day actually looks like:</p>
 
         <ol class="step-list">
-          <li>Open your site folder in Claude Code</li>
+          <li>Open your site folder in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></li>
           <li>Tell it what to change — it edits the files</li>
           <li>Tell it "commit and push"</li>
           <li>Cloudflare picks up the update, usually within a minute</li>
@@ -319,11 +319,11 @@
 
         <h3>Netlify vs. Cloudflare Pages</h3>
 
-        <p>I started on Netlify. I switched to Cloudflare. Here's the honest comparison:</p>
+        <p>I started on <a href="https://netlify.com" target="_blank" rel="noopener">Netlify</a>. I switched to Cloudflare. Here's the honest comparison:</p>
 
         <div class="compare-grid">
           <div class="compare-card">
-            <div class="compare-card-label">Netlify</div>
+            <div class="compare-card-label"><a href="https://netlify.com" target="_blank" rel="noopener">Netlify</a></div>
             <h4>Easier forms</h4>
             <ul>
               <li>Built-in form handling — just add <code>netlify</code> to your form tag</li>
@@ -334,7 +334,7 @@
             </ul>
           </div>
           <div class="compare-card">
-            <div class="compare-card-label">Cloudflare Pages</div>
+            <div class="compare-card-label"><a href="https://pages.cloudflare.com" target="_blank" rel="noopener">Cloudflare Pages</a></div>
             <h4>Better performance</h4>
             <ul>
               <li>Massive global CDN — noticeably faster</li>
@@ -356,16 +356,16 @@
 
         <div class="callout">
           <div class="callout-label">The permanent fix</div>
-          <p>The setup above works well — Squarespace holds the domain registration, Cloudflare handles DNS. The cleaner long-term move is transferring the domain registration itself to Cloudflare Registrar, which puts everything in one place and usually costs a few dollars less per year (Cloudflare charges at-cost, no markup). There's a 60-day transfer lock to be aware of, so no rush — but it's worth doing eventually.</p>
+          <p>The setup above works well — Squarespace holds the domain registration, Cloudflare handles DNS. The cleaner long-term move is transferring the domain registration itself to <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a>, which puts everything in one place and usually costs a few dollars less per year (Cloudflare charges at-cost, no markup). There's a 60-day transfer lock to be aware of, so no rush — but it's worth doing eventually.</p>
         </div>
 
         <h3>Contact forms and newsletter signups</h3>
 
         <p><strong>On Netlify:</strong> Add <code>netlify</code> to your <code>&lt;form&gt;</code> tag. Done. Submissions email you automatically. Zero extra accounts required.</p>
 
-        <p><strong>On Cloudflare Pages:</strong> You need a form service. I use Web3Forms — free for up to 250 submissions/month. Get an access key from their site, add it as a hidden input field, set your form's action to their API endpoint. Submissions land in whatever email you tell it. Under 15 minutes to set up.</p>
+        <p><strong>On Cloudflare Pages:</strong> You need a form service. I use <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> — free for up to 250 submissions/month. Get an access key from their site, add it as a hidden input field, set your form's action to their API endpoint. Submissions land in whatever email you tell it. Under 15 minutes to set up.</p>
 
-        <p><strong>Newsletter:</strong> MailerLite is free up to 1,000 subscribers and 12,000 emails/month. They give you a copy-paste embed snippet. Drop it into your HTML. No backend, no server code. I have mine on the Melsplains index page — setup including matching the site design took about 20 minutes total.</p>
+        <p><strong>Newsletter:</strong> <a href="https://mailerlite.com" target="_blank" rel="noopener">MailerLite</a> is free up to 1,000 subscribers and 12,000 emails/month. They give you a copy-paste embed snippet. Drop it into your HTML. No backend, no server code. I have mine on the <a href="../melsplains/">Melsplains index page</a> — setup including matching the site design took about 20 minutes total.</p>
 
         <h3>What it actually costs</h3>
 
@@ -379,22 +379,22 @@
           </thead>
           <tbody>
             <tr>
-              <td class="item">GitHub</td>
+              <td class="item"><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></td>
               <td><span class="cost-badge cost-free">Free</span></td>
               <td>Free for private repos, unlimited</td>
             </tr>
             <tr>
-              <td class="item">Cloudflare Pages</td>
+              <td class="item"><a href="https://pages.cloudflare.com" target="_blank" rel="noopener">Cloudflare Pages</a></td>
               <td><span class="cost-badge cost-free">Free</span></td>
               <td>Unlimited sites, unlimited bandwidth on free tier</td>
             </tr>
             <tr>
-              <td class="item">Web3Forms</td>
+              <td class="item"><a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a></td>
               <td><span class="cost-badge cost-free">Free</span></td>
               <td>Up to 250 contact form submissions/month</td>
             </tr>
             <tr>
-              <td class="item">MailerLite</td>
+              <td class="item"><a href="https://mailerlite.com" target="_blank" rel="noopener">MailerLite</a></td>
               <td><span class="cost-badge cost-free">Free</span></td>
               <td>Up to 1,000 subscribers, 12,000 emails/month</td>
             </tr>
@@ -404,9 +404,9 @@
               <td>Wherever you buy it. Cloudflare Registrar charges at-cost — usually cheapest option</td>
             </tr>
             <tr>
-              <td class="item">Claude Code</td>
+              <td class="item"><a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></td>
               <td><span class="cost-badge cost-paid">$20/mo</span></td>
-              <td>Claude Pro. This is the actual AI doing the building and editing. The only real line item.</td>
+              <td><a href="https://claude.ai" target="_blank" rel="noopener">Claude Pro</a>. This is the actual AI doing the building and editing. The only real line item.</td>
             </tr>
           </tbody>
         </table>
