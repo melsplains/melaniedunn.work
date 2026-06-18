@@ -8,7 +8,7 @@
   <meta name="description" content="The part nobody explains in the tutorials: how to go from local files to a live URL. GitHub, Cloudflare Pages, and the editing workflow I use every day." />
   <meta property="og:title" content="How to Get Your Claude-Built Website Online · Melsplains" />
   <meta property="og:description" content="The part nobody explains in the tutorials: how to go from local files to a live URL. GitHub, Cloudflare Pages, and the editing workflow I use every day." />
-  <meta property="og:image" content="https://www.melaniedunn.work/assets/images/melanie-melsplains-hero.png" />
+  <meta property="og:image" content="https://www.melaniedunn.work/assets/images/aurora-orbs.png" />
   <meta property="og:url" content="https://www.melaniedunn.work/melsplains/how-to-get-your-claude-site-online" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -92,6 +92,31 @@
     .article-body .step-list li::before { content: counter(step); counter-increment: step; position: absolute; left: 0; top: 2px; font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--pink); letter-spacing: 0.08em; width: 18px; height: 18px; border: 1px solid var(--pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .article-body .step-list { counter-reset: step; }
     .article-body code { font-family: var(--mono); font-size: 13px; background: var(--bg-warm); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; color: var(--pink-deep); }
+    .callout { background: var(--bg-warm); border: 1px solid var(--border); border-left: 3px solid var(--pink); border-radius: 6px; padding: 20px 24px; margin: 32px 0; }
+    .callout-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pink); margin-bottom: 8px; }
+    .callout p { font-size: 15px; line-height: 1.65; color: var(--mid-gray); margin-bottom: 0; }
+    .flow-visual { display: flex; align-items: center; gap: 0; margin: 32px 0; background: var(--bg-warm); border: 1px solid var(--border); border-radius: 8px; padding: 28px 24px; overflow-x: auto; }
+    .flow-node { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+    .flow-icon { width: 52px; height: 52px; background: white; border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .flow-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); text-align: center; }
+    .flow-arrow { font-size: 18px; color: var(--pink); margin: 0 12px; padding-bottom: 20px; flex-shrink: 0; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+    .compare-card { border: 1px solid var(--border); border-radius: 8px; padding: 20px; background: white; }
+    .compare-card-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 10px; }
+    .compare-card h4 { font-family: var(--serif); font-weight: 400; font-size: 20px; margin-bottom: 14px; color: var(--warm-black); }
+    .compare-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .compare-card li { font-size: 14px; color: var(--warm-black-2); padding-left: 18px; position: relative; line-height: 1.5; }
+    .compare-card li::before { content: "✓"; position: absolute; left: 0; color: var(--pink); font-size: 12px; font-weight: 700; }
+    .compare-card li.neutral::before { content: "→"; color: var(--mid-gray); }
+    .cost-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
+    .cost-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-gray); padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); }
+    .cost-table td { padding: 13px 14px; border-bottom: 1px solid var(--border-soft); color: var(--warm-black-2); vertical-align: top; }
+    .cost-table tr:last-child td { border-bottom: none; }
+    .cost-table .item { font-weight: 500; color: var(--warm-black); }
+    .cost-badge { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+    .cost-free { background: rgba(0,201,200,0.1); color: #008f8f; border: 1px solid rgba(0,201,200,0.3); }
+    .cost-paid { background: rgba(232,24,90,0.08); color: var(--pink-deep); border: 1px solid rgba(232,24,90,0.2); }
     .cta-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
     .cta-inner { display: flex; flex-direction: column; gap: 24px; }
     .cta-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.01em; color: var(--warm-black); }
@@ -209,107 +234,184 @@
 
         <p>And then you close the laptop and the site is... nowhere. On your computer. Which is not a website.</p>
 
-        <p>The gap between "local files I can see" and "a URL I can text to people" is the step where most non-developers get stuck. Not because it's actually hard — it's three steps, and one of them is just clicking buttons. The problem is that everything written about deployment is written for people who already know what "push to production" means.</p>
+        <p>The gap between "local files I can see" and "a URL I can text to people" is the step where most non-developers get stuck. Not because it's actually hard — it's three steps, and one of them is just clicking buttons. The problem is that everything written about deployment assumes you already know what "push to production" means.</p>
 
-        <p>So here's what's actually happening, and how to get from your laptop to live.</p>
+        <p>Here's what's actually happening, and how to get from your laptop to live.</p>
 
-        <h3>You need GitHub. Stick with me.</h3>
+        <h3>How the whole thing works</h3>
 
-        <p>GitHub is where your site files live on the internet — not as a website, but as a storage place that Cloudflare Pages (your actual host) watches. When you push changes to GitHub, Cloudflare sees them and updates your live site automatically. That's the whole mechanism behind the editing workflow I use: change something in Claude Code, push it, reload the browser, done.</p>
+        <p>Three pieces, in order:</p>
 
-        <p>You don't need to understand most of what GitHub does. You need three things: a free account at github.com, a repository (basically a named folder for your project), and a way to push your files into it.</p>
+        <div class="flow-visual">
+          <div class="flow-node">
+            <div class="flow-icon">💻</div>
+            <div class="flow-label">Your Files<br>(local)</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-icon" style="font-size:18px;font-weight:700;font-family:monospace;color:#1C1917;">GH</div>
+            <div class="flow-label">GitHub<br>(storage)</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-icon">☁️</div>
+            <div class="flow-label">Cloudflare<br>(host)</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-icon">🌐</div>
+            <div class="flow-label">Live Site<br>(your URL)</div>
+          </div>
+        </div>
 
-        <p>Claude Code can handle the pushing for you — just tell it "commit and push everything to my GitHub repo" and give it the URL. Or download GitHub Desktop if you'd rather click than type anything in a terminal. Both work.</p>
+        <p>GitHub holds your files on the internet — not as a website, but as a storage place that Cloudflare Pages watches. When you push changes to GitHub, Cloudflare sees them and updates your live site automatically. That's the whole mechanism behind the editing workflow I use: change something in Claude Code, push it, reload the browser, done.</p>
 
-        <p>One thing worth knowing upfront: your GitHub repo can be private. Files aren't visible to the public just because they're on GitHub — Cloudflare is what makes them a website. Private repo, public site, totally normal setup.</p>
+        <h3>Step 1: GitHub (free, ~5 minutes)</h3>
 
-        <h3>Cloudflare Pages takes about four minutes</h3>
+        <p>Create a free account at github.com. Create a new repository — think of it as a named folder for your project. Make it private if you want; files aren't visible to the public just because they're on GitHub. Cloudflare is what makes them a website.</p>
 
-        <p>Once your files are in GitHub, this part moves fast. Go to cloudflare.com, create a free account, and navigate to Workers &amp; Pages. Hit Create, then Pages, then Connect to Git. Pick your GitHub repository.</p>
+        <p>You don't need to understand most of what GitHub does. You need three things: the account, the repo, and a way to push your files into it. Claude Code can handle the pushing — just tell it "commit and push everything to my GitHub repo" and give it the URL. Or download GitHub Desktop if you'd rather click than type in a terminal. Both work fine.</p>
 
-        <p>For a plain HTML site — no React, no build step, just files — leave the build settings completely blank. No build command, no output directory. Hit deploy.</p>
+        <h3>Step 2: Cloudflare Pages (~4 minutes of clicking)</h3>
 
-        <p>Cloudflare gives you a free URL ending in <code>.pages.dev</code>. That URL works immediately; share it and people can see your site. If you have a domain already (or want to buy one), you connect it in Cloudflare's DNS settings. But the <code>.pages.dev</code> URL is a perfectly reasonable place to start while you're getting it all set up.</p>
+        <p>Go to cloudflare.com, create a free account, navigate to Workers &amp; Pages. Hit Create → Pages → Connect to Git. Pick your GitHub repo.</p>
 
-        <p>Total time: under ten minutes if you move through it, longer if you stop to read every tooltip.</p>
+        <div class="callout">
+          <div class="callout-label">Important</div>
+          <p>For a plain HTML site — no React, no build step, just files — leave the build settings completely blank. No build command. No output directory. Just hit Deploy.</p>
+        </div>
 
-        <h3>How editing works after that</h3>
+        <p>Cloudflare gives you a free URL ending in <code>.pages.dev</code> that works immediately. Share it, people can see your site. That's a real live URL. Connect your own domain whenever you're ready, but the <code>.pages.dev</code> URL is a perfectly reasonable place to start.</p>
 
-        <p>This is the part I wanted most when I was figuring it out — what does the actual day-to-day workflow look like?</p>
+        <h3>Step 3: The editing workflow (ongoing)</h3>
 
-        <p>You open your site folder in Claude Code. You tell it what to change. It changes the files. You tell it "commit and push," and Cloudflare picks up the update, usually within a minute. Refresh your live URL and the change is there.</p>
+        <p>This is the part I wanted most when I was figuring it out. Here's what day-to-day actually looks like:</p>
 
-        <p>No logging into a CMS. No clicking around a visual editor wondering what you actually changed. Your files are on your computer, you can read them, Claude can edit them, and the live site stays in sync. I've made changes to my site mid-meeting because it took less time than writing a task for it.</p>
+        <ol class="step-list">
+          <li>Open your site folder in Claude Code</li>
+          <li>Tell it what to change — it edits the files</li>
+          <li>Tell it "commit and push"</li>
+          <li>Cloudflare picks up the update, usually within a minute</li>
+          <li>Refresh your live URL — it's there</li>
+        </ol>
 
-        <h3>What to put in CLAUDE.md so it remembers you</h3>
+        <p>No logging into a CMS. No clicking around a visual editor. Your files are on your computer, Claude can edit them, and the live site stays in sync. I've made changes to my site mid-meeting because it took less time than writing a task for it.</p>
 
-        <p>The one setup step that pays off immediately: a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every time you open the project. It's how you stop re-explaining your brand every single session.</p>
+        <h3>Set up CLAUDE.md so it remembers you</h3>
 
-        <p>What to put in it:</p>
+        <p>Create a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every session. It's how you stop re-explaining your brand every time you open the project.</p>
 
-        <p>Your name and what the site is for. Your exact colors — hex codes, not "kind of a warm pink." Your fonts. Your voice, written like you're briefing a copywriter: the tone, what to avoid, who you're talking to. Any standing rules: "don't add features I didn't ask for," "keep copy short," "no bullet lists unless I ask."</p>
-
-        <p>Mine lives as a skill — a more portable version that works across all my projects, not just the site folder — but <code>CLAUDE.md</code> is the right starting point and it's enough to get consistent results from day one. You write it once and Claude stops asking.</p>
+        <p>What to put in it: your name and what the site is for. Your exact colors (hex codes, not "kind of a warm pink"). Your fonts. Your voice — written like you're briefing a copywriter. Any standing rules: "don't add features I didn't ask for," "keep copy short," "no bullet lists unless I ask."</p>
 
         <blockquote>
           <p>A CLAUDE.md is like a standing brief you'd give a contractor before they started working on your house. You don't re-explain your preferences every visit. You write it down once and they reference it.</p>
         </blockquote>
 
-        <h3>The skills that shaped my site</h3>
+        <p>Mine lives as a skill — a more portable version that works across all my projects — but <code>CLAUDE.md</code> is the right starting point. You write it once and Claude stops asking.</p>
 
-        <p>Claude Code has a skill system — reusable instruction sets you install once and then invoke by name, like plugins. They're optional, and you definitely don't need them on day one. But if you're building something with a real visual identity and more than a few pages, they start to matter.</p>
+        <h3>Skills: for when you're ready to go deeper</h3>
 
-        <p>The ones that shaped this site most: a brand skill that holds my full visual identity (colors, fonts, aesthetic rules, the two-tier professional vs. Melsplains aesthetic) so Claude always knows what I look like. A voice skill that keeps my writing sounding like me across every page. And a frontend design skill that guides how Claude structures HTML and CSS layout.</p>
+        <p>Claude Code has a skill system — reusable instruction sets you install once and invoke by name, like plugins. You don't need them on day one. But if you're building something with a real visual identity and more than a few pages, they start to matter.</p>
 
-        <p>Skills live in your <code>~/.claude/</code> folder and you invoke them with a slash command. Once they're set up, you just say things like "use my brand skill" and Claude reads the whole brief before touching the file. It's the difference between Claude knowing your brand and you describing it again every session.</p>
+        <p>The ones that shaped this site: a brand skill holding my full visual identity (colors, fonts, aesthetic rules), a voice skill keeping my writing sounding like me, and a frontend design skill guiding how Claude structures HTML and CSS. Skills live in your <code>~/.claude/</code> folder and you call them with a slash command.</p>
 
-        <p>Build the site first. Get it live. Then invest in a brand skill when you notice Claude needing reminders about things you've already told it three times.</p>
+        <p>Build first. Get it live. Add skills when Claude needs reminders about things you've already told it three times.</p>
 
-        <h3>Netlify vs. Cloudflare Pages — and why I switched</h3>
+        <h3>Netlify vs. Cloudflare Pages</h3>
 
-        <p>I started on Netlify. If you've done any reading about deploying simple websites, you've probably seen it mentioned. It's genuinely good — easy setup, connects to GitHub the same way, free tier that covers a personal site with room to spare.</p>
+        <p>I started on Netlify. I switched to Cloudflare. Here's the honest comparison:</p>
 
-        <p>The thing Netlify has that Cloudflare doesn't: built-in form handling. You add one attribute to your HTML form tag (<code>netlify</code>), and Netlify catches every submission and emails it to you. No third-party service, no account, no access key. It just works. For a contact form on a plain HTML site, that's a meaningful convenience.</p>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <div class="compare-card-label">Netlify</div>
+            <h4>Easier forms</h4>
+            <ul>
+              <li>Built-in form handling — just add <code>netlify</code> to your form tag</li>
+              <li>Submissions email you automatically, no third-party accounts</li>
+              <li>Free tier covers personal sites easily</li>
+              <li class="neutral">Slightly slower global performance</li>
+              <li class="neutral">DNS separate if domain is elsewhere</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <div class="compare-card-label">Cloudflare Pages</div>
+            <h4>Better performance</h4>
+            <ul>
+              <li>Massive global CDN — noticeably faster</li>
+              <li>Tighter DNS integration if domain is at Cloudflare</li>
+              <li>Edge functions available if you want to get fancier later</li>
+              <li class="neutral">No built-in forms — need Web3Forms or similar</li>
+              <li class="neutral">Slightly more setup for forms</li>
+            </ul>
+          </div>
+        </div>
 
-        <p>What Cloudflare Pages has that Netlify doesn't: better global performance (Cloudflare's network is enormous), tighter integration with DNS if your domain is already there, and the ability to eventually add edge functions if you want to get fancier. For my site, the performance and DNS consolidation won the argument.</p>
+        <p>If you want the easiest possible setup and don't care about performance differences: Netlify. If you want DNS all in one place and a faster site: Cloudflare. Both are free. Either works.</p>
 
-        <p>If you're starting from zero and your domain isn't already anywhere: either works. If you want the easiest possible form setup and don't care much about the rest, Netlify's form handling alone might make it the right call for you. I won't argue with that logic.</p>
+        <h3>Getting your domain to point at your site</h3>
 
-        <h3>Getting your domain pointed at your site</h3>
+        <p>You get a free <code>.pages.dev</code> URL on deploy. Getting your real domain to point there involves DNS — which sounds complicated and is actually just changing two settings.</p>
 
-        <p>Your site is live at a <code>.pages.dev</code> URL the moment you deploy. Getting your actual domain (the one you own) to point there is a separate step, and it's the one that trips people up most because it involves DNS, which sounds scarier than it is.</p>
+        <p>Here's what I did: my domain is registered at Squarespace (where I bought it when I had a Squarespace site). I went into Squarespace's domain settings and changed the nameservers to Cloudflare's. That tells the internet: "for anything involving this domain, ask Cloudflare." Then I added one CNAME record in Cloudflare pointing at my Pages site. Within a few hours, both <code>melaniedunn.work</code> and <code>www.melaniedunn.work</code> resolved correctly.</p>
 
-        <p>Here's what I did: my domain (<code>melaniedunn.work</code>) is registered at Squarespace — where I bought it originally, back when I had a Squarespace site. When I moved to Cloudflare Pages, I went into Squarespace's domain settings and changed the nameservers to Cloudflare's. That tells the internet: "for anything involving this domain, ask Cloudflare." From there, I added a CNAME record in Cloudflare pointing my domain at my Pages site, and within a few hours both <code>melaniedunn.work</code> and <code>www.melaniedunn.work</code> resolved correctly.</p>
+        <div class="callout">
+          <div class="callout-label">The permanent fix</div>
+          <p>The setup above works well — Squarespace holds the domain registration, Cloudflare handles DNS. The cleaner long-term move is transferring the domain registration itself to Cloudflare Registrar, which puts everything in one place and usually costs a few dollars less per year (Cloudflare charges at-cost, no markup). There's a 60-day transfer lock to be aware of, so no rush — but it's worth doing eventually.</p>
+        </div>
 
-        <p>The immediate fix — changing nameservers — took about ten minutes and a couple hours to fully propagate. The domain is still registered at Squarespace, which is fine. It's a two-company setup: Squarespace holds the registration, Cloudflare handles everything DNS. It works cleanly.</p>
+        <h3>Contact forms and newsletter signups</h3>
 
-        <p>The more permanent next step is transferring the domain registration itself to Cloudflare Registrar. That puts everything in one place and Cloudflare charges at-cost for domains, so it's usually cheaper than wherever you bought it. I haven't done this yet because domain transfers come with a 60-day lock and there's no urgency — the current setup works. But it's on the list.</p>
+        <p><strong>On Netlify:</strong> Add <code>netlify</code> to your <code>&lt;form&gt;</code> tag. Done. Submissions email you automatically. Zero extra accounts required.</p>
 
-        <h3>Contact forms and newsletter signups on a plain HTML site</h3>
+        <p><strong>On Cloudflare Pages:</strong> You need a form service. I use Web3Forms — free for up to 250 submissions/month. Get an access key from their site, add it as a hidden input field, set your form's action to their API endpoint. Submissions land in whatever email you tell it. Under 15 minutes to set up.</p>
 
-        <p>If you're on Netlify: add <code>netlify</code> to your form tag and you're done. Submissions show up in your Netlify dashboard and email you. Free, no accounts required.</p>
+        <p><strong>Newsletter:</strong> MailerLite is free up to 1,000 subscribers and 12,000 emails/month. They give you a copy-paste embed snippet. Drop it into your HTML. No backend, no server code. I have mine on the Melsplains index page — setup including matching the site design took about 20 minutes total.</p>
 
-        <p>If you're on Cloudflare Pages: you need a form service. I use Web3Forms — free account, free tier covers 250 submissions a month, and setup is two hidden fields in your existing HTML form. You get an access key from their site, add it as a hidden input, point the form action at their API endpoint, and submissions land in whatever email you specify. The whole setup takes less than fifteen minutes the first time.</p>
+        <h3>What it actually costs</h3>
 
-        <p>For a newsletter signup, I use MailerLite. Free up to 1,000 subscribers, they give you an embed form with a copy-paste snippet, and you drop it anywhere in your HTML. No backend, no server-side code, no nothing. Your subscribers go into MailerLite, you send from there when you have something to say. I have mine on the Melsplains index page — it took about twenty minutes total to set up including making it match the site design.</p>
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>What</th>
+              <th>Cost</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="item">GitHub</td>
+              <td><span class="cost-badge cost-free">Free</span></td>
+              <td>Free for private repos, unlimited</td>
+            </tr>
+            <tr>
+              <td class="item">Cloudflare Pages</td>
+              <td><span class="cost-badge cost-free">Free</span></td>
+              <td>Unlimited sites, unlimited bandwidth on free tier</td>
+            </tr>
+            <tr>
+              <td class="item">Web3Forms</td>
+              <td><span class="cost-badge cost-free">Free</span></td>
+              <td>Up to 250 contact form submissions/month</td>
+            </tr>
+            <tr>
+              <td class="item">MailerLite</td>
+              <td><span class="cost-badge cost-free">Free</span></td>
+              <td>Up to 1,000 subscribers, 12,000 emails/month</td>
+            </tr>
+            <tr>
+              <td class="item">Domain name</td>
+              <td><span class="cost-badge cost-paid">~$10–20/yr</span></td>
+              <td>Wherever you buy it. Cloudflare Registrar charges at-cost — usually cheapest option</td>
+            </tr>
+            <tr>
+              <td class="item">Claude Code</td>
+              <td><span class="cost-badge cost-paid">$100/mo</span></td>
+              <td>The Pro plan. This is the actual AI doing the building and editing. The only real line item.</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <p>Neither of these requires any coding knowledge beyond pasting code into the right place. If you can follow a recipe, you can do both.</p>
-
-        <h3>The short version, if you want it</h3>
-
-        <p>GitHub account → create a repo → push your site files. Cloudflare Pages → connect to that repo → deploy. After that: edit in Claude Code, push, live in a minute. Put your brand and voice in a <code>CLAUDE.md</code> file so Claude remembers who you are without you having to say it every time.</p>
-
-        <p>For your domain: change the nameservers to point at Cloudflare, add a CNAME record, wait a few hours. For forms: Web3Forms if you're on Cloudflare, native Netlify forms if you're on Netlify. For a newsletter: MailerLite, copy-paste embed.</p>
-
-        <p>That's actually the whole thing. The terminology around it sounds more complicated than the steps are.</p>
-
-        <h3>What this actually costs</h3>
-
-        <p>GitHub: free. Cloudflare Pages: free (unlimited sites, unlimited bandwidth on the free tier). Web3Forms: free up to 250 contact form submissions per month. MailerLite: free up to 1,000 subscribers and 12,000 emails per month. Claude Code: $100/month (that's the Pro plan — it covers the AI assistant doing the actual building and editing). Your domain: wherever you bought it, usually $10–20/year depending on the extension. Cloudflare Registrar charges at-cost if you transfer there, which is typically a few dollars less per year than most registrars.</p>
-
-        <p>The only real line item is Claude Code. Everything else hosting this site — the server, the deploy pipeline, the form handling, the newsletter — runs on free tiers that a personal site will likely never exceed. The domain is the other one, and that's a cost you'd have on any platform.</p>
-
-        <p>For comparison: a Squarespace Business plan (what you'd need for custom code) runs $36/month. You're getting a faster, more flexible setup for less, if you already have Claude Code for other things.</p>
+        <p>Everything hosting this site runs on free tiers a personal site will likely never exceed. The only real cost is Claude Code — and if you're already using it for other things, the site is essentially free to run. For comparison: a Squarespace Business plan (what you'd need for custom code) runs $36/month.</p>
 
       </div>
     </div>
