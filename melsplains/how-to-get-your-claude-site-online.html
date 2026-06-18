@@ -203,11 +203,11 @@
           <span class="eyebrow holo">Melsplains · AI &amp; Automation</span>
         </div>
         <div class="reveal delay-1">
-          <h1 class="serif-display h1">Your Claude Website Is Built. Here's How to Actually Get It <em>Online.</em></h1>
+          <h1 class="serif-display h1">You're Done With Squarespace. Here's How to Get Your Claude Site <em>Actually Live.</em></h1>
         </div>
         <div class="reveal delay-2">
           <p class="lede">
-            You have a site that works beautifully in your browser. It exists only on your laptop, visible to no one, which is technically not a website — that's just a folder with opinions. Here's the part nobody explains in the tutorials.
+            You already have a website. You're just done paying $36/month to fight a template. Claude Code builds exactly what you want — and getting it live is three steps. Here's what they actually are.
           </p>
         </div>
         <div class="reveal delay-2">
@@ -230,13 +230,13 @@
     <div class="container">
       <div class="article-body reveal">
 
-        <p>Building a site in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a> is genuinely surprising in the best way. You describe what you want. You say "make the headline bigger" or "I want an aurora gradient in the background" and it just does it. You end up with something that actually looks like a real website, except you built it on a Tuesday evening while also monitoring a school group chat.</p>
+        <p>If you've been on Squarespace, you know the ceiling. The template does what the template does. You want a custom layout and suddenly you need a developer, or you need to upgrade to Business, or the thing just isn't possible without injecting code into a box that wasn't designed for it.</p>
 
-        <p>And then you close the laptop and the site is... nowhere. On your computer. Which is not a website.</p>
+        <p><a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a> removes that ceiling entirely. You describe what you want — the layout, the colors, the copy, the vibe — and it builds it. You can make changes in plain English on a Wednesday afternoon and they're live by the time you close your laptop.</p>
 
-        <p>The gap between "local files I can see" and "a URL I can text to people" is the step where most non-developers get stuck. Not because it's actually hard — it's three steps, and one of them is just clicking buttons. The problem is that everything written about deployment assumes you already know what "push to production" means.</p>
+        <p>The part nobody explains clearly: once Claude builds your site, it lives on your computer as a folder of files. Getting it to an actual URL involves three steps. They're not hard. They just have a lot of unfamiliar terminology around them, which makes them sound harder than they are.</p>
 
-        <p>Here's what's actually happening, and how to get from your laptop to live.</p>
+        <p>Here's what's actually happening — and how to get your Squarespace domain pointing at your new Claude site.</p>
 
         <h3>How the whole thing works</h3>
 
@@ -297,17 +297,17 @@
 
         <p>No logging into a CMS. No clicking around a visual editor. Your files are on your computer, Claude can edit them, and the live site stays in sync. I've made changes to my site mid-meeting because it took less time than writing a task for it.</p>
 
-        <h3>Set up CLAUDE.md so it remembers you</h3>
+        <h3>Set up CLAUDE.md — your brand brief Claude reads automatically</h3>
 
-        <p>Create a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every session. It's how you stop re-explaining your brand every time you open the project.</p>
+        <p>Here's the thing about switching from Squarespace: you already have a brand. You know your colors, your fonts, your tone. The problem with building in Claude is that every new session, it forgets. You end up re-explaining yourself constantly.</p>
 
-        <p>What to put in it: your name and what the site is for. Your exact colors (hex codes, not "kind of a warm pink"). Your fonts. Your voice — written like you're briefing a copywriter. Any standing rules: "don't add features I didn't ask for," "keep copy short," "no bullet lists unless I ask."</p>
+        <p>Fix this immediately with a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every time you open the project. Think of it as the brief you'd hand a new designer — except you only write it once.</p>
+
+        <p>What to put in it: your business name and what the site is for. Your exact colors (hex codes — pull them from your Squarespace brand settings before you leave). Your fonts. Your voice: the tone, who you're talking to, what to avoid. Any standing rules: "always link to my contact page," "never use stock photo language," "keep copy short."</p>
 
         <blockquote>
-          <p>A CLAUDE.md is like a standing brief you'd give a contractor before they started working on your house. You don't re-explain your preferences every visit. You write it down once and they reference it.</p>
+          <p>If you've already told Claude something three times in three different sessions, that belongs in CLAUDE.md. Write it once, never say it again.</p>
         </blockquote>
-
-        <p>Mine lives as a skill — a more portable version that works across all my projects — but <code>CLAUDE.md</code> is the right starting point. You write it once and Claude stops asking.</p>
 
         <h3>Skills: for when you're ready to go deeper</h3>
 
@@ -348,11 +348,13 @@
 
         <p>If you want the easiest possible setup and don't care about performance differences: Netlify. If you want DNS all in one place and a faster site: Cloudflare. Both are free. Either works.</p>
 
-        <h3>Getting your domain to point at your site</h3>
+        <h3>Getting your Squarespace domain to point at your new site</h3>
 
-        <p>You get a free <code>.pages.dev</code> URL on deploy. Getting your real domain to point there involves DNS — which sounds complicated and is actually just changing two settings.</p>
+        <p>You get a free <code>.pages.dev</code> URL the moment you deploy — that's already a real, shareable link. But you almost certainly want your existing domain pointing there, not a Squarespace site you're paying for.</p>
 
-        <p>Here's what I did: my domain is registered at Squarespace (where I bought it when I had a Squarespace site). I went into Squarespace's domain settings and changed the nameservers to Cloudflare's. That tells the internet: "for anything involving this domain, ask Cloudflare." Then I added one CNAME record in Cloudflare pointing at my Pages site. Within a few hours, both <code>melaniedunn.work</code> and <code>www.melaniedunn.work</code> resolved correctly.</p>
+        <p>Good news: you don't have to transfer your domain. You just redirect it. Here's exactly what I did — my domain is registered at Squarespace, same as yours probably is. I went into Squarespace's domain settings, found the nameserver section, and changed the nameservers to Cloudflare's (Cloudflare gives you the exact values when you add your domain). That tells the internet: "for anything involving this domain, ask Cloudflare now." Then in Cloudflare, I added one CNAME record pointing at my Pages site. Within a few hours, my domain resolved to the new site.</p>
+
+        <p>At that point you can cancel your Squarespace subscription. The domain stays registered at Squarespace; it just lives somewhere new.</p>
 
         <div class="callout">
           <div class="callout-label">The permanent fix</div>
@@ -411,7 +413,9 @@
           </tbody>
         </table>
 
-        <p>Everything hosting this site runs on free tiers a personal site will likely never exceed. The only real cost is Claude Code — and if you're already using it for other things, the site is essentially free to run. For comparison: a Squarespace Business plan (what you'd need for custom code) runs $36/month. Claude Pro at $20/month is actually cheaper.</p>
+        <p>Everything that actually hosts and runs this site — the server, the deploy pipeline, the form handling, the newsletter — is free. The only real line item is Claude itself.</p>
+
+        <p>Squarespace Business (the plan you need for custom code injection) runs $36/month. You're switching to a faster, fully custom site for $20/month — and that $20 is Claude, which you're probably already using for other things anyway. The hosting is free.</p>
 
       </div>
     </div>
