@@ -230,9 +230,9 @@
     <div class="container">
       <div class="article-body reveal">
 
-        <p>There's a specific moment when you first build something in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a>. You describe a layout and it appears. You change your mind and it changes. You do this a few times — and then you open your Squarespace dashboard and something has shifted. It feels like going back to a flip phone.</p>
+        <p>There's a specific moment when you first build something in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a>. You describe a layout and it appears. You change your mind and it changes. Then you open your Squarespace dashboard and something has shifted — it feels like going back to a flip phone.</p>
 
-        <p>That feeling is correct. The only gap is this: Claude builds your site as files on your computer. Getting it to a real URL is three steps. They're not hard. Here's what they actually are.</p>
+        <p>The only gap: Claude builds your site as files on your computer. Getting it to a real URL is three steps. Here's what they actually are.</p>
 
         <h3>How it works</h3>
 
@@ -262,9 +262,7 @@
 
         <h3>Step 1: Set up GitHub (free, ~5 minutes)</h3>
 
-        <p>Create a free account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a> and create a new repository. You can make it private — files on GitHub aren't public just because they're there. Cloudflare is what makes them a website.</p>
-
-        <p>You don't need to understand most of what GitHub does. Just tell Claude Code "commit and push everything to my GitHub repo" and give it your repo URL. Or use <a href="https://desktop.github.com" target="_blank" rel="noopener">GitHub Desktop</a> if you'd rather click than type. Either works.</p>
+        <p>Create a free account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a> and create a new repository. Make it private if you want — files aren't public just because they're on GitHub. Then tell Claude Code "commit and push everything to my GitHub repo" and give it the URL. Or use <a href="https://desktop.github.com" target="_blank" rel="noopener">GitHub Desktop</a> if you'd rather click. Either works.</p>
 
         <h3>Step 2: Deploy on Cloudflare Pages (free, ~4 minutes)</h3>
 
@@ -292,9 +290,9 @@
 
         <h3>Tell Claude who you are — once</h3>
 
-        <p>You already have a brand. You've had one for years. The annoying thing about Claude is that every new session, it forgets. You end up re-explaining your colors, your tone, your rules.</p>
+        <p>You already have a brand. The problem with Claude is that every new session, it forgets — you end up re-explaining your colors, your tone, your rules. Fix that immediately.</p>
 
-        <p>Fix: create a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every time. Put your business name, your hex codes (grab them from Squarespace before you leave), your fonts, your voice, and any rules that matter. Write it once, never explain yourself again.</p>
+        <p>Create a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every session. Put in: your business name, your hex codes (grab them from Squarespace before you leave), your fonts, your voice, any standing rules. Write it once, done.</p>
 
         <blockquote>
           <p>If you've told Claude the same thing three sessions in a row, it belongs in CLAUDE.md.</p>
@@ -351,7 +349,7 @@
 
         <p><strong>On Cloudflare:</strong> Use <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> — free up to 250 submissions/month, takes about 15 minutes to set up. Grab an access key, add two hidden fields to your form, submissions land in your inbox.</p>
 
-        <p><strong>Newsletter:</strong> <a href="https://mailerlite.com" target="_blank" rel="noopener">MailerLite</a> is free up to 1,000 subscribers. They give you a copy-paste embed — drop it into your HTML and you're done. No backend, no server, nothing complicated. I set mine up in about 20 minutes.</p>
+        <p><strong>Newsletter:</strong> <a href="https://mailerlite.com" target="_blank" rel="noopener">MailerLite</a> is free up to 1,000 subscribers. Copy-paste embed, drop it in your HTML, done. Mine took 20 minutes including making it match the site design.</p>
 
         <h3>What it actually costs</h3>
 
@@ -397,24 +395,22 @@
           </tbody>
         </table>
 
-        <p>Everything that actually hosts and runs this site — the server, the deploy pipeline, the form handling, the newsletter — is free. The only real line item is Claude itself.</p>
+        <p>The hosting, forms, and newsletter are all free. The only cost is Claude Pro at $20/month — less than Squarespace Business at $36, and you're probably already paying it.</p>
 
-        <p>Squarespace Business (the plan you need for custom code injection) runs $36/month. You're switching to a faster, fully custom site for $20/month — and that $20 is Claude, which you're probably already using for other things anyway. The hosting is free.</p>
-
-        <h3>What I actually used to build this site</h3>
-
-        <p>This site — the one you're reading right now — was built entirely in Claude Code. No Webflow, no WordPress, no developer. Here's the exact stack:</p>
+        <h3>What I used to build this site</h3>
 
         <div class="callout">
-          <div class="callout-label">This site's build stack</div>
-          <p><strong><a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></strong> — did all the building, editing, committing, and deploying. Every page, every component, every fix.</p>
-          <p style="margin-top: 10px;"><strong>Brand skill</strong> — a custom Claude skill that holds my full visual identity (colors, fonts, the two-tier professional/Melsplains aesthetic). Claude references it before touching any file so the site always looks like itself.</p>
-          <p style="margin-top: 10px;"><strong>Voice skill</strong> — keeps my writing sounding like me across every page. The tone, the rhythm, the things I don't say.</p>
-          <p style="margin-top: 10px;"><strong>Frontend design skill</strong> — guides how Claude structures HTML and CSS. Enforces the layout system, spacing rules, and component patterns so nothing looks improvised.</p>
-          <p style="margin-top: 10px;"><strong>CLAUDE.md</strong> — the project-level brief Claude reads every session. Where the skills live when I'm working specifically on this site.</p>
+          <div class="callout-label">This site's exact stack</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
+            <li><strong><a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></strong> — built, edited, committed, and deployed everything</li>
+            <li><strong>Brand skill</strong> — holds my full visual identity so Claude never improvises the design</li>
+            <li><strong>Voice skill</strong> — keeps my writing sounding like me across every page</li>
+            <li><strong>Frontend design skill</strong> — enforces layout, spacing, and component patterns</li>
+            <li><strong>CLAUDE.md</strong> — the brief Claude reads every session before touching a file</li>
+          </ul>
         </div>
 
-        <p>Skills are reusable instruction sets you install once in Claude Code and invoke with a slash command. They're not required to get started — CLAUDE.md alone gets you most of the way there. But if you find yourself re-explaining your brand every session, skills are how you stop doing that.</p>
+        <p>Skills are optional — CLAUDE.md alone gets you most of the way there. Add them when you notice Claude needs reminders about things you've already explained.</p>
 
       </div>
     </div>
