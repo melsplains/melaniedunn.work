@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Melanie Dunn — Resume (Print Version)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.45;
+      color: #000;
+      background: #fff;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.7in 0.75in;
+    }
+
+    /* Print button — hidden when printing */
+    .print-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 24px;
+      gap: 12px;
+    }
+    .btn-print {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .btn-web {
+      background: transparent;
+      color: #000;
+      border: 1px solid #ccc;
+      padding: 8px 18px;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+    }
+
+    /* Header */
+    .doc-name {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+    .doc-title {
+      font-size: 11pt;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .doc-contact {
+      font-size: 9.5pt;
+      color: #444;
+      margin-bottom: 16px;
+    }
+    .doc-contact span { margin: 0 6px; color: #999; }
+
+    hr {
+      border: none;
+      border-top: 1.5px solid #000;
+      margin: 14px 0 10px;
+    }
+    hr.thin {
+      border-top: 1px solid #ddd;
+      margin: 8px 0;
+    }
+
+    /* Section headings */
+    h2 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      margin-top: 18px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 3px;
+    }
+    h2:first-of-type { margin-top: 0; }
+
+    /* Job entries */
+    .job { margin-bottom: 14px; }
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .job-company {
+      font-weight: 700;
+      font-size: 10.5pt;
+    }
+    .job-dates {
+      font-size: 9.5pt;
+      color: #444;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .job-title {
+      font-size: 10pt;
+      font-style: italic;
+      color: #222;
+      margin-bottom: 5px;
+    }
+    ul {
+      padding-left: 16px;
+      margin-top: 4px;
+    }
+    li {
+      margin-bottom: 3px;
+    }
+    p.blurb {
+      margin-top: 4px;
+      font-size: 10pt;
+    }
+
+    /* Subsection within experience (Pip, Roux) */
+    .subsection {
+      margin: 10px 0 10px 0;
+      padding: 8px 10px;
+      border-left: 3px solid #000;
+      background: #f7f7f7;
+    }
+    .subsection-title {
+      font-weight: 700;
+      font-size: 10pt;
+      margin-bottom: 3px;
+    }
+    .subsection-sub {
+      font-size: 9.5pt;
+      font-style: italic;
+      color: #444;
+      margin-bottom: 4px;
+    }
+
+    /* Skills */
+    .skill-group { margin-bottom: 6px; }
+    .skill-label { font-weight: 700; }
+
+    /* Inline list */
+    .inline-list { list-style: none; padding: 0; }
+    .inline-list li { display: inline; }
+    .inline-list li::after { content: " · "; color: #999; }
+    .inline-list li:last-child::after { content: ""; }
+
+    /* Condensed earlier experience */
+    .condensed-job {
+      margin-bottom: 4px;
+      font-size: 10pt;
+    }
+
+    @media print {
+      body { padding: 0; }
+      @page { margin: 0.6in 0.65in; }
+      .print-bar { display: none; }
+      .subsection { background: none; border-left: 2px solid #999; }
+      a { color: #000; text-decoration: none; }
+      h2 { break-after: avoid; }
+      .job { break-inside: avoid; }
+      .subsection { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <a class="btn-web" href="index.html">← Web version</a>
+    <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <!-- NAME + CONTACT -->
+  <div class="doc-name">MELANIE DUNN</div>
+  <div class="doc-title">AI Systems &amp; Marketing Operations Lead</div>
+  <div class="doc-contact">
+    Toledo, Ohio<span>|</span>melaniedunn.work<span>|</span>linkedin.com/in/dunnmel<span>|</span>melanie@threesevenmarketing.com
+  </div>
+
+  <hr />
+
+  <!-- SUMMARY -->
+  <h2>Summary</h2>
+  <p>Most AI advice is theoretical. I build the actual thing — and then document it, train the team, and make sure it still works six weeks later.</p>
+  <p style="margin-top:6px;">I came up through design — 20 years of it — then crossed into marketing, then marketing operations, and now I'm building AI systems. That sequence matters more than it looks: design thinking is how I structure problems, it just shows up as workflow architecture now instead of layout grids. Marketing ops is where I learned where the real work accumulates: reporting that takes all day, handoffs that break quietly, data that means something only if you know where to look. I got good at finding those places and automating them. Now I do it with AI — building systems that are still running six weeks later, that someone besides me knows how to use, and that are actually connected to the things they need to connect to. The value is the architecture and the implementation. Prompting is the easy part.</p>
+
+  <!-- CORE SKILLS -->
+  <h2>Core Skills</h2>
+  <div class="skill-group"><span class="skill-label">AI Architecture &amp; Workflow Design:</span> Claude Code, n8n, ChatGPT, agentic system design, multi-API orchestration, Toggl API, Monday.com API, Fireflies API, prompt architecture, workflow documentation, AI adoption and enablement</div>
+  <div class="skill-group"><span class="skill-label">Data &amp; Reporting Infrastructure:</span> BigQuery, Looker Studio, GTM and tracking architecture, HubSpot, decision-support dashboard design</div>
+  <div class="skill-group"><span class="skill-label">Systems Implementation:</span> business process design, cross-functional deployment, team enablement and training, technical documentation, repeatable workflow systems</div>
+  <div class="skill-group"><span class="skill-label">Marketing Domain Expertise:</span> SEO, AIO, AI search optimization, paid media (Google Ads Search / Display / Video), B2B campaign architecture, content strategy, marketing operations</div>
+  <div class="skill-group"><span class="skill-label">Design &amp; Creative Technology:</span> brand identity, typography, print production, Adobe Creative Suite, Canva, visual systems, print-on-demand product design</div>
+
+  <!-- EXPERIENCE -->
+  <h2>Experience</h2>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Three Seven Marketing</span>
+      <span class="job-dates">June 2024 – Present</span>
+    </div>
+    <div class="job-title">AI Systems &amp; Marketing Operations Lead · Remote</div>
+    <ul>
+      <li>Designed and deployed Pip, a production AI project management system built on Claude Code: multi-API architecture connecting Toggl, Monday.com, and Fireflies via a custom slash-command layer, installed team-wide via automated shell script — reduced meeting-to-task workflow from 20 minutes to 20 seconds</li>
+      <li>Architected AI-assisted workflows for reporting, content planning, campaign analysis, and client delivery — translated vague stakeholder requirements into structured systems, automation layers, and workflow documentation</li>
+      <li>Built decision-support infrastructure using BigQuery and Looker Studio: collapsed 14-tab client reporting into unified dashboards with clear performance narratives for non-technical stakeholders across 15+ accounts</li>
+      <li>Designed prompt architecture and team enablement programs that operationalized AI tools across marketing, creative, and project management — led practical adoption focused on usable workflows</li>
+      <li>Delivered measurable AI search outcomes: drove Bounce Athletics from 0 to 4 sustained AI citations and #1 ChatGPT branded ranking in 10 months through content architecture and strategic internal linking</li>
+      <li>Built and deployed 14+ agentic systems across client and internal work — including GTM automation, content pipelines, CRM workflows, and reporting infrastructure</li>
+    </ul>
+
+    <div class="subsection">
+      <div class="subsection-title">Featured Project: Pip — AI Project Manager</div>
+      <div class="subsection-sub">Built on Claude Code · Deployed to a 7-person cross-functional team</div>
+      <p class="blurb">Architecture: custom /pm-* slash-command layer connecting three external APIs (Toggl, Monday.com, Fireflies). Team-wide installation via shared Google Drive sync and shell setup script.</p>
+      <p class="blurb" style="margin-top:4px;">Commands shipped: /pm-status (hour pacing vs. budget) · /pm-sprint (current sprint view) · /pm-plan (sprint planning mode) · /pm-meeting (transcript → Monday tasks) · /pm-geekbot (standups from Toggl history) · /pm-report (client update email) · /pm-mywork (cross-board task view by team member)</p>
+      <p class="blurb" style="margin-top:4px;"><strong>Result: meeting-to-task workflow reduced from 20 minutes to 20 seconds, every client, every week.</strong></p>
+    </div>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Madhouse</span>
+      <span class="job-dates">August 2021 – June 2024</span>
+    </div>
+    <div class="job-title">Designer / Digital Marketing Strategist · Toledo, OH (Hybrid)</div>
+    <ul>
+      <li>Built analytics and tracking infrastructure (SEO architecture, campaign tracking, performance reporting) for a multidisciplinary B2B design agency — developed the technical marketing systems foundation that informs current AI architecture work</li>
+      <li>Led waterworksforyou.org from zero to cohort-filled: designed and implemented the full digital ecosystem — website, integrated ad package, and SEO strategy — as a unified system oriented around a single measurable goal: launch the program and fill its first cohort</li>
+      <li>Translated client business goals into structured marketing programs; bridged design thinking and performance data across accounts</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Mail Works II</span>
+      <span class="job-dates">January 2019 – April 2021</span>
+    </div>
+    <div class="job-title">Creative Director · Toledo, OH</div>
+    <ul>
+      <li>Directed all branding, marketing, and client design for a full-service commercial print and mail house</li>
+      <li>Managed end-to-end production workflows from concept through execution — first experience designing and operationalizing repeatable team processes</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Cuttlefish Graphics</span>
+      <span class="job-dates">February 2012 – Present</span>
+    </div>
+    <div class="job-title">Founder · Remote</div>
+    <ul>
+      <li>Founded and operated a design studio that evolved into a digital product business (print-on-demand activewear, digital templates); 4,000+ sales, 4.8 stars on Etsy</li>
+      <li>Sole operator of all creative, product, and business systems — built and iterated every workflow independently</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Owens Community College</span>
+      <span class="job-dates">January – May 2026</span>
+    </div>
+    <div class="job-title">Adjunct Instructor · Toledo, OH</div>
+    <p class="blurb">Taught commercial design. Alumni Hall of Fame Honoree 2024 (inaugural class).</p>
+  </div>
+
+  <!-- PERSONAL BUILDS -->
+  <h2>Personal Builds</h2>
+
+  <div class="subsection">
+    <div class="subsection-title">Roux — AI Meal Planning System</div>
+    <div class="subsection-sub">Built on Claude Code · Personal project, publicly released</div>
+    <p class="blurb">File-based AI meal planning system designed for non-technical users with two-tier distribution: Simple (claude.ai prompt templates) and Build Your Own (Claude Code with full local file context). Integrations: AnyList via MCP, iOS Shortcut for one-tap home screen access. Household profile, pantry inventory, and weekly deals stored as local markdown files — persistent context without cloud storage.</p>
+  </div>
+
+  <!-- SPEAKING -->
+  <h2>Speaking</h2>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Cincy AI Week — Cincinnati, OH</span>
+      <span class="job-dates">June 2026</span>
+    </div>
+    <div class="job-title">AI for Marketing, Growth, and Operations</div>
+    <p class="blurb">Panel with enterprise leaders from NaviStone and Sama on practical AI transformation.</p>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <h2>Certifications</h2>
+  <ul class="inline-list">
+    <li>monday.com Agent Creator</li>
+    <li>HubSpot Digital Marketing</li>
+    <li>HubSpot Reporting</li>
+    <li>Google Ads Search</li>
+    <li>Google Ads Display</li>
+    <li>Google Ads Video</li>
+    <li>Google Analytics (GA4)</li>
+  </ul>
+
+  <!-- EDUCATION -->
+  <h2>Education</h2>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Owens Community College</span>
+      <span class="job-dates">2011</span>
+    </div>
+    <div class="job-title">AAS, Commercial and Advertising Art</div>
+    <p class="blurb">Alumni Hall of Fame 2024 — inaugural class</p>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Bowling Green State University</span>
+      <span class="job-dates">2003–2005</span>
+    </div>
+    <div class="job-title">Undergraduate Studies, Journalism</div>
+  </div>
+
+  <!-- HONORS & AWARDS -->
+  <h2>Honors &amp; Awards</h2>
+  <ul>
+    <li>Alumni Hall of Fame — Owens Community College (2024) · Inaugural class</li>
+    <li>3rd Place, National AAF Club Achievement — Public Service (2015) · American Advertising Federation</li>
+    <li>American Advertising Awards Judge — AAF Canton, OH (2015)</li>
+    <li>Student Design Show Judge — Owens Community College (2017)</li>
+  </ul>
+
+  <!-- EARLIER EXPERIENCE -->
+  <h2>Earlier Experience</h2>
+  <div class="condensed-job"><strong>Owens Corning Creative Solutions</strong> — Toledo, OH · Creative · 2015–2016</div>
+  <div class="condensed-job"><strong>Fruchtman Marketing</strong> — Toledo, OH · Designer / Strategist · 2013–2015 · Marketing strategy and design for the jewelry industry; campaign and brand work for retail clients nationally</div>
+  <div class="condensed-job"><strong>Worldstart</strong> — Toledo, OH · Designer · 2012–2013 · Digital product and creative design for a tech media publisher</div>
+
+  <!-- COMMUNITY -->
+  <h2>Community</h2>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">American Advertising Federation of Toledo</span>
+      <span class="job-dates">2014–2022</span>
+    </div>
+    <div class="job-title">Board Member · President 2019–2020</div>
+    <p class="blurb">Navigated simultaneous executive director transition (20-year predecessor) and COVID-era pivot to virtual operations — kept the organization running and membership engaged through both.</p>
+  </div>
+  <div class="condensed-job"><strong>Owens College CRT Advisory Board</strong> — 2019–Present · Industry advisor to alma mater</div>
+  <div class="condensed-job"><strong>Rogers HS VCT Advisory Board</strong> — 2022–Present</div>
+
+</body>
+</html>

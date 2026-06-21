@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <title>Resume — Melanie Dunn</title>
+  <meta name="description" content="AI systems builder with deep marketing operations expertise. Resume of Melanie Dunn — AI workflow architecture, agentic systems, marketing operations, Claude Code, n8n." />
+  <meta property="og:title" content="Resume — Melanie Dunn" />
+  <meta property="og:description" content="AI systems builder with deep marketing operations expertise. I design, build, document, and operationalize agentic AI systems for real teams." />
+  <meta property="og:image" content="https://www.melaniedunn.work/assets/images/aurora-orbs.png" />
+  <meta property="og:url" content="https://www.melaniedunn.work/resume/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://use.typekit.net/tni7vha.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:          #E8185A;
+      --pink-deep:     #C71450;
+      --warm-black:    #14110E;
+      --warm-black-2:  #1C1917;
+      --mid-gray:      #6B6560;
+      --light-gray:    #A8A29E;
+      --border:        #E2E4E8;
+      --border-soft:   #ECEEF1;
+      --bg:            #FAFAFB;
+      --bg-warm:       #F1F2F4;
+      --bg-deep:       #08070C;
+      --teal:          #00C9C8;
+      --violet:        #7C3AED;
+      --holo:          linear-gradient(135deg, #E8185A 0%, #7C3AED 50%, #00C9C8 100%);
+      --holo-wide:     linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --holo-bright:   linear-gradient(135deg, #FF4E80 0%, #B289FF 50%, #5EE8E7 100%);
+      --aurora-bg:     linear-gradient(135deg, #0A0E1A 0%, #1A0A2E 45%, #0A1E2E 100%);
+      --max:           1180px;
+      --gutter:        clamp(20px, 4vw, 56px);
+      --serif:         'DM Serif Display', 'Times New Roman', serif;
+      --sans:          'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:          'JetBrains Mono', monospace;
+      --logo-serif:    'Cormorant Garamond', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html, body { background: var(--bg); color: var(--warm-black); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    svg { display: block; max-width: 100%; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(250,250,251,0.88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid rgba(226,228,232,0.6); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 24px; }
+    .nav .logo-mark { height: 32px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 38px; align-items: center; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--warm-black); position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--holo); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav .right { display: flex; align-items: center; gap: 14px; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 13px 22px; border-radius: 6px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: transform 0.2s, background-position 0.4s, box-shadow 0.2s; cursor: pointer; border: none; white-space: nowrap; }
+    .btn-holo { background: var(--holo); background-size: 200% 200%; background-position: 0% 50%; color: white; box-shadow: 0 1px 0 rgba(232,24,90,0.3), 0 14px 32px -14px rgba(124,58,237,0.5); }
+    .btn-holo:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--warm-black); border: 1px solid var(--border); font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: var(--warm-black); flex-direction: column; gap: 5px; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; }
+    @media (max-width: 760px) { .nav-hamburger { display: flex; } }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: currentColor; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .nav-mobile { display: none; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border-soft); padding: 8px 0; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { padding: 14px var(--gutter); font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--border-soft); transition: color 0.2s; }
+    .nav-mobile a:hover { color: var(--pink); }
+
+    /* ── TYPE ────────────────────────────────────────── */
+    .eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); display: inline-flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .eyebrow.no-rule::before { display: none; }
+    .eyebrow.teal { color: var(--teal); }
+    .eyebrow.teal::before { background: var(--teal); }
+
+    .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.06; color: var(--warm-black); }
+    .serif-display em { font-style: italic; display: inline-block; padding-bottom: 0.18em; vertical-align: baseline; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .on-dark .serif-display { color: #F5F1EB; }
+    .on-dark .serif-display em { background: var(--holo-bright); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .resume-hero {
+      background: var(--bg-deep);
+      position: relative;
+      overflow: hidden;
+      padding: clamp(60px, 10vw, 100px) 0 clamp(50px, 8vw, 80px);
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .orb-v { width: 500px; height: 500px; background: rgba(124,58,237,0.22); top: -120px; right: -80px; }
+    .orb-t { width: 380px; height: 380px; background: rgba(0,201,200,0.14); bottom: -60px; left: 10%; }
+    .orb-p { width: 300px; height: 300px; background: rgba(232,24,90,0.12); top: 30%; left: -60px; }
+
+    .hero-inner { position: relative; z-index: 2; }
+    .hero-label { margin-bottom: 20px; }
+
+    .resume-name {
+      font-family: var(--serif);
+      font-size: clamp(44px, 7vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      background: var(--holo-bright);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+    }
+    .resume-role {
+      font-family: var(--mono);
+      font-size: clamp(11px, 1.5vw, 14px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+    .contact-bar {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .contact-bar a {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: rgba(245,241,235,0.55);
+      transition: color 0.2s;
+    }
+    .contact-bar a:hover { color: rgba(245,241,235,0.9); }
+    .contact-bar span { color: rgba(245,241,235,0.2); }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      max-width: 680px;
+      margin-bottom: 36px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .stat {
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.03);
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: clamp(22px, 3.5vw, 30px);
+      background: var(--holo-bright);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,241,235,0.4);
+    }
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); max-width: 340px; }
+    }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ── BODY ─────────────────────────────────────────── */
+    .resume-body { padding: clamp(48px, 6vw, 80px) 0; }
+
+    .resume-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .resume-section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .resume-section:last-child { border-bottom: none; }
+
+    .section-head { margin-bottom: 28px; }
+    .section-head .eyebrow { margin-bottom: 8px; }
+
+    /* ── COMPETENCIES ─────────────────────────────────── */
+    .comp-groups { display: flex; flex-direction: column; gap: 18px; }
+    .comp-group { display: flex; gap: 14px; align-items: flex-start; }
+    .comp-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      min-width: 180px;
+      padding-top: 5px;
+      flex-shrink: 0;
+    }
+    .comp-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--mid-gray);
+      background: var(--bg-warm);
+      white-space: nowrap;
+    }
+    .tag.pink { border-color: rgba(232,24,90,0.3); color: var(--pink); background: rgba(232,24,90,0.05); }
+    .tag.teal { border-color: rgba(0,201,200,0.3); color: #009B9A; background: rgba(0,201,200,0.05); }
+    .tag.violet { border-color: rgba(124,58,237,0.3); color: var(--violet); background: rgba(124,58,237,0.05); }
+    @media (max-width: 640px) { .comp-group { flex-direction: column; gap: 8px; } .comp-label { min-width: auto; padding-top: 0; } }
+
+    /* ── JOB ENTRIES ─────────────────────────────────── */
+    .jobs { display: flex; flex-direction: column; gap: 36px; }
+    .job-entry {}
+    .job-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .job-co {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--warm-black);
+    }
+    .job-dates {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--light-gray);
+      padding-top: 4px;
+      white-space: nowrap;
+    }
+    .job-title-line {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--mid-gray);
+      letter-spacing: 0.01em;
+      margin-bottom: 14px;
+    }
+    .job-bullets { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .job-bullets li {
+      padding-left: 18px;
+      position: relative;
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: #2A2825;
+    }
+    .job-bullets li::before { content: "—"; position: absolute; left: 0; color: var(--light-gray); }
+
+    /* ── CALLOUT BOX (Pip, Roux) ─────────────────────── */
+    .callout {
+      margin-top: 24px;
+      background: #0D0C10;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .callout-bar {
+      height: 3px;
+      background: var(--holo-wide);
+    }
+    .callout-inner { padding: 24px 28px; }
+    .callout-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: #F5F1EB;
+      margin-bottom: 4px;
+    }
+    .callout-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .callout-body {
+      font-size: 13.5px;
+      color: rgba(245,241,235,0.65);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .cmd-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+    .cmd-chip {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(0,201,200,0.3);
+      color: var(--teal);
+      background: rgba(0,201,200,0.07);
+    }
+    .callout-result {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: rgba(245,241,235,0.45);
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .callout-result strong { color: rgba(245,241,235,0.85); }
+
+    /* ── SIMPLE SECTIONS ─────────────────────────────── */
+    .simple-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+    .simple-list li { font-size: 14.5px; padding-left: 18px; position: relative; }
+    .simple-list li::before { content: "—"; position: absolute; left: 0; color: var(--light-gray); }
+
+    .cert-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cert-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: var(--mid-gray);
+      background: var(--bg-warm);
+    }
+
+    .edu-entries { display: flex; flex-direction: column; gap: 16px; }
+    .edu-entry {}
+    .edu-degree { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .edu-school { font-size: 13.5px; color: var(--mid-gray); }
+    .edu-note { font-family: var(--mono); font-size: 10.5px; color: var(--pink); letter-spacing: 0.04em; margin-top: 3px; }
+
+    .honors-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .honors-list li { font-size: 14.5px; padding-left: 18px; position: relative; }
+    .honors-list li::before { content: "★"; position: absolute; left: 0; color: var(--pink); font-size: 10px; top: 3px; }
+
+    .condensed-jobs { display: flex; flex-direction: column; gap: 12px; }
+    .condensed-entry { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+    .condensed-co { font-weight: 600; font-size: 14px; }
+    .condensed-sub { font-size: 13px; color: var(--mid-gray); }
+    .condensed-date { font-family: var(--mono); font-size: 10.5px; color: var(--light-gray); white-space: nowrap; }
+
+    .community-entries { display: flex; flex-direction: column; gap: 18px; }
+    .comm-entry {}
+    .comm-org { font-weight: 600; font-size: 14.5px; margin-bottom: 3px; }
+    .comm-role { font-size: 13.5px; color: var(--mid-gray); margin-bottom: 5px; }
+    .comm-note { font-size: 13.5px; color: #2A2825; line-height: 1.5; }
+
+    /* ── PDF CTA STRIP ───────────────────────────────── */
+    .pdf-strip {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border-soft);
+      padding: 32px 0;
+    }
+    .pdf-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .pdf-strip-text { font-size: 14px; color: var(--mid-gray); }
+    .pdf-strip-text strong { color: var(--warm-black); }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    .foot { padding: 40px 0; border-top: 1px solid var(--border-soft); }
+    .foot-grid { display: flex; flex-direction: column; gap: 20px; }
+    .foot-row1 { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .foot-left { display: flex; align-items: center; gap: 20px; }
+    .foot .logo-mark { height: 30px; width: auto; }
+    .micro { font-family: var(--mono); font-size: 10.5px; color: var(--light-gray); letter-spacing: 0.05em; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a, .foot-social a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-links a:hover, .foot-social a:hover { color: var(--pink); }
+    .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-also { font-size: 11.5px; color: rgba(20,17,14,0.35); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+    .foot-also a { color: rgba(232,24,90,0.6); border-bottom: 1px solid rgba(232,24,90,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
+
+    /* ── REVEAL ─────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html" aria-label="Melanie Dunn home">
+          <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+            <defs><linearGradient id="holo-nav-resume" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8185A"/><stop offset="50%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#00C9C8"/></linearGradient></defs>
+            <path fill="url(#holo-nav-resume)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+            <path fill="url(#holo-nav-resume)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../work/index.html">Work</a></li>
+          <li><a href="../melsplains/index.html">Melsplains</a></li>
+          <li><a href="../about/index.html">About</a></li>
+        </ul>
+        <div class="right">
+          <a href="../contact/index.html" class="btn btn-holo" style="padding: 11px 18px; font-size: 13px;">Let's Talk</a>
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Mobile navigation">
+    <a href="../work/index.html">Work</a>
+    <a href="../melsplains/index.html">Melsplains</a>
+    <a href="../about/index.html">About</a>
+    <a href="../contact/index.html" class="btn btn-holo mob-cta" style="margin: 12px 20px; padding: 13px 20px; text-align: center;">Let's Talk</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="resume-hero on-dark">
+    <div class="hero-orb orb-v"></div>
+    <div class="hero-orb orb-t"></div>
+    <div class="hero-orb orb-p"></div>
+    <div class="container hero-inner">
+      <div class="hero-label">
+        <span class="eyebrow teal no-rule">Resume</span>
+      </div>
+      <h1 class="resume-name">Melanie Dunn</h1>
+      <div class="resume-role">AI Systems &amp; Marketing Operations Lead</div>
+      <div class="contact-bar">
+        <a href="https://melaniedunn.work">melaniedunn.work</a>
+        <span>·</span>
+        <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">linkedin.com/in/dunnmel</a>
+        <span>·</span>
+        <a href="mailto:melanie@threesevenmarketing.com">melanie@threesevenmarketing.com</a>
+        <span>·</span>
+        <span style="color:rgba(245,241,235,0.45);">Toledo, Ohio</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">14+</div>
+          <div class="stat-label">Agentic systems built</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">20→20</div>
+          <div class="stat-label">Min → sec per meeting</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Yrs marketing ops</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Yrs design</div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="ats.html" class="btn btn-holo" target="_blank">Print / PDF version →</a>
+        <a href="../contact/index.html" class="btn btn-ghost" style="color:#fff; border-color:rgba(255,255,255,0.18);">Let's Talk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME BODY -->
+  <main class="resume-body">
+    <div class="container">
+
+      <!-- SUMMARY -->
+      <section class="resume-section reveal">
+        <div class="section-head">
+          <div class="eyebrow">Summary</div>
+        </div>
+        <p style="font-size:15.5px; line-height:1.65; max-width:720px; margin-bottom:16px;">Most AI advice is theoretical. I build the actual thing — and then document it, train the team, and make sure it still works six weeks later.</p>
+        <p style="font-size:15.5px; line-height:1.65; max-width:720px;">I came up through design — 20 years of it — then crossed into marketing, then marketing operations, and now I'm building AI systems. That sequence matters more than it looks: design thinking is how I structure problems, it just shows up as workflow architecture now instead of layout grids. Marketing ops is where I learned where the real work accumulates: reporting that takes all day, handoffs that break quietly, data that means something only if you know where to look. I got good at finding those places and automating them. Now I do it with AI — building systems that are still running six weeks later, that someone besides me knows how to use, and that are actually connected to the things they need to connect to. The value is the architecture and the implementation. Prompting is the easy part.</p>
+      </section>
+
+      <!-- CORE COMPETENCIES -->
+      <section class="resume-section reveal delay-1">
+        <div class="section-head">
+          <div class="eyebrow">Core Competencies</div>
+        </div>
+        <div class="comp-groups">
+          <div class="comp-group">
+            <div class="comp-label">AI Architecture &amp; Workflow</div>
+            <div class="comp-tags">
+              <span class="tag violet">Claude Code</span>
+              <span class="tag violet">n8n</span>
+              <span class="tag violet">ChatGPT</span>
+              <span class="tag">Agentic system design</span>
+              <span class="tag">Multi-API orchestration</span>
+              <span class="tag">Prompt architecture</span>
+              <span class="tag">Workflow documentation</span>
+              <span class="tag">AI adoption &amp; enablement</span>
+            </div>
+          </div>
+          <div class="comp-group">
+            <div class="comp-label">Data &amp; Reporting</div>
+            <div class="comp-tags">
+              <span class="tag pink">BigQuery</span>
+              <span class="tag pink">Looker Studio</span>
+              <span class="tag">GTM / tracking architecture</span>
+              <span class="tag">HubSpot</span>
+              <span class="tag">Decision-support dashboards</span>
+            </div>
+          </div>
+          <div class="comp-group">
+            <div class="comp-label">Systems Implementation</div>
+            <div class="comp-tags">
+              <span class="tag">Business process design</span>
+              <span class="tag">Cross-functional deployment</span>
+              <span class="tag">Team enablement &amp; training</span>
+              <span class="tag">Technical documentation</span>
+            </div>
+          </div>
+          <div class="comp-group">
+            <div class="comp-label">Marketing Domain</div>
+            <div class="comp-tags">
+              <span class="tag teal">SEO / AIO</span>
+              <span class="tag teal">AI search optimization</span>
+              <span class="tag">Paid media (Google Ads)</span>
+              <span class="tag">B2B campaign architecture</span>
+              <span class="tag">Content strategy</span>
+              <span class="tag">Marketing operations</span>
+            </div>
+          </div>
+          <div class="comp-group">
+            <div class="comp-label">Design &amp; Creative Tech</div>
+            <div class="comp-tags">
+              <span class="tag">Brand identity</span>
+              <span class="tag">Adobe Creative Suite</span>
+              <span class="tag">Canva</span>
+              <span class="tag">Print production</span>
+              <span class="tag">Visual systems</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="resume-section reveal">
+        <div class="section-head">
+          <div class="eyebrow">Experience</div>
+        </div>
+        <div class="jobs">
+
+          <!-- Three Seven -->
+          <div class="job-entry">
+            <div class="job-meta">
+              <div class="job-co">Three Seven Marketing</div>
+              <div class="job-dates">Jun 2024 – Present</div>
+            </div>
+            <div class="job-title-line">AI Systems &amp; Marketing Operations Lead · Remote</div>
+            <ul class="job-bullets">
+              <li>Designed and deployed Pip, a production AI project manager built on Claude Code — multi-API architecture connecting Toggl, Monday.com, and Fireflies via a custom slash-command layer, installed team-wide via automated shell script. Cut the meeting-to-task workflow from 20 minutes to 20 seconds.</li>
+              <li>Architected AI-assisted workflows for reporting, content planning, campaign analysis, and client delivery — translated vague stakeholder requirements into structured systems, automation layers, and workflow documentation.</li>
+              <li>Built decision-support infrastructure using BigQuery + Looker Studio: collapsed 14-tab client reporting into unified dashboards for non-technical stakeholders across 15+ accounts.</li>
+              <li>Designed prompt architecture and team enablement programs that operationalized AI tools across marketing, creative, and project management.</li>
+              <li>Drove Bounce Athletics from 0 to 4 sustained AI citations and #1 ChatGPT branded ranking in 10 months through content architecture and strategic internal linking.</li>
+              <li>Built and deployed 14+ agentic systems across client and internal work — GTM automation, content pipelines, CRM workflows, and reporting infrastructure.</li>
+            </ul>
+
+            <!-- Pip callout -->
+            <div class="callout">
+              <div class="callout-bar"></div>
+              <div class="callout-inner">
+                <div class="callout-title">Featured Project: Pip — AI Project Manager</div>
+                <div class="callout-sub">Built on Claude Code · 7-person cross-functional team · Production deployment</div>
+                <p class="callout-body">Architecture: custom <code style="font-family:var(--mono);font-size:12px;color:rgba(245,241,235,0.5);">/pm-*</code> slash-command layer connecting three external APIs (Toggl, Monday.com, Fireflies). Installed team-wide via shared Google Drive sync + shell setup script. Each command abstracts multi-step API calls into a single interaction.</p>
+                <div class="cmd-chips">
+                  <span class="cmd-chip">/pm-status</span>
+                  <span class="cmd-chip">/pm-sprint</span>
+                  <span class="cmd-chip">/pm-plan</span>
+                  <span class="cmd-chip">/pm-meeting</span>
+                  <span class="cmd-chip">/pm-geekbot</span>
+                  <span class="cmd-chip">/pm-report</span>
+                  <span class="cmd-chip">/pm-mywork</span>
+                </div>
+                <div class="callout-result"><strong>Result: 20 min → 20 sec.</strong> Every meeting. Every client. Replaced manual time reporting, meeting recaps, standup prep, and sprint planning meetings.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Madhouse -->
+          <div class="job-entry">
+            <div class="job-meta">
+              <div class="job-co">Madhouse</div>
+              <div class="job-dates">Aug 2021 – Jun 2024</div>
+            </div>
+            <div class="job-title-line">Designer / Digital Marketing Strategist · Toledo, OH (Hybrid)</div>
+            <ul class="job-bullets">
+              <li>Built analytics and tracking infrastructure (SEO architecture, campaign tracking, performance reporting) for a multidisciplinary B2B design agency — the technical marketing systems foundation that informs current AI architecture work.</li>
+              <li>Led waterworksforyou.org from zero to cohort-filled: designed and implemented the full digital ecosystem — website, integrated ad package, and SEO strategy — as a unified system oriented around a single goal: launch the program and fill the first cohort.</li>
+              <li>Translated client business goals into structured marketing programs; bridged design thinking and performance data across accounts.</li>
+            </ul>
+          </div>
+
+          <!-- Mail Works II -->
+          <div class="job-entry">
+            <div class="job-meta">
+              <div class="job-co">Mail Works II</div>
+              <div class="job-dates">Jan 2019 – Apr 2021</div>
+            </div>
+            <div class="job-title-line">Creative Director · Toledo, OH</div>
+            <ul class="job-bullets">
+              <li>Directed all branding, marketing, and client design for a full-service commercial print and mail house.</li>
+              <li>Managed end-to-end production workflows from concept through execution — first experience designing and operationalizing repeatable team processes.</li>
+            </ul>
+          </div>
+
+          <!-- Cuttlefish -->
+          <div class="job-entry">
+            <div class="job-meta">
+              <div class="job-co">Cuttlefish Graphics</div>
+              <div class="job-dates">Feb 2012 – Present</div>
+            </div>
+            <div class="job-title-line">Founder · Remote</div>
+            <ul class="job-bullets">
+              <li>Founded and operated a design studio that evolved into a digital product business (POD activewear, digital templates); 4,000+ sales, 4.8★ on Etsy.</li>
+              <li>Sole operator of all creative, product, and business systems — built and iterated every workflow independently.</li>
+            </ul>
+          </div>
+
+          <!-- Owens CC -->
+          <div class="job-entry">
+            <div class="job-meta">
+              <div class="job-co">Owens Community College</div>
+              <div class="job-dates">Spring 2026</div>
+            </div>
+            <div class="job-title-line">Adjunct Instructor · Toledo, OH</div>
+            <p style="font-size:14.5px; color:#2A2825;">Taught commercial design. Alumni Hall of Fame Honoree 2024 — inaugural class.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PERSONAL BUILDS -->
+      <section class="resume-section reveal">
+        <div class="section-head">
+          <div class="eyebrow">Personal Builds</div>
+        </div>
+        <!-- Roux callout -->
+        <div class="callout">
+          <div class="callout-bar"></div>
+          <div class="callout-inner">
+            <div class="callout-title">Roux — AI Meal Planning System</div>
+            <div class="callout-sub">Built on Claude Code · Melsplains · Publicly released</div>
+            <p class="callout-body">File-based AI meal planning system designed for non-technical users. Two-tier distribution: Simple (claude.ai prompt templates, no setup required) and Build Your Own (Claude Code with local file context, full customization).</p>
+            <p class="callout-body">Architecture: household profile, pantry inventory, and weekly store deals stored as local markdown files — persistent context across sessions without cloud storage. Custom slash commands (<code style="font-family:var(--mono);font-size:12px;color:rgba(245,241,235,0.5);">/deals</code>, <code style="font-family:var(--mono);font-size:12px;color:rgba(245,241,235,0.5);">/plan</code>, <code style="font-family:var(--mono);font-size:12px;color:rgba(245,241,235,0.5);">/shop</code>, <code style="font-family:var(--mono);font-size:12px;color:rgba(245,241,235,0.5);">/inventory-add</code>) drive a full weekly meal planning rhythm.</p>
+            <p class="callout-body" style="margin-bottom:0;">Integrations: AnyList via MCP (pushes grocery lists and meal plan to mobile app); iOS Shortcut for one-tap home screen access. Publicly documented with setup guide, shortcut guide, and landing page.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SPEAKING -->
+      <section class="resume-section reveal">
+        <div class="section-head">
+          <div class="eyebrow">Speaking</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:15px; font-weight:600; margin-bottom:3px;">AI for Marketing, Growth, and Operations</div>
+            <div style="font-size:13.5px; color:var(--mid-gray);">Cincy AI Week — Cincinnati, OH · June 2026</div>
+            <div style="font-size:13.5px; margin-top:6px;">Panel with enterprise leaders from NaviStone and Sama on practical AI transformation.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CERTIFICATIONS -->
+      <section class="resume-section reveal">
+        <div class="section-head">
+          <div class="eyebrow">Certifications</div>
+        </div>
+        <div class="cert-tags">
+          <span class="cert-tag">monday.com Agent Creator</span>
+          <span class="cert-tag">HubSpot Digital Marketing</span>
+          <span class="cert-tag">HubSpot Reporting</span>
+          <span class="cert-tag">Google Ads Search</span>
+          <span class="cert-tag">Google Ads Display</span>
+          <span class="cert-tag">Google Ads Video</span>
+          <span class="cert-tag">Google Analytics (GA4)</span>
+        </div>
+      </section>
+
+      <!-- EDUCATION & HONORS -->
+      <section class="resume-section reveal">
+        <div class="section-head">
+          <div class="eyebrow">Education &amp; Honors</div>
+        </div>
+        <div class="edu-entries" style="margin-bottom:32px;">
+          <div class="edu-entry">
+            <div class="edu-degree">AAS, Commercial and Advertising Art</div>
+            <div class="edu-school">Owens Community College · 2011</div>
+            <div class="edu-note">Alumni Hall of Fame 2024 · Inaugural class</div>
+          </div>
+          <div class="edu-entry">
+            <div class="edu-degree">Undergraduate Studies, Journalism</div>
+            <div class="edu-school">Bowling Green State University · 2003–2005</div>
+          </div>
+        </div>
+        <ul class="honors-list">
+          <li>Alumni Hall of Fame — Owens Community College (2024) · Inaugural class</li>
+          <li>3rd Place, National AAF Club Achievement — Public Service (2015) · American Advertising Federation</li>
+          <li>American Advertising Awards Judge — AAF Canton, OH (2015)</li>
+          <li>Student Design Show Judge — Owens Community College (2017)</li>
+        </ul>
+      </section>
+
+      <!-- EARLIER EXPERIENCE -->
+      <section class="resume-section reveal">
+        <div class="section-head">
+          <div class="eyebrow">Earlier Experience</div>
+        </div>
+        <div class="condensed-jobs">
+          <div>
+            <div class="condensed-entry">
+              <span class="condensed-co">Owens Corning Creative Solutions</span>
+              <span class="condensed-date">2015–2016</span>
+            </div>
+            <div class="condensed-sub">Toledo, OH · Creative</div>
+          </div>
+          <div>
+            <div class="condensed-entry">
+              <span class="condensed-co">Fruchtman Marketing</span>
+              <span class="condensed-date">2013–2015</span>
+            </div>
+            <div class="condensed-sub">Toledo, OH · Designer / Strategist · Marketing strategy and design for the jewelry industry; campaign and brand work for retail clients nationally</div>
+          </div>
+          <div>
+            <div class="condensed-entry">
+              <span class="condensed-co">Worldstart</span>
+              <span class="condensed-date">2012–2013</span>
+            </div>
+            <div class="condensed-sub">Toledo, OH · Designer · Digital product and creative design for a tech media publisher</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMUNITY -->
+      <section class="resume-section reveal">
+        <div class="section-head">
+          <div class="eyebrow">Community</div>
+        </div>
+        <div class="community-entries">
+          <div class="comm-entry">
+            <div class="comm-org">American Advertising Federation of Toledo</div>
+            <div class="comm-role">Board Member 2014–2022 · President 2019–2020</div>
+            <div class="comm-note">Navigated a simultaneous executive director transition (20-year predecessor) and COVID-era pivot to virtual operations — kept the organization running and membership engaged through both.</div>
+          </div>
+          <div class="comm-entry">
+            <div class="comm-org">Owens College CRT Advisory Board</div>
+            <div class="comm-role">2019–Present · Industry advisor to alma mater</div>
+          </div>
+          <div class="comm-entry">
+            <div class="comm-org">Rogers HS VCT Advisory Board</div>
+            <div class="comm-role">2022–Present</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- PDF CTA STRIP -->
+  <div class="pdf-strip">
+    <div class="container">
+      <div class="pdf-strip-inner">
+        <div class="pdf-strip-text"><strong>Need a clean PDF version?</strong> The print version is formatted for ATS and AI hiring tools — open it and Cmd+P to save.</div>
+        <a href="ats.html" class="btn btn-holo" target="_blank" style="flex-shrink:0;">Open Print Version →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-row1">
+          <div class="foot-left">
+            <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+              <defs><linearGradient id="holo-foot-resume" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8185A"/><stop offset="50%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#00C9C8"/></linearGradient></defs>
+              <path fill="url(#holo-foot-resume)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+              <path fill="url(#holo-foot-resume)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+            </svg>
+            <span class="micro">© 2026 Melanie Dunn. Built without buzzwords.</span>
+          </div>
+          <nav class="foot-links" aria-label="Footer navigation">
+            <a href="../work/index.html">Work</a>
+            <a href="../melsplains/index.html">Melsplains</a>
+            <a href="../about/index.html">About</a>
+            <a href="index.html">Resume</a>
+            <a href="../contact/index.html">Let's Talk</a>
+          </nav>
+        </div>
+        <div class="foot-social">
+          <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); },
+        { threshold: 0.08 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      const btn = document.getElementById('nav-hamburger');
+      const mob = document.getElementById('nav-mobile');
+      if (btn && mob) {
+        btn.addEventListener('click', () => {
+          const open = mob.classList.toggle('open');
+          btn.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', open);
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
