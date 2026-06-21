@@ -30,7 +30,8 @@ I came up through design — 20 years of it — then crossed into marketing, the
 ## Experience
 
 ### Three Seven Marketing — Remote
-**AI Systems & Marketing Operations Lead** | Jun 2024 – Present
+**Marketing Lead** | Sep 2025 – Present
+**Digital Marketing Specialist** | Jun 2024 – Sep 2025
 
 - Designed and deployed Pip, a production AI project management system built on Claude Code: multi-API architecture connecting Toggl, Monday.com, and Fireflies via a custom slash-command layer, installed team-wide via automated shell script — cut the meeting-to-task workflow from 20 minutes to 20 seconds
 - Architected AI-assisted workflows for reporting, content planning, campaign analysis, and client delivery — translated vague stakeholder requirements into structured systems, automation layers, and workflow documentation
@@ -128,9 +129,9 @@ Undergraduate Studies, Journalism — Bowling Green State University (2003–200
 
 ## Earlier Experience
 
-**Owens Corning Creative Solutions** — Toledo, OH · Creative · 2015–2016
-**Fruchtman Marketing** — Toledo, OH · Designer / Strategist · 2013–2015 · Marketing strategy and design for the jewelry industry; national retail clients
-**Worldstart** — Toledo, OH · Designer · 2012–2013 · Digital product and creative design for a tech media publisher
+**Owens Corning Creative Solutions** — Toledo, OH · Sr. Graphic Designer · Oct 2015–Aug 2016
+**Fruchtman Marketing** — Toledo, OH · Sr. Graphic Designer · Apr 2014–Sep 2015 · Marketing strategy and design for the jewelry industry; national retail clients
+**Worldstart** — Toledo, OH · Communications Coordinator / Graphic Designer · Oct 2012–Apr 2014 · Digital product and creative design for a tech media publisher
 
 ---
 
