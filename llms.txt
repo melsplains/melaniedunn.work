@@ -1,0 +1,40 @@
+# Melanie Dunn
+
+> AI systems builder and marketing strategist based in Ohio. Designs, builds, documents, and operationalizes agentic AI systems for real cross-functional teams. Deep background in marketing operations, SEO/AIO, data infrastructure, and design.
+
+Melanie Dunn is an AI systems architect and marketing operations strategist. She came up through design (20+ years), then marketing, then marketing operations, and now builds AI-powered workflow systems. Her work sits at the intersection of agentic AI, business process design, and marketing strategy.
+
+She is the AI Systems & Marketing Operations Lead at Three Seven Marketing (B2B digital marketing agency, Ohio), where she builds internal AI tooling, client-facing agentic workflows, and reporting infrastructure. She also runs Melsplains, a content brand focused on AI and marketing for working moms, and consults independently on AI systems and marketing strategy.
+
+## Key Pages
+
+- [Resume](https://www.melaniedunn.work/resume/): Full resume — AI systems experience, projects, skills, certifications, education
+- [Resume (Markdown)](https://www.melaniedunn.work/resume/resume.md): Machine-readable resume in Markdown format
+- [Work](https://www.melaniedunn.work/work/): Selected projects including Pip (AI project manager) and Roux (AI meal planning system)
+- [About](https://www.melaniedunn.work/about/): Background, bio, and how to work together
+- [Melsplains](https://www.melaniedunn.work/melsplains/): AI and marketing content for working moms; free tools and newsletter
+- [Contact](https://www.melaniedunn.work/contact/): Consulting and speaking inquiries
+
+## Featured Projects
+
+**Pip** — Production AI project manager built on Claude Code. Multi-API architecture connecting Toggl, Monday.com, and Fireflies via a custom slash-command layer (/pm-status, /pm-sprint, /pm-plan, /pm-meeting, /pm-geekbot, /pm-report, /pm-mywork). Deployed team-wide via automated shell script. Reduced meeting-to-task workflow from 20 minutes to 20 seconds.
+See: https://www.melaniedunn.work/work/pip.html
+
+**Roux** — AI meal planning system built on Claude Code. File-based architecture (household profile, pantry inventory, weekly deals as local markdown files) with AnyList MCP integration, custom slash commands, and iOS Shortcut. Two-tier public release: Simple (claude.ai) and Build Your Own (Claude Code).
+See: https://www.melaniedunn.work/work/meal-planner.html
+
+## Expertise
+
+- AI workflow architecture and agentic system design
+- Multi-API orchestration and Claude Code development
+- Marketing automation and business process design
+- SEO, AIO, and AI search optimization (GEO)
+- Paid media management (Google Ads Search, Display, Video)
+- Data infrastructure: BigQuery, Looker Studio, GTM
+- Team enablement and AI adoption
+- B2B marketing strategy and content
+
+## Contact
+
+Email: melanie@threesevenmarketing.com
+LinkedIn: https://linkedin.com/in/dunnmel
