@@ -145,6 +145,13 @@
     .reveal.delay-1 { transition-delay: 0.06s; }
     .reveal.delay-2 { transition-delay: 0.12s; }
   </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LBWDY3MCVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LBWDY3MCVS');
+  </script>
 </head>
 <body>
 
@@ -225,13 +232,13 @@
         <div class="article-body reveal">
 
           <h3>What it is</h3>
-          <p>Pip is a custom AI project manager built on Claude Code. It lives as a set of slash commands that connect Toggl, Monday.com, Zoom, and Google Drive and give the <a href="https://threesevenmarketing.com" target="_blank" rel="noopener" style="border-bottom: 1px solid rgba(20,17,14,0.2); transition: border-color 0.2s;">Three Seven</a> marketing team a single place to run retainer work, meeting follow-through, and weekly capacity planning.</p>
+          <p>Pip is a custom AI project manager built on Claude Code. It lives as a set of slash commands that connect Toggl, Monday.com, our AI notetaker, and Google Drive and give the <a href="https://threesevenmarketing.com" target="_blank" rel="noopener" style="border-bottom: 1px solid rgba(20,17,14,0.2); transition: border-color 0.2s;">Three Seven</a> marketing team a single place to run retainer work, meeting follow-through, and weekly capacity planning.</p>
           <p>No new tool. No new login. It runs in the terminal and returns exactly what you need.</p>
 
           <h3>Meeting → Monday, in one command</h3>
           <p>After every client call, the loop used to be: find the transcript, write up a recap, identify action items, figure out which ones already exist as tasks, create the new ones, assign them, add due dates. Somewhere between 15 and 30 minutes, every time.</p>
           <p>Now it's <code style="font-family: var(--mono); font-size: 14px; background: var(--bg-warm); padding: 3px 7px; border-radius: 3px; color: var(--warm-black);">/pm-meeting kennedy care</code>.</p>
-          <p>Pip finds the latest Zoom transcript for that client, writes a structured recap, and logs it to the right Monday board under Project Management, with the full transcript link attached. Then it processes each action item: fuzzy-matching against the current sprint to see if there's an existing task it belongs to. If there is, it adds context. If there isn't, it creates a new sprint task with the owner, due date, and meeting notes already there.</p>
+          <p>Pip finds the latest meeting transcript for that client, writes a structured recap, and logs it to the right Monday board under Project Management, with the full transcript link attached. Then it processes each action item: fuzzy-matching against the current sprint to see if there's an existing task it belongs to. If there is, it adds context. If there isn't, it creates a new sprint task with the owner, due date, and meeting notes already there.</p>
           <p>The meeting debrief that used to take 20 minutes takes about 20 seconds.</p>
 
           <h3>Monday morning resourcing, without being asked</h3>
@@ -242,7 +249,7 @@
           <div class="stack-row" style="margin-bottom: 20px;">
             <span class="stack-badge">Claude Code</span>
             <span class="stack-badge">Monday.com API</span>
-            <span class="stack-badge">Zoom API</span>
+            <span class="stack-badge">AI notetaker</span>
             <span class="stack-badge">Toggl API</span>
             <span class="stack-badge">Google Drive</span>
             <span class="stack-badge">bash</span>

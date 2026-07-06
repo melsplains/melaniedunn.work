@@ -30,7 +30,7 @@ I came up through design — 20 years of it — then crossed into marketing, the
 ## Experience
 
 ### Three Seven Marketing — Remote
-**Marketing Lead** | Sep 2025 – Present
+**Marketing Operations Lead** | Sep 2025 – Present
 **Digital Marketing Specialist** | Jun 2024 – Sep 2025
 
 - Designed and deployed Pip, a production AI project management system built on Claude Code: multi-API architecture connecting Toggl, Monday.com, and Fireflies via a custom slash-command layer, installed team-wide via automated shell script — cut the meeting-to-task workflow from 20 minutes to 20 seconds
