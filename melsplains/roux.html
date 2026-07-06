@@ -622,7 +622,7 @@
           <div class="kit-item-num">05</div>
           <div class="kit-item-icon">🛒</div>
           <h3 class="kit-item-title">Grocery List Output Template</h3>
-          <p class="kit-item-desc">The format Claude uses to give you your list — organized by store section, noting what you already have vs. what to buy. Easy to copy into your phone or grocery app. In my full system, Claude also connects to my Kroger and Meijer accounts to check current sales and available coupons before building the list — so meals get planned around actual deals, not just what sounds good.</p>
+          <p class="kit-item-desc">The format Claude uses to give you your list — organized by store section, noting what you already have vs. what to buy. Easy to copy into your phone or grocery app. In my full system, Claude also pulls my stores' weekly ads and coupon matchups before building the list — so meals get planned around actual deals, not just what sounds good.</p>
           <span class="kit-item-tag">Output format</span>
         </div>
 
@@ -637,7 +637,7 @@
       </div>
 
       <p class="kit-note">
-        <strong>No recipes included</strong> — Claude uses whatever you already have. Describe your usual rotation in the preferences file, or connect AnyList for the full experience. <strong>No personal account info included either</strong> — my Kroger and Meijer credentials are mine and stay mine. The setup guide walks you through how to connect your own store accounts if you want that feature.
+        <strong>No recipes included</strong> — Claude uses whatever you already have. Describe your usual rotation in the preferences file, or connect AnyList for the full experience. <strong>No personal account info included either</strong> — deals come from your stores' public weekly ads plus any coupon screenshots you choose to drop in. No store logins required, ever.
       </p>
     </div><!-- /.kit-inner -->
   </section>
@@ -844,7 +844,7 @@ Save CLAUDE.md to this folder and the seven command files to .claude/commands/.<
 
         <!-- AnyList optional -->
         <div class="byo-anylist-note">
-          <strong>Using AnyList?</strong> Before Prompt 5, add this line: <em>"Include AnyList MCP integration via the mealplanner server. On /plan: pull my recipe library and check the meal plan calendar to avoid repeats. On /shop: push each dinner to the AnyList calendar and add ingredients to the correct store shopping list."</em> Then <code>/shop</code> writes your lists directly to AnyList — no copy-paste.
+          <strong>Using AnyList?</strong> Before Prompt 5, add this line: <em>"Include AnyList MCP integration. On /plan: pull my recipe library and check the meal plan calendar to avoid repeats. On /shop: push each dinner to the AnyList calendar and add ingredients to the correct store shopping list."</em> Then <code>/shop</code> writes your lists directly to AnyList — no copy-paste. (You'll need the AnyList MCP connected first — the setup guide in the kit walks you through it.)
         </div>
 
         <!-- Other tools -->
@@ -903,7 +903,7 @@ Save CLAUDE.md to this folder and the seven command files to .claude/commands/.<
           <a href="/downloads/roux-build-your-own-guide.pdf" class="btn-path-violet" onclick="trackDownload('build_your_own_pdf')" download>
             Download Setup Guide (PDF) →
           </a>
-          <p class="path-footnote">4-page guide · all 5 prompts included</p>
+          <p class="path-footnote">5-page guide · all 5 prompts included</p>
         </div>
 
       </div>
