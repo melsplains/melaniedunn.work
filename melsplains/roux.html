@@ -813,7 +813,7 @@ Format: a simple table — Item | Sale Price | Store | Notes — with a couple e
               <span class="prompt-step-pill" style="color: var(--violet); background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.2);">Prompt 5 of 5</span>
               <span class="prompt-card-title">Claude becomes Roux</span>
             </div>
-            <div class="prompt-text-light" id="byo-p5-display">Now write my CLAUDE.md — the file that turns Claude into Roux, my personal meal planning assistant.
+            <div class="prompt-text-light" id="byo-p5-display">Now write my CLAUDE.md — the file that turns Claude into Roux, my personal meal planning assistant — and create my slash commands.
 
 Using everything in family.md, inventory.md, and my store setup, define:
 
@@ -821,7 +821,7 @@ Using everything in family.md, inventory.md, and my store setup, define:
 
 2. Core files table — what each file is and when to load it (only load what each command actually needs)
 
-3. Full command definitions for: /plan, /shop, /deals, /inventory-add, /inventory-remove, /recipe-used [name], /week-used
+3. The commands: /plan, /shop, /deals, /inventory-add, /inventory-remove, /recipe-used [name], /week-used. Write each one as its own file in a .claude/commands/ folder (plan.md, shop.md, deals.md…) with full step-by-step instructions — that folder is what makes typing /plan actually work in Claude Code. In CLAUDE.md itself, just list the commands in a short table.
 
 4. My family rules baked in as non-negotiable behaviors — not "see family.md," write them out so they're enforced every single time
 
@@ -829,7 +829,7 @@ Using everything in family.md, inventory.md, and my store setup, define:
 
 6. Tone: efficient, no fluff, surface what matters
 
-Save as CLAUDE.md.</div>
+Save CLAUDE.md to this folder and the seven command files to .claude/commands/.</div>
             <div class="prompt-card-footer" style="background: rgba(124,58,237,0.03);">
               <button class="btn-copy-prompt" style="border-color: rgba(124,58,237,0.3); color: var(--violet);" onclick="copySetupPrompt('byo-p5', this)">Copy prompt</button>
             </div>
@@ -845,6 +845,11 @@ Save as CLAUDE.md.</div>
         <!-- AnyList optional -->
         <div class="byo-anylist-note">
           <strong>Using AnyList?</strong> Before Prompt 5, add this line: <em>"Include AnyList MCP integration via the mealplanner server. On /plan: pull my recipe library and check the meal plan calendar to avoid repeats. On /shop: push each dinner to the AnyList calendar and add ingredients to the correct store shopping list."</em> Then <code>/shop</code> writes your lists directly to AnyList — no copy-paste.
+        </div>
+
+        <!-- Other tools -->
+        <div class="byo-anylist-note">
+          <strong>Using OpenAI Codex (or another AI coding tool) instead of Claude Code?</strong> Same five prompts, two renames: the main file is <code>AGENTS.md</code> instead of CLAUDE.md, and the command files go in <code>~/.codex/prompts/</code> instead of <code>.claude/commands/</code>. Then <code>/plan</code> works the same way.
         </div>
 
       </div>
@@ -1056,7 +1061,7 @@ I usually shop on: [day]
 Create stores/this_week.md as a template I'll fill in each week with sales.
 Format: a simple table — Item | Sale Price | Store | Notes — with a couple example rows so I know how to use it.</div>
 
-  <div id="byo-p5" style="display:none">Now write my CLAUDE.md — the file that turns Claude into Roux, my personal meal planning assistant.
+  <div id="byo-p5" style="display:none">Now write my CLAUDE.md — the file that turns Claude into Roux, my personal meal planning assistant — and create my slash commands.
 
 Using everything in family.md, inventory.md, and my store setup, define:
 
@@ -1064,7 +1069,7 @@ Using everything in family.md, inventory.md, and my store setup, define:
 
 2. Core files table — what each file is and when to load it (only load what each command actually needs)
 
-3. Full command definitions for: /plan, /shop, /deals, /inventory-add, /inventory-remove, /recipe-used [name], /week-used
+3. The commands: /plan, /shop, /deals, /inventory-add, /inventory-remove, /recipe-used [name], /week-used. Write each one as its own file in a .claude/commands/ folder (plan.md, shop.md, deals.md…) with full step-by-step instructions — that folder is what makes typing /plan actually work in Claude Code. In CLAUDE.md itself, just list the commands in a short table.
 
 4. My family rules baked in as non-negotiable behaviors — not "see family.md," write them out so they're enforced every single time
 
@@ -1072,7 +1077,7 @@ Using everything in family.md, inventory.md, and my store setup, define:
 
 6. Tone: efficient, no fluff, surface what matters
 
-Save as CLAUDE.md.</div>
+Save CLAUDE.md to this folder and the seven command files to .claude/commands/.</div>
 
   <script>
     // Version toggle (Claude.ai vs Claude Code)
