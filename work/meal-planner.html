@@ -241,7 +241,7 @@
           <p>An early version of <code>/shop</code> generated <code>grocery_list.md</code> purely from that week's <code>meal_plan.md</code>, and silently dropped anything that wasn't tied to a specific dinner: snack crackers, coffee, the kids' lunch staples. I found out at checkout, with a full cart and no bagels. The fix wasn't a smarter prompt. It was a persistent staples checklist in <code>family.md</code> that <code>/shop</code> now walks item-by-item against <code>inventory.md</code> on every single run, independent of what's actually cooking that week.</p>
 
           <h3>What changed</h3>
-          <p>I stopped dreading Sundays. That's the unglamorous, completely real outcome.</p>
+          <p>I stopped dreading it. That's the unglamorous, completely real outcome.</p>
           <p>More specifically: we cook at home more often because the friction of planning is gone. <code>/week-used</code> closes the loop: it deducts what actually got cooked from <code>inventory.md</code> and moves the week from <code>weekly/current/</code> to <code>weekly/archive/</code>, guarded by a change log so a plan I edited mid-week (I always edit the plan mid-week) never double-counts or silently drops inventory.</p>
 
           <h3>How it was built</h3>
@@ -270,7 +270,7 @@
             <p class="s-desc">Roux is free. The prompts, templates, and workflow — ready to adapt to your recipe system and your week.</p>
             <a href="../melsplains/roux.html" class="btn btn-holo" style="padding: 11px 18px; font-size: 13px; margin-top: 4px;">Get Roux free <span class="arr">→</span></a>
           </div>
-          <p class="margin-note">state lives in files Claude re-reads every session, not chat history. works with AnyList, Paprika, or any app with an accessible recipe list.</p>
+          <p class="margin-note">state lives in files Claude re-reads every session, not chat history. works with AnyList — or with no recipe app at all (the kit's simplified version plans from a written list of your usual meals).</p>
         </aside>
 
       </div>
