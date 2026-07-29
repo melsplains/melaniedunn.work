@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <title>How to Get Your Claude-Built Website Online · Melsplains</title>
-  <meta name="description" content="The part nobody explains in the tutorials: how to go from local files to a live URL. GitHub, Cloudflare Pages, and the editing workflow I use every day." />
-  <meta property="og:title" content="How to Get Your Claude-Built Website Online · Melsplains" />
-  <meta property="og:description" content="The part nobody explains in the tutorials: how to go from local files to a live URL. GitHub, Cloudflare Pages, and the editing workflow I use every day." />
+  <title>I Didn't Automate My Meal Planning. I Automated the Dread. · Melsplains</title>
+  <meta name="description" content="My AI meal-planning system worked for months, and I still dreaded opening it every Sunday. The fix wasn't a smarter system. It was one fewer question." />
+  <meta property="og:title" content="I Didn't Automate My Meal Planning. I Automated the Dread. · Melsplains" />
+  <meta property="og:description" content="My AI meal-planning system worked for months, and I still dreaded opening it every Sunday. The fix wasn't a smarter system. It was one fewer question." />
   <meta property="og:image" content="https://www.melaniedunn.work/assets/images/aurora-orbs.png" />
-  <meta property="og:url" content="https://www.melaniedunn.work/melsplains/how-to-get-your-claude-site-online" />
+  <meta property="og:url" content="https://www.melaniedunn.work/melsplains/i-automated-the-dread" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -50,7 +50,7 @@
     .eyebrow.holo::before { background: var(--pink); }
     .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.02; color: var(--warm-black); }
     .serif-display em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .h1 { font-size: clamp(40px, 5.5vw, 72px); }
+    .h1 { font-size: clamp(36px, 5vw, 60px); }
     .lede { font-size: 17.5px; line-height: 1.6; color: var(--mid-gray); font-weight: 400; }
     .margin-note { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--mid-gray); letter-spacing: 0.01em; padding-left: 14px; border-left: 2px solid var(--pink); }
     .margin-note::before { content: "/* "; color: var(--pink); }
@@ -87,36 +87,6 @@
     .article-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.01em; line-height: 1.15; color: var(--warm-black); margin-top: 56px; margin-bottom: 20px; }
     .article-body blockquote { border-left: 3px solid var(--pink); padding-left: 20px; margin: 32px 0; }
     .article-body blockquote p { font-style: italic; color: var(--mid-gray); margin-bottom: 0; }
-    .article-body .step-list { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 12px; }
-    .article-body .step-list li { font-size: 16.5px; line-height: 1.65; color: var(--warm-black-2); padding-left: 28px; position: relative; }
-    .article-body .step-list li::before { content: counter(step); counter-increment: step; position: absolute; left: 0; top: 2px; font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--pink); letter-spacing: 0.08em; width: 18px; height: 18px; border: 1px solid var(--pink); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .article-body .step-list { counter-reset: step; }
-    .article-body code { font-family: var(--mono); font-size: 13px; background: var(--bg-warm); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; color: var(--pink-deep); }
-    .callout { background: var(--bg-warm); border: 1px solid var(--border); border-left: 3px solid var(--pink); border-radius: 6px; padding: 20px 24px; margin: 32px 0; }
-    .callout-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pink); margin-bottom: 8px; }
-    .callout p { font-size: 15px; line-height: 1.65; color: var(--mid-gray); margin-bottom: 0; }
-    .flow-visual { display: flex; align-items: center; gap: 0; margin: 32px 0; background: var(--bg-warm); border: 1px solid var(--border); border-radius: 8px; padding: 28px 24px; overflow-x: auto; }
-    .flow-node { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
-    .flow-icon { width: 52px; height: 52px; background: white; border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-    .flow-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); text-align: center; }
-    .flow-arrow { font-size: 18px; color: var(--pink); margin: 0 12px; padding-bottom: 20px; flex-shrink: 0; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
-    @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
-    .compare-card { border: 1px solid var(--border); border-radius: 8px; padding: 20px; background: white; }
-    .compare-card-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 10px; }
-    .compare-card h4 { font-family: var(--serif); font-weight: 400; font-size: 20px; margin-bottom: 14px; color: var(--warm-black); }
-    .compare-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-    .compare-card li { font-size: 14px; color: var(--warm-black-2); padding-left: 18px; position: relative; line-height: 1.5; }
-    .compare-card li::before { content: "✓"; position: absolute; left: 0; color: var(--pink); font-size: 12px; font-weight: 700; }
-    .compare-card li.neutral::before { content: "→"; color: var(--mid-gray); }
-    .cost-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
-    .cost-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-gray); padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); }
-    .cost-table td { padding: 13px 14px; border-bottom: 1px solid var(--border-soft); color: var(--warm-black-2); vertical-align: top; }
-    .cost-table tr:last-child td { border-bottom: none; }
-    .cost-table .item { font-weight: 500; color: var(--warm-black); }
-    .cost-badge { display: inline-block; font-family: var(--mono); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
-    .cost-free { background: rgba(0,201,200,0.1); color: #008f8f; border: 1px solid rgba(0,201,200,0.3); }
-    .cost-paid { background: rgba(232,24,90,0.08); color: var(--pink-deep); border: 1px solid rgba(232,24,90,0.2); }
     .cta-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
     .cta-inner { display: flex; flex-direction: column; gap: 24px; }
     .cta-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.01em; color: var(--warm-black); }
@@ -147,6 +117,15 @@
     .reveal.delay-2 { transition-delay: 0.12s; }
     .post-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
     .post-meta .meta-sep { color: var(--border); }
+    .qcompare { margin: 40px 0; padding: clamp(20px, 4vw, 32px); background: var(--bg-warm); border: 1px solid var(--border); border-radius: 8px; display: flex; flex-direction: column; gap: 20px; }
+    .qcompare-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); }
+    .qcompare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 560px) { .qcompare-grid { grid-template-columns: 1fr; } }
+    .qcompare-col-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 12px; }
+    .qcompare-col-label.after { color: var(--pink); }
+    .qcompare ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .qcompare li, .qcompare .qcompare-answer { font-size: 14.5px; line-height: 1.5; color: var(--warm-black-2); }
+    .qcompare .qcompare-answer { font-size: 15.5px; }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LBWDY3MCVS"></script>
   <script>
@@ -196,7 +175,7 @@
         <span class="breadcrumb-sep">›</span>
         <a href="index.html#ai-automation">AI &amp; Automation</a>
         <span class="breadcrumb-sep">›</span>
-        <span class="breadcrumb-current">How to Get Your Claude-Built Website Online</span>
+        <span class="breadcrumb-current">I Didn't Automate My Meal Planning. I Automated the Dread.</span>
       </div>
     </div>
   </div>
@@ -210,11 +189,11 @@
           <span class="eyebrow holo">Melsplains · AI &amp; Automation</span>
         </div>
         <div class="reveal delay-1">
-          <h1 class="serif-display h1">You Discovered Claude Code. Now Squarespace Feels <em>Impossibly Small.</em></h1>
+          <h1 class="serif-display h1">I Didn't Automate My Meal Planning. <em>I Automated the Dread.</em></h1>
         </div>
         <div class="reveal delay-2">
           <p class="lede">
-            You described something to Claude and it just built it. You changed your mind and it rebuilt it. You've been on Squarespace for three years and suddenly you're looking at your monthly invoice differently. Here's how to get your Claude site live.
+            I built an AI system that plans my family's meals, tracks my pantry, fetches grocery deals, and builds my shopping list. It works. It has worked for months. And every Sunday, I still dreaded opening it.
           </p>
         </div>
         <div class="reveal delay-2">
@@ -223,7 +202,7 @@
             <span class="meta-sep">|</span>
             <span>AI &amp; Automation</span>
             <span class="meta-sep">|</span>
-            <span>7 min read</span>
+            <span>4 min read</span>
           </div>
         </div>
       </div>
@@ -237,189 +216,49 @@
     <div class="container">
       <div class="article-body reveal">
 
-        <p>There's a specific moment when you first build something in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a>. You describe a layout and it appears. You change your mind and it changes. Then you open your Squarespace dashboard and something has shifted — it feels like going back to a flip phone.</p>
+        <p>Not because it did a bad job. Because using it felt like a job. It stopped me constantly: did you clip any coupons? Do you have receipts? Which dinners actually got cooked? Three separate interrogations before it would even start planning, and each one sent me digging through my purse, my memory, or a pile of Kroger receipts I definitely didn't keep.</p>
 
-        <p>The only gap: Claude builds your site as files on your computer. Getting it to a real URL is three steps. Here's what they actually are.</p>
+        <p>I'd built the automation. I hadn't automated the part that was actually exhausting: answering it.</p>
 
-        <h3>How it works</h3>
+        <h3>I was already creating the data it kept begging me for</h3>
 
-        <div class="flow-visual">
-          <div class="flow-node">
-            <div class="flow-icon">💻</div>
-            <div class="flow-label">Your Files<br>(local)</div>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node">
-            <div class="flow-icon" style="font-size:18px;font-weight:700;font-family:monospace;color:#1C1917;">GH</div>
-            <div class="flow-label">GitHub<br>(storage)</div>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node">
-            <div class="flow-icon">☁️</div>
-            <div class="flow-label">Cloudflare<br>(host)</div>
-          </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-node">
-            <div class="flow-icon">🌐</div>
-            <div class="flow-label">Live Site<br>(your URL)</div>
+        <p>Here's what I figured out, and it's dumber and more useful than it sounds. I was already creating the data it kept begging me for. Every time I check an item off my grocery app while I'm standing in the cereal aisle, that's a receipt. I just wasn't reading it that way. Now my system pulls whatever I checked off, files it into my pantry inventory, and clears the list for next week. I didn't add a single new habit. I just told the AI to notice the one I already had.</p>
+
+        <h3>The second fix was even lazier, in the best way</h3>
+
+        <p>My deals and coupons used to come from the AI itself — three stores' weekly ads plus a couple of coupon sites, fetched and merged, every single week. Do you know what that is? That's paying a lawyer's hourly rate to alphabetize a spice rack. Now a script runs on a timer twice a week, no AI, no tokens, no me. By the time I sit down to plan, the deals are already sitting there.</p>
+
+        <div class="qcompare">
+          <span class="qcompare-label">Before → After</span>
+          <div class="qcompare-grid">
+            <div>
+              <p class="qcompare-col-label">3 questions, 3 separate times</p>
+              <ul>
+                <li>"Did you clip any coupons?"</li>
+                <li>"Do you have receipts?"</li>
+                <li>"Which dinners actually got cooked?"</li>
+              </ul>
+            </div>
+            <div>
+              <p class="qcompare-col-label after">1 question, asked once</p>
+              <p class="qcompare-answer">"Here's the plan and the deals — anything you want to swap?"</p>
+            </div>
           </div>
         </div>
 
-        <p>GitHub is a storage place your host watches. When you push changes there, Cloudflare sees them and updates your live site. That's the whole mechanism — change something in Claude Code, push it, reload, done.</p>
+        <h3>Count the questions, not the features</h3>
 
-        <h3>Step 1: Set up GitHub (free, ~5 minutes)</h3>
+        <p>What I'd tell anyone building something like this: count the questions your system asks you every time you run it. Not features. Questions. Every one is a tiny tollbooth, and tollbooths are exactly where people stop making the trip. Mine used to have three. Now it has one, asked all at once, instead of interrupting me three separate times like a toddler who forgot what they walked into the kitchen for.</p>
 
-        <p>Create a free account at <a href="https://github.com" target="_blank" rel="noopener">github.com</a> and create a new repository. Make it private if you want — files aren't public just because they're on GitHub. Then tell Claude Code "commit and push everything to my GitHub repo" and give it the URL. Or use <a href="https://desktop.github.com" target="_blank" rel="noopener">GitHub Desktop</a> if you'd rather click. Either works.</p>
+        <p>I didn't make the AI smarter. I made it stop pretending my life was less structured than it already is.</p>
 
-        <h3>Step 2: Deploy on Cloudflare Pages (free, ~4 minutes)</h3>
+        <h3>Where it stands now</h3>
 
-        <p>Cloudflare is a big platform — Pages is just the hosting piece. That's all you need here.</p>
-
-        <p>Go to <a href="https://cloudflare.com" target="_blank" rel="noopener">cloudflare.com</a> → Workers &amp; Pages → Create → Pages → Connect to Git. Pick your GitHub repo.</p>
-
-        <div class="callout">
-          <div class="callout-label">Don't overthink this part</div>
-          <p>Leave the build settings completely blank. No build command, no output directory. If you're working with plain HTML files, just hit Deploy and you're done.</p>
-        </div>
-
-        <p>Cloudflare hands you a free <code>.pages.dev</code> URL immediately. That's a real, live, shareable link. You can connect your domain later — but you're already online.</p>
-
-        <h3>Step 3: Editing from here on out</h3>
-
-        <p>This is the part I wanted to know most. Here's the actual day-to-day:</p>
-
-        <ol class="step-list">
-          <li>Open your site folder in <a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></li>
-          <li>Tell it what to change</li>
-          <li>Tell it "commit and push"</li>
-          <li>Your live site updates within a minute</li>
-        </ol>
-
-        <p>No CMS. No visual editor. Changes go live faster than filing a support ticket ever did.</p>
-
-        <h3>Tell Claude who you are — once</h3>
-
-        <p>You already have a brand. The problem with Claude is that every new session, it forgets — you end up re-explaining your colors, your tone, your rules. Fix that immediately.</p>
-
-        <p>Create a file called <code>CLAUDE.md</code> in your site folder. Claude reads it automatically every session. Put in: your business name, your hex codes (grab them from Squarespace before you leave), your fonts, your voice, any standing rules. Write it once, done.</p>
+        <p>My whole weekly flow is two commands and one answer that takes about as long as replying to a text. Kit and setup guide linked below if you want to build your own.</p>
 
         <blockquote>
-          <p>If you've told Claude the same thing three sessions in a row, it belongs in CLAUDE.md.</p>
+          <p>Count the questions your automation asks you. That number is basically its life expectancy.</p>
         </blockquote>
-
-        <h3>Which host should you use?</h3>
-
-        <p>I started on <a href="https://netlify.com" target="_blank" rel="noopener">Netlify</a>, switched to Cloudflare. Both are free. The honest difference:</p>
-
-        <div class="compare-grid">
-          <div class="compare-card">
-            <div class="compare-card-label"><a href="https://netlify.com" target="_blank" rel="noopener">Netlify</a></div>
-            <h4>Pick this if forms matter</h4>
-            <ul>
-              <li>Built-in contact forms — one attribute, zero setup</li>
-              <li>Submissions email you automatically</li>
-              <li>Easiest possible start</li>
-              <li class="neutral">Slightly slower globally</li>
-            </ul>
-          </div>
-          <div class="compare-card">
-            <div class="compare-card-label"><a href="https://pages.cloudflare.com" target="_blank" rel="noopener">Cloudflare Pages</a></div>
-            <h4>Pick this for speed + DNS</h4>
-            <ul>
-              <li>Noticeably faster global performance</li>
-              <li>DNS lives in the same place as your host</li>
-              <li>More room to grow</li>
-              <li class="neutral">Forms need a free third-party tool</li>
-            </ul>
-          </div>
-        </div>
-
-        <p>Can't decide? Pick Cloudflare. That's what this site runs on and it's been seamless.</p>
-
-        <h3>Pointing your Squarespace domain at the new site</h3>
-
-        <p>You get a working <code>.pages.dev</code> URL instantly. When you're ready to use your real domain, here's what to do — it's two changes and a few hours of waiting:</p>
-
-        <ol class="step-list">
-          <li>In Squarespace: go to Domains → your domain → Nameservers, and swap them to Cloudflare's (Cloudflare shows you the exact values)</li>
-          <li>In Cloudflare: add your domain, then add a CNAME record pointing at your Pages site</li>
-          <li>Wait a few hours for it to propagate</li>
-          <li>Cancel your Squarespace subscription — your domain stays, your site just lives somewhere better now</li>
-        </ol>
-
-        <div class="callout">
-          <div class="callout-label">Down the road</div>
-          <p>Your domain is still registered at Squarespace, which is fine. When you're ready, you can transfer it to <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a> — usually a few dollars cheaper per year and everything lives in one place. No rush, 60-day transfer lock applies.</p>
-        </div>
-
-        <h3>Contact forms and newsletter</h3>
-
-        <p><strong>On Netlify:</strong> Add <code>netlify</code> to your form tag. Done. No accounts, no setup.</p>
-
-        <p><strong>On Cloudflare:</strong> Use <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> — free up to 250 submissions/month, takes about 15 minutes to set up. Grab an access key, add two hidden fields to your form, submissions land in your inbox.</p>
-
-        <p><strong>Newsletter:</strong> <a href="https://mailerlite.com" target="_blank" rel="noopener">MailerLite</a> is free up to 1,000 subscribers. Copy-paste embed, drop it in your HTML, done. Mine took 20 minutes including making it match the site design.</p>
-
-        <h3>What it actually costs</h3>
-
-        <table class="cost-table">
-          <thead>
-            <tr>
-              <th>What</th>
-              <th>Cost</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="item"><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></td>
-              <td><span class="cost-badge cost-free">Free</span></td>
-              <td>Free for private repos, unlimited</td>
-            </tr>
-            <tr>
-              <td class="item"><a href="https://pages.cloudflare.com" target="_blank" rel="noopener">Cloudflare Pages</a></td>
-              <td><span class="cost-badge cost-free">Free</span></td>
-              <td>Unlimited sites, unlimited bandwidth on free tier</td>
-            </tr>
-            <tr>
-              <td class="item"><a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a></td>
-              <td><span class="cost-badge cost-free">Free</span></td>
-              <td>Up to 250 contact form submissions/month</td>
-            </tr>
-            <tr>
-              <td class="item"><a href="https://mailerlite.com" target="_blank" rel="noopener">MailerLite</a></td>
-              <td><span class="cost-badge cost-free">Free</span></td>
-              <td>Up to 1,000 subscribers, 12,000 emails/month</td>
-            </tr>
-            <tr>
-              <td class="item">Domain name</td>
-              <td><span class="cost-badge cost-paid">~$10–20/yr</span></td>
-              <td>Wherever you buy it. Cloudflare Registrar charges at-cost — usually cheapest option</td>
-            </tr>
-            <tr>
-              <td class="item"><a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></td>
-              <td><span class="cost-badge cost-paid">$20/mo</span></td>
-              <td><a href="https://claude.ai" target="_blank" rel="noopener">Claude Pro</a>. This is the actual AI doing the building and editing. The only real line item.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p>The hosting, forms, and newsletter are all free. The only cost is Claude Pro at $20/month — less than Squarespace Business at $36, and you're probably already paying it.</p>
-
-        <h3>What I used to build this site</h3>
-
-        <div class="callout">
-          <div class="callout-label">This site's exact stack</div>
-          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
-            <li><strong><a href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code</a></strong> — built, edited, committed, and deployed everything</li>
-            <li><strong>Brand skill</strong> — holds my full visual identity so Claude never improvises the design</li>
-            <li><strong>Voice skill</strong> — keeps my writing sounding like me across every page</li>
-            <li><strong>Frontend design skill</strong> — enforces layout, spacing, and component patterns</li>
-            <li><strong>CLAUDE.md</strong> — the brief Claude reads every session before touching a file</li>
-          </ul>
-        </div>
-
-        <p>Skills are optional — CLAUDE.md alone gets you most of the way there. Add them when you notice Claude needs reminders about things you've already explained.</p>
 
       </div>
     </div>
@@ -431,17 +270,17 @@
     <div class="container">
       <div class="cta-inner">
         <div class="reveal">
-          <span class="eyebrow holo">More from Melsplains</span>
+          <span class="eyebrow holo">Free tool</span>
         </div>
         <div class="reveal delay-1">
-          <h2 class="cta-heading">More on building with Claude.</h2>
+          <h2 class="cta-heading">Get Roux — it's free.</h2>
         </div>
         <div class="reveal delay-1">
-          <p class="cta-desc">How I built an AI project manager for our agency. What I figured out building a meal planning system. The practical stuff, no hype attached.</p>
+          <p class="cta-desc">The prompts, templates, and setup to connect Claude to your recipe library and plan your week in minutes. No email required.</p>
         </div>
         <div class="cta-btns reveal delay-2">
-          <a href="what-i-learned-building-an-ai-project-manager.html" class="btn btn-holo">Building an AI PM <span class="arr">→</span></a>
-          <a href="index.html" class="btn btn-secondary">All Posts</a>
+          <a href="roux.html" class="btn btn-holo">Get Roux free <span class="arr">→</span></a>
+          <a href="index.html" class="btn btn-secondary">More Melsplains</a>
         </div>
       </div>
     </div>
@@ -452,8 +291,8 @@
   <div class="article-nav">
     <div class="container">
       <div class="article-nav-inner">
-        <a href="i-automated-the-dread.html" class="article-nav-link">← I Automated the Dread</a>
-        <a href="what-i-learned-building-an-ai-project-manager.html" class="article-nav-link">Next: Building an AI PM →</a>
+        <a href="index.html" class="article-nav-link">← All Posts</a>
+        <a href="how-to-get-your-claude-site-online.html" class="article-nav-link">Next: Getting Your Claude Site Online →</a>
       </div>
     </div>
   </div>
