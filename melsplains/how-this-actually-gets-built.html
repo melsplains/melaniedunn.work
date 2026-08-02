@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <title>How This Actually Gets Built · Melsplains</title>
+  <meta name="description" content="No CS degree, no dev team, no vendor. The automation stack running every night across every retainer client at Three Seven — built and still maintained solo." />
+  <meta property="og:title" content="How This Actually Gets Built · Melsplains" />
+  <meta property="og:description" content="No CS degree, no dev team, no vendor. The automation stack running every night across every retainer client at Three Seven — built and still maintained solo." />
+  <meta property="og:image" content="https://www.melaniedunn.work/assets/images/aurora-orbs.png" />
+  <meta property="og:url" content="https://www.melaniedunn.work/melsplains/how-this-actually-gets-built" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:          #E8185A;
+      --pink-deep:     #C71450;
+      --warm-black:    #14110E;
+      --warm-black-2:  #1C1917;
+      --mid-gray:      #6B6560;
+      --light-gray:    #A8A29E;
+      --sage:          #4E7564;
+      --border:        #E2E4E8;
+      --border-soft:   #ECEEF1;
+      --bg:            #FAFAFB;
+      --bg-warm:       #F1F2F4;
+      --teal:          #00C9C8;
+      --violet:        #7C3AED;
+      --holo:          linear-gradient(135deg, #E8185A 0%, #7C3AED 50%, #00C9C8 100%);
+      --holo-wide:     linear-gradient(90deg, #E8185A 0%, #7C3AED 35%, #00C9C8 70%, #10B981 100%);
+      --max:           1180px;
+      --gutter:        clamp(20px, 4vw, 56px);
+      --serif:         'DM Serif Display', 'Times New Roman', serif;
+      --sans:          'Mona Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:          'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { background: var(--bg); color: var(--warm-black); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+    .eyebrow { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pink); display: inline-flex; align-items: center; gap: 12px; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; flex-shrink: 0; }
+    .eyebrow.holo { background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow.holo::before { background: var(--pink); }
+    .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.02; color: var(--warm-black); }
+    .serif-display em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .h1 { font-size: clamp(38px, 5vw, 66px); }
+    .lede { font-size: 17.5px; line-height: 1.6; color: var(--mid-gray); font-weight: 400; }
+    .margin-note { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--mid-gray); letter-spacing: 0.01em; padding-left: 14px; border-left: 2px solid var(--pink); }
+    .margin-note::before { content: "/* "; color: var(--pink); }
+    .margin-note::after  { content: " */"; color: var(--pink); }
+    .holo-rule { height: 2px; border: 0; background: var(--holo-wide); border-radius: 2px; width: 100%; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px; font-family: var(--sans); font-weight: 500; font-size: 14px; border-radius: 4px; transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer; white-space: nowrap; border: none; }
+    .btn .arr { transition: transform 0.3s cubic-bezier(.22,.61,.36,1); display: inline-block; }
+    .btn:hover .arr { transform: translateX(5px); }
+    .btn-holo { background: var(--holo); background-size: 200% 200%; background-position: 0% 50%; color: white; box-shadow: 0 1px 0 rgba(232,24,90,0.3), 0 14px 32px -14px rgba(124,58,237,0.5); }
+    .btn-holo:hover { background-position: 100% 50%; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--warm-black); border: 1px solid var(--warm-black); }
+    .btn-secondary:hover { background: var(--warm-black); color: var(--bg); }
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(251,250,247,0.78); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid rgba(229,225,220,0.6); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+    .nav .logo-mark { height: 32px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 38px; align-items: center; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: var(--warm-black); position: relative; transition: color 0.25s; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--holo); transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(.22,.61,.36,1); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--pink); }
+    .nav .right { display: flex; align-items: center; gap: 24px; }
+    @media (max-width: 760px) { .nav-links { display: none; } }
+    .breadcrumb { padding: 16px 0; border-bottom: 1px solid var(--border-soft); background: var(--bg-warm); }
+    .breadcrumb-inner { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .breadcrumb-inner a { color: var(--mid-gray); transition: color 0.2s; }
+    .breadcrumb-inner a:hover { color: var(--pink); }
+    .breadcrumb-sep { color: var(--light-gray); }
+    .breadcrumb-current { color: var(--warm-black); font-weight: 500; }
+    .article-hero { padding: clamp(64px, 8vw, 112px) 0 clamp(48px, 6vw, 72px); background: var(--bg); }
+    .article-hero-inner { max-width: 760px; display: flex; flex-direction: column; gap: 24px; }
+    .article-wrap { padding: clamp(56px, 7vw, 96px) 0; }
+    .article-body { max-width: 680px; display: flex; flex-direction: column; gap: 0; }
+    .article-body p { font-size: 16.5px; line-height: 1.75; color: var(--warm-black-2); margin-bottom: 24px; }
+    .article-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.01em; line-height: 1.15; color: var(--warm-black); margin-top: 56px; margin-bottom: 20px; }
+    .article-body blockquote { border-left: 3px solid var(--pink); padding: 16px 20px; margin: 32px 0; background: var(--bg-warm); border-radius: 0 4px 4px 0; }
+    .article-body blockquote p { font-style: italic; color: var(--warm-black); margin-bottom: 0; font-size: 17px; }
+    .article-body .callout { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; margin: 32px 0; }
+    .article-body .callout p { margin-bottom: 0; font-size: 15.5px; color: var(--mid-gray); }
+    .article-body .callout strong { color: var(--warm-black); font-weight: 600; }
+    .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 28px; }
+    .stack-badge { font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: var(--bg-warm); border: 1px solid var(--border); color: var(--mid-gray); }
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 8px 0 36px; }
+    @media (max-width: 640px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
+    .stat-box { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 6px; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 4px; }
+    .stat-num { font-family: var(--serif); font-size: clamp(26px, 3vw, 34px); font-weight: 400; letter-spacing: -0.01em; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1.1; }
+    .stat-label { font-family: var(--mono); font-size: 10.5px; color: var(--mid-gray); letter-spacing: 0.04em; line-height: 1.4; }
+    .cta-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
+    .cta-inner { display: flex; flex-direction: column; gap: 24px; }
+    .cta-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.01em; color: var(--warm-black); }
+    .cta-desc { font-size: 16px; color: var(--mid-gray); line-height: 1.65; max-width: 52ch; }
+    .cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .article-nav { padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--border); background: var(--bg); }
+    .article-nav-inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .article-nav-link { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); transition: color 0.2s; }
+    .article-nav-link:hover { color: var(--pink); }
+    .foot { padding: 56px 0 64px; border-top: 1px solid var(--border); background: var(--bg); }
+    .foot-grid { display: flex; flex-direction: column; gap: 28px; }
+    .foot-row1 { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .foot-left { display: flex; align-items: center; gap: 18px; }
+    .foot .logo-mark { height: 30px; width: auto; }
+    .foot .micro { font-size: 12px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.02em; }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-links a:hover { color: var(--pink); }
+    .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-social a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .foot-social a:hover { color: var(--pink); }
+    .foot-also { font-size: 11.5px; color: rgba(20,17,14,0.35); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+    .foot-also a { color: rgba(232,24,90,0.6); border-bottom: 1px solid rgba(232,24,90,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.delay-1 { transition-delay: 0.06s; }
+    .reveal.delay-2 { transition-delay: 0.12s; }
+    .post-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mid-gray); }
+    .post-meta .meta-sep { color: var(--border); }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LBWDY3MCVS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LBWDY3MCVS');
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html" aria-label="Melanie Dunn home">
+          <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+            <defs>
+              <linearGradient id="holo-nav" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8185A"/>
+                <stop offset="50%" stop-color="#7C3AED"/>
+                <stop offset="100%" stop-color="#00C9C8"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#holo-nav)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+            <path fill="url(#holo-nav)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+          </svg>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../work/index.html">Work</a></li>
+          <li><a href="index.html" class="active">Melsplains</a></li>
+          <li><a href="../about/index.html">About</a>
+        </ul>
+        <div class="right">
+          <a href="../contact/index.html" class="btn btn-holo" style="padding: 11px 18px; font-size: 13px;">Let's Talk</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="index.html">Melsplains</a>
+        <span class="breadcrumb-sep">›</span>
+        <a href="index.html#ai-automation">AI &amp; Automation</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">How This Actually Gets Built</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ARTICLE HERO -->
+  <section class="article-hero">
+    <div class="container">
+      <div class="article-hero-inner">
+        <div class="reveal">
+          <span class="eyebrow holo">Melsplains · AI &amp; Automation</span>
+        </div>
+        <div class="reveal delay-1">
+          <h1 class="serif-display h1">How This Actually Gets <em>Built</em></h1>
+        </div>
+        <div class="reveal delay-2">
+          <p class="lede">
+            No CS degree. No dev team. No vendor. Here's the automation stack I built and still maintain myself — running unattended every night across every retainer client at Three Seven.
+          </p>
+        </div>
+        <div class="reveal delay-2">
+          <div class="post-meta">
+            <span>Melanie Dunn</span>
+            <span class="meta-sep">|</span>
+            <span>AI &amp; Automation</span>
+            <span class="meta-sep">|</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="holo-rule" />
+
+
+  <!-- ARTICLE BODY -->
+  <section class="article-wrap">
+    <div class="container">
+      <div class="article-body reveal">
+
+        <p>I'm self-taught. Online courses and a lot of trial and error, not a computer science background. What's below is the automation stack I built and still maintain myself, running unattended every night across every retainer client at Three Seven. Not a tool I subscribed to. Not one company's setup. Mine, for all of them.</p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <span class="stat-num">9+</span>
+            <span class="stat-label">active retainer clients running through it — SEO, paid media, content, reporting</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">9</span>
+            <span class="stat-label">outside systems wired together: GA4, Search Console, SE Ranking, Google Ads, Clarity, Monday, Toggl, Slack, HubSpot</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">8</span>
+            <span class="stat-label">specialist roles I designed and named, each with its own scope and rules — not one generic bot</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">470M</span>
+            <span class="stat-label">Claude tokens processed in the last month, 83 runs, nobody at the keyboard</span>
+          </div>
+        </div>
+
+        <p>None of that happened on the first try.</p>
+
+        <h3>June 2026: the version that kept breaking</h3>
+
+        <p>The first version worked just often enough to convince me it was close, and failed just often enough to be useless. Four separate root causes, and I found each one the hard way.</p>
+
+        <p>A stray API key export was silently routing every run to the wrong billing org, which meant it was getting rate-limited without ever telling me why. Overnight wake-ups had no wifi nearby half the time, so the system burned two hours retrying a connection that wasn't coming back. There were no failure alerts at all — if a run died at 2am, I found out the next afternoon, if I thought to check. And it had no memory of what it had already finished, so a daytime rerun would redo the entire batch and blow through a token budget that was supposed to last the week.</p>
+
+        <p>I traced all four, one at a time, over a few weeks of watching it fail in new ways.</p>
+
+        <h3>July 14: rebuilt from the root causes, not the symptoms</h3>
+
+        <p>The rebuild didn't add more automation on top. It fixed what was actually broken.</p>
+
+        <p>Every client run is now state-tracked, so if one client fails partway through, it just retries that client the next night instead of redoing the whole batch. Pre-flight checks confirm network, auth, and Drive access before a single token gets spent — the system checks its own footing before it starts walking. It sends me a Slack message after every run, success or failure, and if it failed, it says why. And nightly batches are capped per client, so one bad run can't blow past a single token window and take the rest of the night down with it.</p>
+
+        <h3>Proof it holds, not just a claim that it does</h3>
+
+        <p>A few weeks ago I was on a camping trip with no wifi for several nights in a row. The overnight batch had no connection to work with, so it didn't work — it logged exactly why, sat quietly, and picked back up the moment I was back in range. Nothing lost, nothing duplicated, no 2am panic-checking from a tent. That's the design doing what it's supposed to, not a lucky week.</p>
+
+        <h3>Why this isn't something you could just buy</h3>
+
+        <p>Before it touches a client's account, it reads that client's own history first — goals, past meetings, the things they've explicitly said not to do — so the work it produces matches what that specific client wants instead of running everyone through the same template.</p>
+
+        <p>It routes that work to a team of named specialists I built and scoped myself, coordinated by an orchestrator I also built:</p>
+
+        <div class="stack-row">
+          <span class="stack-badge">Pip · PM &amp; orchestrator</span>
+          <span class="stack-badge">Sage · strategy</span>
+          <span class="stack-badge">Fern · SEO</span>
+          <span class="stack-badge">Penny · paid media</span>
+          <span class="stack-badge">Quill · content</span>
+          <span class="stack-badge">Lark · email</span>
+          <span class="stack-badge">Echo · social</span>
+          <span class="stack-badge">Dot · analytics</span>
+        </div>
+
+        <p>Coordinated, not generic — eight roles instead of one bot claiming to know all of it.</p>
+
+        <div class="callout">
+          <p><strong>Nothing gets marked done or sent to a client without me reviewing it first.</strong> Every time. The automation drafts. I approve. When something fails, it tells me in a Slack message, with a reason, instead of quietly retrying forever or pretending the run succeeded.</p>
+        </div>
+
+        <h3>The volume, for scale</h3>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <span class="stat-num">354.0M</span>
+            <span class="stat-label">Monthly Report Batch — 52 runs</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">48.8M</span>
+            <span class="stat-label">Weekly Ads Batch — 12 runs</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">38.1M</span>
+            <span class="stat-label">Overnight Dispatch — 11 runs</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">29.2M</span>
+            <span class="stat-label">Weekly Brief &amp; Updates — 8 runs</span>
+          </div>
+        </div>
+
+        <p>The part people don't believe: this runs on one $20/month Claude subscription, not a metered API bill that scales with how many clients I take on. There's no engineering team behind it and no vendor I'm licensing it from. I learned to build this the same way anyone can now — by using Claude Code itself to write, break, and rewrite it, one real failure at a time, until it held.</p>
+
+        <p class="margin-note">source: this system's own run logs, categorized by automation and summed from raw token usage.</p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="reveal">
+          <span class="eyebrow holo">Related</span>
+        </div>
+        <div class="reveal delay-1">
+          <h2 class="cta-heading">Curious how Pip specifically works?</h2>
+        </div>
+        <div class="reveal delay-1">
+          <p class="cta-desc">Pip is the PM &amp; orchestrator role in this system — the deep dive on how it was built and what changed once it started getting used.</p>
+        </div>
+        <div class="cta-btns reveal delay-2">
+          <a href="what-i-learned-building-an-ai-project-manager.html" class="btn btn-holo">Read the Pip deep dive <span class="arr">→</span></a>
+          <a href="index.html" class="btn btn-secondary">More Melsplains</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ARTICLE NAV -->
+  <div class="article-nav">
+    <div class="container">
+      <div class="article-nav-inner">
+        <a href="index.html" class="article-nav-link">← All Posts</a>
+        <a href="i-automated-the-dread.html" class="article-nav-link">Next: I Automated the Dread →</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-row1">
+          <div class="foot-left">
+            <svg class="logo-mark" viewBox="0 0 728.88 436.26" xmlns="http://www.w3.org/2000/svg" aria-label="md">
+              <defs>
+                <linearGradient id="holo-foot" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E8185A"/>
+                  <stop offset="50%" stop-color="#7C3AED"/>
+                  <stop offset="100%" stop-color="#00C9C8"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#holo-foot)" d="M172.61,430.08c17.12-16.61,17.89-40.27,17.9-63.6l.02-124.79c0-6.91-.41-13.46-1.43-19.87-3.16-19.83-21.43-30.64-40.61-25.89-18.23,4.52-33.46,19.14-33.49,39.01l-.17,139.09c.95,21.13,1.61,40.34,18.08,56.04H.8c14.94-13.87,17.94-34.66,17.94-54.21v-138.56c0-21.49-1.89-44.83-18.74-59.3,7.18-2.84,14.36-5.06,22.15-6.65l48.33-13.68,44.31-13.77v50.67c26.25-34.92,77.31-54.87,119.59-49.99,26.88,3.1,46.34,27.28,50,52.88,4.37-7.02,9.78-13.62,16.71-19.41,28.85-24.1,66.55-37.25,104.4-33.71,16.9,1.58,30.22,13.25,40.17,26.48-38.94,34.02-61.3,82.92-61.64,134.67-.46,48.2,15.39,94.25,55.29,124.45l-95.74.11c16.57-16.1,17.15-35.83,17.99-57.6l-.03-134.76c0-6.44-.53-12.73-1.92-18.55-4.31-18.02-21.34-27.52-39.34-23.34s-33.72,17.62-33.78,36.84l-.45,143.8c.99,20.53,2.3,38.23,17.86,53.62h-131.29Z"/>
+              <path fill="url(#holo-foot)" d="M455.42,406.53c-24.27-25.4-34.47-60.95-35.15-95.97-1.2-62.51,31.71-121.75,87.58-150.52,26.08-13.43,54.11-19,83.5-15.64,7.91.9,14.92,3.34,23.23,6.01l-.11-61.83c-.04-19.61-2.86-41.38-18.49-54.78l19.79-6.15L710.57,0v375.33c.48,10.65,1.23,19.82,3.28,29.63,2.79,9.72,7.08,17.59,15.03,25.09l-124.53.05c-9.58-3.96-19.41-4.93-29.1-1.39-11.74,4.28-23.54,7.55-36.18,7.55h-24.5c-23.14-2.27-43.32-13.16-59.15-29.73ZM548.78,400.54c13.99,5.55,29.08,6.23,43.04,1.26,11.06-3.94,22.43-14.45,22.45-27.25l.28-177.89c.02-11.11-6.28-20.71-16.33-25.01-22.01-9.42-47.24-1.65-60.98,17.77s-19.7,45.56-22.16,69.97c-3.4,33.61-4.04,82.1,7.66,112.8,4.74,12.44,13.09,23.22,26.04,28.35Z"/>
+            </svg>
+            <span class="micro">© 2026 Melanie Dunn. Explained for you. Not at you.</span>
+          </div>
+          <nav class="foot-links" aria-label="Footer navigation">
+            <a href="../work/index.html">Work</a>
+            <a href="index.html">Melsplains</a>
+            <a href="tools.html">Free Tools</a>
+            <a href="../about/index.html">About</a>
+            <a href="../contact/index.html">Let's Talk</a>
+          </nav>
+        </div>
+        <div class="foot-social">
+          <a href="https://linkedin.com/in/dunnmel" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">
+          Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => { entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); },
+        { threshold: 0.10 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    })();
+  </script>
+
+</body>
+</html>
