@@ -116,6 +116,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
     .pull-quote { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(20px, 2.4vw, 28px); line-height: 1.2; letter-spacing: -0.01em; color: var(--warm-black); }
     .pull-quote em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .credentials { display: flex; flex-direction: column; gap: 14px; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .cred-item { display: flex; flex-direction: column; gap: 2px; }
+    .cred-item dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light-gray); }
+    .cred-item dd { font-size: 14.5px; color: var(--warm-black-2); margin: 0; }
 
     /* Right col — bio */
     .about-bio { display: flex; flex-direction: column; gap: 0; }
@@ -253,6 +257,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <blockquote class="pull-quote">
             "My design background is why the work looks the way it does. The marketing chops are why it <em>performs.</em> The systems thinking is why it scales."
           </blockquote>
+          <dl class="credentials">
+            <div class="cred-item"><dt>Experience</dt><dd>10+ years in marketing strategy, 20+ years in design</dd></div>
+            <div class="cred-item"><dt>Role</dt><dd>Marketing Operations Lead, Three Seven Marketing</dd></div>
+            <div class="cred-item"><dt>Built</dt><dd>Pip (AI project manager) · Roux (AI meal planning system)</dd></div>
+            <div class="cred-item"><dt>Based</dt><dd>Ohio</dd></div>
+          </dl>
           <p class="margin-note">the resume version is <a href="../resume/index.html" style="border-bottom:1px solid rgba(232,24,90,0.3);">here</a>. this is the real one.</p>
         </div>
 
