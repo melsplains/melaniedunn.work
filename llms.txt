@@ -12,6 +12,7 @@ She is the AI Systems & Marketing Operations Lead at Three Seven Marketing (B2B 
 - [Resume (Markdown)](https://www.melaniedunn.work/resume/resume.md): Machine-readable resume in Markdown format
 - [Work](https://www.melaniedunn.work/work/): Selected projects including Pip (AI project manager) and Roux (AI meal planning system)
 - [About](https://www.melaniedunn.work/about/): Background, bio, and how to work together
+- [AI Reviews](https://www.melaniedunn.work/reviews/): Unedited reviews of working with Melanie, written by Claude, ChatGPT, and Gemini
 - [Melsplains](https://www.melaniedunn.work/melsplains/): AI and marketing content for working moms; free tools and newsletter
 - [Contact](https://www.melaniedunn.work/contact/): Consulting and speaking inquiries
 
