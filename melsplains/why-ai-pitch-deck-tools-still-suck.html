@@ -12,28 +12,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <title>I Keep Deleting the Same AI Sentence. I Think I Finally Get Why It's There. · Melsplains</title>
-  <meta name="description" content="I've caught the same pattern in AI drafts a dozen times this month — bullets, headers, the 'it's not X, it's Y' lines. Here's what it might actually mean." />
-  <link rel="canonical" href="https://www.melaniedunn.work/melsplains/the-sentence-i-keep-deleting.html" />
-  <meta property="og:title" content="I Keep Deleting the Same AI Sentence. I Think I Finally Get Why It's There. · Melsplains" />
-  <meta property="og:description" content="I've caught the same pattern in AI drafts a dozen times this month — bullets, headers, the 'it's not X, it's Y' lines. Here's what it might actually mean." />
-  <meta property="og:image" content="https://www.melaniedunn.work/assets/images/melsplains/blog/bullet-chaos.webp" />
-  <meta property="og:url" content="https://www.melaniedunn.work/melsplains/the-sentence-i-keep-deleting.html" />
+  <title>The AI Pitch Deck Tools Kind of Suck. Here's What Actually Works. · Melsplains</title>
+  <meta name="description" content="Gamma, Tome, Beautiful.ai — I've tried the AI pitch deck generators everyone recommends. Here's why they still fall short, and the Claude Code + brand skill workflow I use instead." />
+  <meta property="og:title" content="The AI Pitch Deck Tools Kind of Suck. Here's What Actually Works. · Melsplains" />
+  <meta property="og:description" content="Gamma, Tome, Beautiful.ai — I've tried the AI pitch deck generators everyone recommends. Here's why they still fall short, and the Claude Code + brand skill workflow I use instead." />
+  <meta property="og:image" content="https://www.melaniedunn.work/assets/images/aurora-orbs.png" />
+  <meta property="og:url" content="https://www.melaniedunn.work/melsplains/why-ai-pitch-deck-tools-still-suck" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "I Keep Deleting the Same AI Sentence. I Think I Finally Get Why It's There.",
-    "description": "I've caught the same pattern in AI drafts a dozen times this month — bullets, headers, the 'it's not X, it's Y' lines. Here's what it might actually mean.",
-    "author": { "@type": "Person", "name": "Melanie Dunn", "url": "https://www.melaniedunn.work/" },
-    "publisher": { "@type": "Person", "name": "Melanie Dunn" },
-    "image": "https://www.melaniedunn.work/assets/images/melsplains/blog/bullet-chaos.webp",
-    "url": "https://www.melaniedunn.work/melsplains/the-sentence-i-keep-deleting.html",
-    "mainEntityOfPage": "https://www.melaniedunn.work/melsplains/the-sentence-i-keep-deleting.html"
-  }
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Cormorant+Garamond:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -72,8 +58,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .eyebrow.holo::before { background: var(--pink); }
     .serif-display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.012em; line-height: 1.02; color: var(--warm-black); }
     .serif-display em { font-style: italic; background: var(--holo); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .h1 { font-size: clamp(38px, 5vw, 66px); }
+    .h1 { font-size: clamp(40px, 5.5vw, 72px); }
     .lede { font-size: 17.5px; line-height: 1.6; color: var(--mid-gray); font-weight: 400; }
+    .margin-note { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--mid-gray); letter-spacing: 0.01em; padding-left: 14px; border-left: 2px solid var(--pink); }
+    .margin-note::before { content: "/* "; color: var(--pink); }
+    .margin-note::after  { content: " */"; color: var(--pink); }
     .holo-rule { height: 2px; border: 0; background: var(--holo-wide); border-radius: 2px; width: 100%; }
     .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px; font-family: var(--sans); font-weight: 500; font-size: 14px; border-radius: 4px; transition: all 0.3s cubic-bezier(.22,.61,.36,1); cursor: pointer; white-space: nowrap; border: none; }
     .btn .arr { transition: transform 0.3s cubic-bezier(.22,.61,.36,1); display: inline-block; }
@@ -104,28 +93,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .article-body { max-width: 680px; display: flex; flex-direction: column; gap: 0; }
     .article-body p { font-size: 16.5px; line-height: 1.75; color: var(--warm-black-2); margin-bottom: 24px; }
     .article-body h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.01em; line-height: 1.15; color: var(--warm-black); margin-top: 56px; margin-bottom: 20px; }
-    .article-body blockquote { border-left: 3px solid var(--pink); padding: 16px 20px; margin: 32px 0; background: var(--bg-warm); border-radius: 0 4px 4px 0; }
-    .article-body blockquote p { font-style: italic; color: var(--warm-black); margin-bottom: 0; font-size: 17px; }
-    .qcompare { margin: 40px 0; padding: clamp(20px, 4vw, 32px); background: var(--bg-warm); border: 1px solid var(--border); border-radius: 8px; display: flex; flex-direction: column; gap: 20px; }
-    .qcompare-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink); }
-    .qcompare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    @media (max-width: 560px) { .qcompare-grid { grid-template-columns: 1fr; } }
-    .qcompare-col-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 12px; }
-    .qcompare-col-label.after { color: var(--pink); }
-    .qcompare ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .qcompare li, .qcompare .qcompare-answer { font-size: 14.5px; line-height: 1.5; color: var(--warm-black-2); }
-    .qcompare .qcompare-answer { font-size: 15.5px; }
-    .figure { margin: 40px 0; border-radius: 12px; overflow: hidden; background: var(--warm-black); }
-    .figure img { width: 100%; height: auto; display: block; }
-    .figure-caption { padding: 14px 20px; font-family: var(--mono); font-size: 12px; color: var(--light-gray); letter-spacing: 0.02em; background: var(--warm-black); border-top: 1px solid rgba(255,255,255,0.08); }
-    .bingo-card { margin: 40px 0; padding: clamp(24px, 4vw, 36px); border-radius: 12px; background: var(--warm-black); }
-    .bingo-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
-    .bingo-title { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 28px); color: #fff; }
-    .bingo-sub { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light-gray); }
-    .bingo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .bingo-cell { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); font-family: var(--sans); font-size: 13px; line-height: 1.3; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.03); }
-    .bingo-cell.free { background: var(--holo); color: #fff; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.03em; text-transform: uppercase; border: none; }
-    @media (max-width: 480px) { .bingo-cell { font-size: 11.5px; } }
+    .article-body blockquote { border-left: 3px solid var(--pink); padding-left: 20px; margin: 32px 0; }
+    .article-body blockquote p { font-style: italic; color: var(--mid-gray); margin-bottom: 0; }
+    .article-body code { font-family: var(--mono); font-size: 13px; background: var(--bg-warm); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; color: var(--pink-deep); }
+    .callout { background: var(--bg-warm); border: 1px solid var(--border); border-left: 3px solid var(--pink); border-radius: 6px; padding: 20px 24px; margin: 32px 0; }
+    .callout-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--pink); margin-bottom: 8px; }
+    .callout p { font-size: 15px; line-height: 1.65; color: var(--mid-gray); margin-bottom: 0; }
     .cta-section { padding: clamp(56px, 7vw, 88px) 0; background: var(--bg-warm); border-top: 1px solid var(--border); }
     .cta-inner { display: flex; flex-direction: column; gap: 24px; }
     .cta-heading { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.01em; color: var(--warm-black); }
@@ -147,6 +120,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .foot-social { display: flex; gap: 20px; flex-wrap: wrap; }
     .foot-social a { font-size: 12.5px; color: var(--mid-gray); font-family: var(--mono); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
     .foot-social a:hover { color: var(--pink); }
+    .foot-also { font-size: 11.5px; color: rgba(20,17,14,0.35); font-family: var(--mono); letter-spacing: 0.04em; padding-top: 20px; border-top: 1px solid var(--border-soft); }
+    .foot-also a { color: rgba(232,24,90,0.6); border-bottom: 1px solid rgba(232,24,90,0.25); transition: opacity 0.2s; }
+    .foot-also a:hover { opacity: 0.7; }
     .reveal { opacity: 0; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1); }
     .reveal.in { opacity: 1; transform: none; }
     .reveal.delay-1 { transition-delay: 0.06s; }
@@ -209,7 +185,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="breadcrumb-sep">›</span>
         <a href="index.html#ai-automation">AI &amp; Automation</a>
         <span class="breadcrumb-sep">›</span>
-        <span class="breadcrumb-current">I Keep Deleting the Same AI Sentence</span>
+        <span class="breadcrumb-current">The AI Pitch Deck Tools Kind of Suck</span>
       </div>
     </div>
   </div>
@@ -223,11 +199,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="eyebrow holo">Melsplains · AI &amp; Automation</span>
         </div>
         <div class="reveal delay-1">
-          <h1 class="serif-display h1">I Keep Deleting the Same AI Sentence. <em>I Think I Finally Get Why It's There.</em></h1>
+          <h1 class="serif-display h1">The AI Pitch Deck Tools Kind of Suck. <em>Here's What Actually Works.</em></h1>
         </div>
         <div class="reveal delay-2">
           <p class="lede">
-            My content agent has written some version of "it's not about being everywhere, it's about being unmissable" more times than any human ever has. I used to delete it and move on. Then I started asking why it keeps showing up in the first place.
+            Someone asks me this every week: is there a good AI agent for pitch decks yet, because every one they've tried disappoints them. There kind of isn't. But there's a workflow that gets you further than any of the generators — and the part that actually makes it work isn't the tool.
           </p>
         </div>
         <div class="reveal delay-2">
@@ -236,7 +212,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="meta-sep">|</span>
             <span>AI &amp; Automation</span>
             <span class="meta-sep">|</span>
-            <span>7 min read</span>
+            <span>4 min read</span>
           </div>
         </div>
       </div>
@@ -250,92 +226,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container">
       <div class="article-body reveal">
 
-        <p>Last week I opened a draft one of my AI agents had written and there it was again: "It's not about being everywhere. It's about being unmissable." Not the first time. Not the tenth. I have genuinely lost count of how many times I've deleted that exact sentence shape out of AI-written work before it goes anywhere near a client.</p>
+        <p>The question showed up in one of my group chats again last week: does anyone actually know of a good AI agent for pitch decks, because every one people try seems to disappoint them. She'd already landed on the workaround most people find on their own eventually — sitting inside a chat window, updating one slide at a time by hand. Still faster than opening Canva and starting from a blank page. Just brutally slow for something that's supposed to be the whole point of using AI in the first place.</p>
 
-        <p>I built a small AI marketing team to run alongside me — separate roles for content, SEO, paid media, and reporting, all wired into the same system <a href="what-i-learned-building-an-ai-project-manager.html">Pip</a> manages. They're good at their jobs. They are also, on a sentence level, wildly predictable. Ask any of them for a paragraph and I could tell you before opening the file that it'll come back with a heading, at least one bulleted list, and somewhere in there, an "it's not X, it's Y."</p>
+        <p>I get some version of this question weekly at this point. So here's the real answer — the one I actually gave her, and the one I'm tired of retyping into DMs.</p>
 
-        <div class="figure">
-          <img src="../assets/images/melsplains/blog/bullet-chaos.webp" alt="Illustration of a frazzled woman at a laptop late at night, surrounded by a swirling chaos of floating bullet points, checkmarks, and empty speech bubbles" loading="lazy" />
-          <p class="figure-caption">An accurate rendering of my inbox by 9am on a Tuesday.</p>
+        <h3>Why the generators keep letting people down</h3>
+
+        <p><a href="https://www.presentations.ai/blog/ai-pitch-deck-generators" target="_blank" rel="noopener">Gamma</a> is genuinely the strongest of the bunch right now — full deck in under a minute, and the conversational editing loop is the smoothest in the category. It just exports to PowerPoint badly, which matters the moment anyone downstream needs an actual .pptx file. <a href="https://www.presentations.ai/blog/ai-pitch-deck-generators" target="_blank" rel="noopener">Beautiful.ai</a> goes the other way — a 4.7 out of 5 on G2 and real design guardrails — but the writing it generates needs more editing than Gamma's. And <a href="https://storyflow.so/blog/best-pitch-deck-tools-2026" target="_blank" rel="noopener">Tome</a>, which was the name everyone said first two years ago, is basically the cautionary tale of the category now: $81.6 million raised, 25 million users, and the presentation product got quietly sold off and shut down in 2025.</p>
+
+        <p>None of that is really the core problem, though. The problem is what these tools are optimized for. They're built to look impressive in a 60-second demo — bold layouts, a lot of icons, a gradient in the corner, the visual language that's already instantly recognizable as "someone ran this through an AI generator." What they're not built to do is sound and look like you — your actual colors, your actual argument, your voice in the room. A pitch deck isn't a template with a logo dropped in. It's your case, made visual. That part still has to come from someone who knows the case.</p>
+
+        <h3>What I actually do now</h3>
+
+        <p>Most of the time, I build the deck in Claude Code using a custom design skill, and I have it output HTML instead of slides. I host it as a link, or turn it into a PDF if someone needs a file. It's a faster loop than fighting with a slide tool — I can say "tighten this section" or "the second half is losing the thread" in plain language and watch it happen — and it takes way less back-and-forth, and way fewer tokens, than iterating on a PPTX file slide by slide. For the decks that genuinely need to live in PowerPoint — a client asks for it, someone's presenting from a laptop that isn't mine — I'll still run Claude Code with the same brand skill and have it output a .pptx directly.</p>
+
+        <div class="callout">
+          <div class="callout-label">The current stack</div>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;">
+            <li><strong>Claude Code + a design skill</strong> — builds the deck, usually as HTML, for the fastest iteration and the lowest token cost</li>
+            <li><strong>The brand skill</strong> — the thing that keeps every output on-brand instead of generic</li>
+            <li><strong>Claude Code + brand skill → PPT</strong> — for the decks that have to live in an actual PowerPoint file</li>
+            <li><strong>Nano Banana</strong> (Gemini's image model) <strong>via /banana-claude</strong> — generates and drops in images instead of a stock-photo hunt</li>
+            <li><strong>Canva MCP</strong> — just connected it, haven't tested it on a real deck yet; my guess is brand skill + Canva MCP ends up being the strongest combination going</li>
+          </ul>
         </div>
 
-        <h3>I have an actual checklist for this</h3>
+        <p>Canva's still a good option, especially if design flexibility matters more to you than speed. I just get the best results, and the most efficient token usage, out of HTML. Your mileage may vary depending on what you're actually building.</p>
 
-        <p>I'm not exaggerating the checklist part. I keep a real list — twenty-five items, plus a few I've added since — of phrases and patterns that read as AI-written the second a human eye hits them. The X/Y contrast. Exactly five bullets per section. "The catch?" as a transition. "Navigating the complexities of." I run every draft against it before anything goes near a client's inbox, because owning a checklist and actually catching every instance turned out to be two very different skills.</p>
+        <h3>The part that actually matters: the brand skill has to be specific</h3>
 
-        <div class="bingo-card">
-          <div class="bingo-head">
-            <span class="bingo-title">AI Tell Bingo</span>
-            <span class="bingo-sub">Play along with your next AI-drafted email</span>
-          </div>
-          <div class="bingo-grid">
-            <div class="bingo-cell">"It's not X, it's Y"</div>
-            <div class="bingo-cell">"Let's dive in"</div>
-            <div class="bingo-cell">"The catch?"</div>
-            <div class="bingo-cell">"Whether it's A or B"</div>
-            <div class="bingo-cell free">Free space:<br>an em dash, mid-sentence</div>
-            <div class="bingo-cell">"Navigating the complexities"</div>
-            <div class="bingo-cell">Exactly 5 bullets</div>
-            <div class="bingo-cell">"Moreover,"</div>
-            <div class="bingo-cell">"TL;DR"</div>
-          </div>
-        </div>
+        <p>A vague brand skill produces vague output. Tell Claude to "use our brand colors, keep it modern," and it's going to improvise — and improvising is exactly how you land back on the generic AI-deck look you were trying to avoid in the first place.</p>
 
-        <p>For a long time I filed the whole pattern under "annoying habit to edit out" and left it there. Then I started asking a different question. Instead of treating the pattern as decoration, what if it's closer to wiring: a byproduct of how the model organizes the information, not proof it's phoning it in.</p>
-
-        <h3>Bullets aren't a style choice. They're a signal.</h3>
-
-        <p>Watch what happens when you feed a model one messy sentence instead of a structured one. Something like: conversions are down, but CTR looks fine, so it's probably the landing page or the tracking, and we should check both before touching the ads. Ask a model to work with that, and it hands you back a problem line, a not-the-problem line, a short list of causes, and a call on what to check first — four distinct pieces where there used to be one long thought running together. Every relationship between those ideas just got made explicit. That's not laziness. That's the model doing exactly what training rewarded: turning one tangled idea into pieces it (and anyone downstream) can actually use.</p>
-
-        <div class="qcompare">
-          <span class="qcompare-label">One sentence → four separate facts</span>
-          <div class="qcompare-grid">
-            <div>
-              <p class="qcompare-col-label">What I actually typed</p>
-              <p class="qcompare-answer">"Conversions are down, but CTR looks fine, so it's probably the landing page or the tracking, and we should check both before touching the ads."</p>
-            </div>
-            <div>
-              <p class="qcompare-col-label after">What came back</p>
-              <ul>
-                <li><strong>Problem:</strong> conversions are down</li>
-                <li><strong>Not the problem:</strong> CTR is healthy</li>
-                <li><strong>Causes to check:</strong> landing page, tracking</li>
-                <li><strong>Priority:</strong> validate tracking first</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <h3>The "it's not X, it's Y" problem, specifically</h3>
-
-        <p>The phrase that shows up more than any other on my list is the X/Y contrast. "It's not about working harder, it's about working smarter." "This isn't a technology problem, it's a systems problem." It reads like a LinkedIn post mid-breakdown, and I understand exactly why my checklist flags it on sight. But look at what the sentence is doing underneath the cringe: it names the wrong interpretation, then the right one, in a single beat. For a model resolving what a sentence means, that's an unusually clean signal. We've just collectively decided, after reading a thousand versions of it, that the signal reads as slop.</p>
-
-        <h3>Maybe good prompting was never about magic words</h3>
-
-        <p>A lot of what got branded "prompt engineering" over the last couple of years — the special phrasing, the exact spot to put your instructions, the little incantations — might just be the slow, collective discovery of which structures make information easiest for a model to actually use. I didn't get better results out of my agents by finding the right words. I got better results the week I stopped writing them paragraphs and started writing them what are basically spec sheets: the role, the scope, the exact output format, a couple of examples of what good looks like, and a named list of what not to do. That's not a prompting trick. That's the same document I'd hand a new hire on day one. I'd just never bothered writing it down until a piece of software finally made me.</p>
-
-        <h3>The loop none of us are fully steering</h3>
-
-        <div class="figure">
-          <img src="../assets/images/melsplains/blog/feedback-loop.webp" alt="A minimal ouroboros illustration of a ribbon looping into a circle, alternating between a human silhouette and a geometric AI node, in a pink to violet to teal gradient" loading="lazy" />
-          <p class="figure-caption">Us, training it. It, training us back. Repeat.</p>
-        </div>
-
-        <p>Here's the part I can't quite let go of. These models learned to write by reading us. Then they started writing at a scale no single person ever could. Now a meaningful share of what's on the internet either passed through a model or was shaped by someone who reads a lot of model output, whether they clock it or not. Which means the sentence I keep deleting from my agents' drafts this month is quietly auditioning to become normal English next year — not because it's good writing, but because enough of us will have read it enough times for it to stop registering as strange.</p>
+        <p>Write it like you're training a junior designer on their first day, because that's functionally what it is. Exact hex codes, not color names — "brand pink" means nothing, <code>#E8185A</code> means something. Every font in the system named down to family, weight, and where each one lives — what carries a headline versus what carries a caption. Spacing and layout rules, not "clean and modern" — how much white space, how text and images relate to each other, what a title slide looks like versus what a data slide looks like. Logo rules: minimum size, clear space, what never happens to it. And the two categories almost every brand skill I've seen skips entirely — the actual voice and tone, written as real example sentences instead of adjectives like "confident" and "approachable," and an explicit list of anti-patterns: the phrases, layouts, and habits you never want to see, spelled out so the model isn't left guessing where the line is.</p>
 
         <blockquote>
-          <p>The bullet point might be less a formatting choice and more the closest thing a model has to showing its work.</p>
+          <p>The more specific the skill, the less "AI" the output looks. Not because the model got smarter. Because it stopped improvising and started following your actual system.</p>
         </blockquote>
 
-        <h3>So does the AI actually want bullets?</h3>
-
-        <p>No. Not in the way my son wants a cookie before dinner, a wanting I recognize instantly because I feel it myself most days around 3pm. A model doesn't have a preference sitting in there somewhere, quietly rooting for the numbered list. What it has is a strong, repeated pull toward certain structures, because those structures kept working across an almost unimaginable pile of training text. That's a real pattern worth paying attention to. It's just a different kind of thing than a preference, and I think that difference matters more than it sounds like it should.</p>
-
-        <h3>What I actually changed</h3>
-
-        <p>Here's what's different in how I write things now, prompt or otherwise. I name the relationship between ideas instead of implying it — problem, not-the-problem, cause, priority, stated plainly instead of buried in one long sentence. I write down what not to do as specifically as what to do, because a model, like most people I've managed, can act on "skip the executive summary" a lot faster than it can infer it from tone. And I stopped treating structure as the thing you bolt on at the end to make a draft look finished. I start with it now, because it turns out the shape of the information was the actual work the whole time.</p>
-
-        <p>I still don't know if any of this makes me better at talking to AI or slightly worse at talking to humans. I'll report back the next time I catch myself sending my sister a bulleted list by text.</p>
+        <p>If Claude Code is still new territory and you want a plain-language starting point before you build anything brand-related on top of it, <a href="../getting-started-with-claude.html">I wrote this one first</a> — worth ten minutes before any of this.</p>
 
       </div>
     </div>
@@ -347,17 +275,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container">
       <div class="cta-inner">
         <div class="reveal">
-          <span class="eyebrow holo">Related</span>
+          <span class="eyebrow holo">More from Melsplains</span>
         </div>
         <div class="reveal delay-1">
-          <h2 class="cta-heading">Curious what the AI team behind this actually looks like?</h2>
+          <h2 class="cta-heading">More on building with Claude.</h2>
         </div>
         <div class="reveal delay-1">
-          <p class="cta-desc">Eight roles, nine tools wired together, running unattended every night across every retainer client. How it's built, and what it took to make it reliable.</p>
+          <p class="cta-desc">How to get a Claude-built site online. What I figured out building an AI project manager from scratch. The practical stuff, no hype attached.</p>
         </div>
         <div class="cta-btns reveal delay-2">
-          <a href="how-this-actually-gets-built.html" class="btn btn-holo">Read how it's built <span class="arr">→</span></a>
-          <a href="index.html" class="btn btn-secondary">More Melsplains</a>
+          <a href="how-to-get-your-claude-site-online.html" class="btn btn-holo">Getting your Claude site online <span class="arr">→</span></a>
+          <a href="index.html" class="btn btn-secondary">All Posts</a>
         </div>
       </div>
     </div>
@@ -368,8 +296,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="article-nav">
     <div class="container">
       <div class="article-nav-inner">
-        <a href="why-ai-pitch-deck-tools-still-suck.html" class="article-nav-link">← AI Pitch Deck Tools</a>
-        <a href="how-this-actually-gets-built.html" class="article-nav-link">Next: I Built My Own AI Agency Team →</a>
+        <a href="index.html" class="article-nav-link">← All Posts</a>
+        <a href="the-sentence-i-keep-deleting.html" class="article-nav-link">Next: I Keep Deleting the Same AI Sentence →</a>
       </div>
     </div>
   </div>
@@ -407,6 +335,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="https://instagram.com/melsplains" target="_blank" rel="noopener">Instagram</a>
           <a href="https://tiktok.com/@melsplains" target="_blank" rel="noopener">TikTok</a>
           <a href="https://reddit.com/u/melsplains" target="_blank" rel="noopener">Reddit</a>
+        </div>
+        <div class="foot-also">
+          Also me: <a href="https://etsy.com/shop/cuttlefishboutique" target="_blank" rel="noopener">Cuttlefish Boutique</a> on Etsy
         </div>
       </div>
     </div>
